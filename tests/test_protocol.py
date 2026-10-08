@@ -1,7 +1,7 @@
 import json
 import pytest
 from passgame.constraints import Rule
-from passgame.protocol import parse, score
+from passgame.protocol import parse, render, score
 
 
 @pytest.mark.parametrize("raw", ['```json\n{"password":"A"}\n```', '{"password":"A","extra":1}', '{"password":1}', '["A"]', '{"password":"A","password":"B"}', 'answer: A'])
@@ -33,3 +33,22 @@ def test_invalid_artifact_does_not_replace_state_or_get_retention_credit():
         assert result["next_state"] == "A47x!"
         assert result["full_success"] == result["new_success"] == result["retention"] == 0
         assert result["after_checks"] is None
+        assert result["old_rules_broken"] is None
+
+
+def test_single_rule_disclosure_and_multiple_old_rule_regressions():
+    old = [Rule("digits", "digit_count", 4), Rule("sum", "digit_sum", 24, "le"),
+           Rule("ones", "char_count", "1", count=1), Rule("length", "length", 4),
+           Rule("pattern", "contains", "91")]
+    new = Rule("new", "char_at", "8", position=4)
+    prompt = render("5991", new)
+    assert prompt.count("\nNew rule: ") == 1
+    assert new.describe() in prompt
+    assert all(r.describe() not in prompt for r in old)
+    result = score("5991", '{"password":"5998"}', old, new)
+    assert result["old_rules_broken"] == 3
+    assert result["newly_violated_old_rule_ids"] == ["sum", "ones", "pattern"]
+    # Previously failed rules do not become newly violated rules.
+    inherited = score("5998", '{"password":"5998"}', old, new)
+    assert inherited["old_rules_broken"] == 0
+    assert inherited["newly_violated_old_rule_ids"] == []

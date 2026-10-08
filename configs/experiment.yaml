@@ -1,7 +1,7 @@
-study: benchmark-validation-v1
+study: multi-rule-sequential-validation-v2
 dataset_dir: data
 split: test
-tracks: [controlled, native, order, fresh]
+tracks: [controlled, native, order]  # controlled is offline diagnostics only
 models:
   - name: reference_oracle
     adapter: diagnostic
@@ -9,7 +9,7 @@ models:
     adapter: diagnostic
   - name: new_only
     adapter: diagnostic
-output_dir: outputs/benchmark-validation
+output_dir: outputs/multi-rule-sequential-validation
 budget_usd: 0
 bootstrap_repetitions: 2000
 seed: 20261008

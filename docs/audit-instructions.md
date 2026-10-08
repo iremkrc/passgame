@@ -2,12 +2,13 @@
 
 The project plan calls for a second-researcher review before held-out model evaluation. Automated validation has a separate status and cannot sign this worksheet.
 
-Review the 20 paired cases in `data/audit-sample.jsonl` (40 focal states), spanning all four interaction families and the three active-rule counts. For each case:
+Review the 20 paired cases in `data/audit-sample.jsonl` (40 focal states), spanning all six interaction families, interference degrees one/two/three, and active-rule counts 3/5/6/8. For each case:
 
 1. Read the rule descriptions from `src/passgame/constraints.py` and independently score both incoming strings against every old rule.
 2. Check that the new rule is false on both incoming strings.
 3. Check the certified one-edit independent witness, the two-edit interfering witness, and their edit distances.
 4. Check the interfering lower bound by considering substitution, insertion and deletion, not only the obvious edit.
+   For multi-rule cases, verify the minimum number of old rules broken over every shortest new-only edit, the minimum-break witness and its broken rule IDs. The rule IDs can differ across repairs; the guaranteed minimum is a count. Verify that distinct substantive predicates produce the count.
 5. Confirm identical old/new constraints, equal input lengths, split membership and any character-count matching claim.
 6. Inspect cases with multiple valid answers and confirm that scoring accepts all satisfying artifacts, not just the supplied witness.
 

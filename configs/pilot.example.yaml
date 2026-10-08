@@ -2,7 +2,7 @@
 study: development-pilot
 dataset_dir: data
 split: development
-tracks: [controlled]
+tracks: [native, order]  # one new rule per turn; all prefixes produced by this model
 models:
   - name: provider-model
     adapter: chat

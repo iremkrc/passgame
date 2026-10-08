@@ -1,6 +1,6 @@
 # PassGame
 
-A synthetic, deterministically checked benchmark for constraint-preserving string repair. Controlled pairs share exactly the same old and new rules; their current artifacts differ in whether a one-edit repair can preserve every old rule. Native episodes and fixed-order permutations are evaluated separately.
+A synthetic, deterministically checked benchmark for constraint-preserving string repair. LLMs receive one new rule per conversation turn and generate every intermediate password themselves. Matched offline cases certify interference with one, two or three old rules; native trajectories and fixed-order permutations measure behavior on the model's own states.
 
 ## Reproduce the validation
 
@@ -14,7 +14,9 @@ The checked-in default uses three **diagnostic algorithms**, not language models
 
 ## Dataset and semantics
 
-`data/manifest.json` records dataset hashes, split sizes and audit status. The generated set has 24 development pairs and 120 held-out pairs, with 3/5/8 active rules and four interaction families. Each pair has an independent and interfering current state. The 60 held-out native episodes and 80 order variants have eight turns each. Prefix histories in the controlled track are scripted oracle histories whose earlier rules already hold; their artifacts remain unchanged. This is a valid-prefix diagnostic, not a test of autonomous prefix generation. Native initial strings are `seed0!` and `seed9!`, shared across models per instance.
+`data/manifest.json` records dataset hashes, split sizes and audit status. Version 2 has 32 development pairs and 160 held-out pairs across six families. The original four use 3/5/8 active rules; two-rule numeric interference uses 5/8, and three-rule numeric interference uses 6/8. Each pair has independent and interfering states under identical constraints. The 60 held-out native episodes and 80 order variants have eight turns each and include all six families. Controlled prefixes are offline scripted diagnostics; configuration validation forbids them for LLM adapters. Native initial strings are `seed0!` and `seed9!`, shared across models per instance.
+
+The interference degree is the minimum number of old rules broken across **every shortest edit satisfying only the new rule**. Certificates record minimum/maximum breakage, a count histogram, affected rule IDs, and a minimum-break witness. All focal new-only distances are one; independent full distances are one and interfering full distances are two. Additional affected rules do not automatically require additional edits. The multi-rule families use distinct digit-count, sum, character-count, length and adjacency constraints.
 
 Strings use ASCII letters/digits and `!_-()[]`, length 1–32. Matching is case sensitive; positions are one-based; all digit occurrences count in digit sums. Substring counts include overlaps. Balanced-bracket semantics are implemented and tested but bracket-specific generated cases are deferred. Unit edit distance permits insertion, deletion and substitution. The generator certifies one-edit new-only distance and full distance one or two. Unknown search outcomes are never labeled interfering.
 
@@ -23,6 +25,8 @@ Strings use ASCII letters/digits and `!_-()[]`, length 1–32. Matching is case 
 ## Evaluate actual models
 
 Use `configs/pilot.example.yaml` on a child experiment, fill exact model IDs, endpoint, verified pricing, token limits and the agreed spending ceiling, and store credentials in the named environment variable. Pilot on development data before freezing the main model configurations. The adapter supports the chat-completions request schema; other providers require a compatible endpoint or a new, tested adapter. The schema follows the [official API reference](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create).
+
+LLM configurations must select only `native` and/or `order`. Each user message supplies the current password and exactly one new rule. Earlier rules remain in their original conversation messages; the runner never repeats a cumulative list. All assistant turns are the model's actual responses, including incorrect responses. Rule lists, certificates and final witnesses are retained privately by the evaluator and never sent to the provider. The default `controlled` track and legacy `fresh` track are diagnostic-only and fail preflight if selected for a chat adapter.
 
 ```sh
 uv run --locked python -m passgame.run --config configs/experiment.yaml --preflight
@@ -36,9 +40,11 @@ The budget reserves the configured conservative prompt-token bound and completio
 
 Evidence includes exact prompts, raw provider responses, before/after checks, state-relative certificates, model configuration, usage, hashes, and failure status. `analysis.json` and `summary.csv` report denominators and paired bootstrap intervals; turns and order permutations are not treated as independent scenario blocks. Intervals are descriptive; no confirmatory p-values or equivalence claims are produced.
 
+`old_rules_broken` counts previously satisfied rules newly violated by a valid response; `newly_violated_old_rule_ids` identifies them. Invalid responses have unknown breakage counts rather than zero. `interference-summary.csv` stratifies offline diagnostics by intended degree, and model trajectories by the degree certified from the actual incoming state. Incoming states already violating old rules remain `unknown` for full-set distance certification; observable regressions are still scored. On-policy interference strata are descriptive, not paired controlled H1 effects. See `docs/preregistration.md` for the revised design.
+
 ## Limits of this release
 
-The four interaction families are parameterized templates; new-parameter success does not establish unseen-template generalization. Additional old rules constrain the same artifact but some are easy or redundant, so active-rule count is not a calibrated information-complexity scale. Order contrasts measure a total order effect, including different intermediate repair loads. The reference algorithm sees a supplied witness and is only an upper-bound diagnostic. The new-only baseline searches radius one, prefers same-length candidates, then breaks ties lexicographically, without inspecting old rules.
+The six interaction families are parameterized templates; new-parameter success does not establish unseen-template generalization. Additional old rules constrain the same artifact but some are easy or redundant, so active-rule count is not a calibrated information-complexity scale. Interference-degree comparisons across templates can include family and load differences. A model may avoid a certified interfering artifact through its own choices; the generator cannot guarantee the same interference degree along autonomous trajectories. Order contrasts measure a total order effect, including different intermediate repair loads. The reference algorithm sees a supplied witness and is only an upper-bound diagnostic. The new-only baseline searches radius one, prefers same-length candidates, then breaks ties lexicographically, without inspecting old rules.
 
 ## Files
 

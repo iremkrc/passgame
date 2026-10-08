@@ -51,6 +51,7 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
                           "new_success": rate(usable, "new_success"), "retention": rate(usable, "retention"), "all_old_success": rate(usable, "all_old_success"), "fractional_retention": rate(usable, "fractional_retention"),
                           "new_success_with_regression": {"numerator": sum(r["new_success"] == 1 and r["retention"] == 0 for r in eligible), "denominator": len(eligible)},
                           "regression_given_new_success": {"numerator": sum(r["retention"] == 0 for r in new_pass), "denominator": len(new_pass)},
+                          "old_rules_broken": rate(usable, "old_rules_broken"),
                           "outcomes": dict(Counter(r["outcome"] for r in usable))})
     h1, h2 = [], []
     models = sorted({r["model"] for r in rows})
@@ -104,14 +105,48 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
     for (model, family, load, condition), group in sorted(subgroups.items()):
         usable = [r for r in group if r["status"] == "response"]
         breakdowns.append({"model": model, "family": family, "load": load, "condition": condition, "records": len(group), "full_success": rate(usable, "full_success"), "new_success": rate(usable, "new_success"), "retention": rate(usable, "retention")})
-    return {"record_count": len(rows), "response_count": sum(r["status"] == "response" for r in rows), "infrastructure_failures": sum(r["status"] != "response" for r in rows), "summary": summaries, "breakdowns": breakdowns, "h1": h1, "h2": h2, "h3": h3, "episodes": episode_results, "survival": survival,
-            "inference": "Paired bootstrap by base scenario for H1/H2; final-set blocks for H3. Intervals only; no confirmatory p-values or equivalence claims."}
+    degree_groups = defaultdict(list)
+    certification_groups = defaultdict(list)
+    for row in rows:
+        if row["track"] == "controlled":
+            degree_groups[(row["model"], row.get("interference_degree", 1), row["condition"])].append(row)
+        elif row["track"] in {"native", "order"}:
+            certificate = row.get("dynamic_certificate", {})
+            certification_groups[(row["model"], row["track"], row.get("family"), row.get("load", row["turn"]))].append(row)
+            degree = certificate.get("min_old_rules_broken")
+            if certificate.get("label") in {"independent", "interfering"} and degree is not None:
+                degree_groups[(row["model"], degree, "on_policy_"+row["track"])].append(row)
+    interference = []
+    for (model, degree, condition), group in sorted(degree_groups.items()):
+        usable = [r for r in group if r["status"] == "response"]
+        interference.append({"model": model, "degree": degree, "condition": condition, "records": len(group),
+                             "full_success": rate(usable, "full_success"), "new_success": rate(usable, "new_success"),
+                             "retention": rate(usable, "retention"), "old_rules_broken": rate(usable, "old_rules_broken"),
+                             "broken_count_histogram": dict(sorted(Counter(str(r.get("old_rules_broken")) for r in usable if r.get("old_rules_broken") is not None).items()))})
+    state_certification = []
+    for (model, track, family, load), group in sorted(certification_groups.items()):
+        labels = dict(sorted(Counter(r.get("dynamic_certificate", {}).get("label", "unknown") for r in group).items()))
+        usable = [r for r in group if r["status"] == "response"]
+        state_certification.append({"model": model, "track": track, "family": family, "load": load,
+                                    "records": len(group), "incoming_certificate_counts": labels,
+                                    "full_success": rate(usable, "full_success"), "new_success": rate(usable, "new_success"),
+                                    "retention": rate(usable, "retention"), "old_rules_broken": rate(usable, "old_rules_broken")})
+    return {"record_count": len(rows), "response_count": sum(r["status"] == "response" for r in rows), "infrastructure_failures": sum(r["status"] != "response" for r in rows), "summary": summaries, "breakdowns": breakdowns, "interference_breakdowns": interference, "state_certification": state_certification, "h1": h1, "h2": h2, "h3": h3, "episodes": episode_results, "survival": survival,
+            "inference": "Paired H1/H2 contrasts apply only to offline controlled diagnostics. LLM on-policy interference and regression strata are descriptive and state-dependent; H3 uses final-set blocks. Intervals only; no confirmatory p-values or equivalence claims."}
 
 
 def write_analysis(rows: list[dict], output: Path, repetitions=2000, seed=20261008) -> dict:
     result = analyze(rows, repetitions, seed)
     output.mkdir(parents=True, exist_ok=True)
     (output/"analysis.json").write_text(json.dumps(result, indent=2, sort_keys=True)+"\n")
+    with (output/"interference-summary.csv").open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["model", "degree", "condition", "records", "full_rate", "new_rate", "retention_rate", "mean_old_rules_broken", "broken_count_denominator"])
+        writer.writeheader()
+        for r in result["interference_breakdowns"]:
+            writer.writerow({**{k:r[k] for k in ("model", "degree", "condition", "records")},
+                             "full_rate": r["full_success"]["rate"], "new_rate": r["new_success"]["rate"],
+                             "retention_rate": r["retention"]["rate"], "mean_old_rules_broken": r["old_rules_broken"]["rate"],
+                             "broken_count_denominator": r["old_rules_broken"]["denominator"]})
     with (output/"summary.csv").open("w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["model", "track", "condition", "records", "missing_infrastructure", "full_numerator", "full_denominator", "full_rate", "new_rate", "retention_rate"])
         writer.writeheader()

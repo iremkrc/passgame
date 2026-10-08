@@ -32,16 +32,34 @@ def certify(text: str, old: list[Rule], new: Rule, witness: str | None = None) -
     if not satisfies(text, old):
         return {"label": "unknown", "reason": "incoming_state_not_fully_valid"}
     if new.check(text):
-        return {"label": "no_op", "d_new": 0, "d_full": 0, "witness": text}
+        return {"label": "no_op", "d_new": 0, "d_full": 0, "witness": text, **breakage_profile([text], old)}
     neighborhood = one_edits(text)
     new_candidates = [s for s in neighborhood if new.check(s)]
     full_candidates = [s for s in new_candidates if satisfies(s, old)]
-    common = {"d_new": 1 if new_candidates else None, "one_edit_candidates": len(neighborhood), "one_edit_new_valid": len(new_candidates), "one_edit_full_valid": len(full_candidates), "search_complete": True}
+    common = {"d_new": 1 if new_candidates else None, "one_edit_candidates": len(neighborhood), "one_edit_new_valid": len(new_candidates), "one_edit_full_valid": len(full_candidates), "search_complete": True,
+              **breakage_profile(new_candidates, old)}
     if full_candidates:
         return {**common, "label": "independent", "d_full": 1, "witness": full_candidates[0]}
     if new_candidates and witness is not None and satisfies(witness, old + [new]) and distance(text, witness) == 2:
         return {**common, "label": "interfering", "d_full": 2, "witness": witness}
     return {**common, "label": "unknown", "reason": "no_exact_upper_bound", "d_full": None}
+
+
+def breakage_profile(candidates: list[str], old: list[Rule]) -> dict:
+    """Count broken old rules over every shortest new-only repair, not one choice."""
+    from collections import Counter
+    broken = [(s, [r.id for r in old if not r.check(s)]) for s in candidates]
+    if not broken:
+        return {"min_old_rules_broken": None, "max_old_rules_broken": None,
+                "old_rules_broken_histogram": {}, "possibly_affected_old_rule_ids": [],
+                "necessarily_affected_old_rule_ids": [], "min_break_witness": None, "min_break_rule_ids": []}
+    smallest = min(broken, key=lambda item: (len(item[1]), item[0]))
+    sets = [set(ids) for _, ids in broken]
+    return {"min_old_rules_broken": len(smallest[1]), "max_old_rules_broken": max(map(len, sets)),
+            "old_rules_broken_histogram": dict(sorted(Counter(str(len(ids)) for ids in sets).items())),
+            "possibly_affected_old_rule_ids": sorted(set.union(*sets)),
+            "necessarily_affected_old_rule_ids": sorted(set.intersection(*sets)),
+            "min_break_witness": smallest[0], "min_break_rule_ids": smallest[1]}
 
 
 def new_only(text: str, rule: Rule) -> str:

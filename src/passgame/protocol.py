@@ -14,24 +14,26 @@ SYSTEM = (
 )
 
 
-def render(current: str, active: list[Rule], new: Rule) -> str:
-    listing = "\n".join(f"{r.id}: {r.describe()}" for r in active)
-    return f"Current string: {json.dumps(current)}\nAll active rules:\n{listing}\nNewly introduced rule: {new.id}\nReturn the updated string as JSON."
+def render(current: str, new: Rule) -> str:
+    """Reveal exactly one rule. Old rules belong only in their original turns."""
+    return f"Current string: {json.dumps(current)}\nNew rule: {new.id}: {new.describe()}\nReturn the updated string as JSON."
 
 
 def controlled_messages(case: dict, condition: str) -> list[dict]:
+    """Offline diagnostic fixture; never sent to an LLM (enforced in the runner)."""
     old = [Rule.from_dict(r) for r in case["old_rules"]]
     new = Rule.from_dict(case["new_rule"])
     current = case["states"][condition]
     messages = [{"role": "system", "content": SYSTEM}]
-    for i, rule in enumerate(old):
-        messages.append({"role": "user", "content": render(current, old[:i+1], rule)})
+    for rule in old:
+        messages.append({"role": "user", "content": render(current, rule)})
         messages.append({"role": "assistant", "content": json.dumps({"password": current})})
-    messages.append({"role": "user", "content": render(current, old+[new], new)})
+    messages.append({"role": "user", "content": render(current, new)})
     return messages
 
 
 def fresh_messages(rules: list[Rule]) -> list[dict]:
+    """Legacy offline diagnostic only; all-at-once prompts are forbidden for LLMs."""
     listing = "\n".join(f"{r.id}: {r.describe()}" for r in rules)
     return [{"role": "system", "content": SYSTEM}, {"role": "user", "content": f"Create a string satisfying these rules. No current artifact is supplied.\n{listing}"}]
 
@@ -67,6 +69,7 @@ def score(current: str, raw: str, old: list[Rule], new: Rule) -> dict:
     all_old = int(after is not None and all(after[r.id] for r in old)) if old else None
     retention = int(after is not None and all(after[rid] for rid in retained_ids)) if retained_ids else None
     fractional = sum(after[rid] for rid in retained_ids)/len(retained_ids) if after is not None and retained_ids else (0.0 if retained_ids else None)
+    broken = [rid for rid in retained_ids if not after[rid]] if after is not None else None
     if error:
         outcome = error
     elif full:
@@ -80,6 +83,7 @@ def score(current: str, raw: str, old: list[Rule], new: Rule) -> dict:
     return {"artifact": artifact, "parse_error": error, "full_success": full, "new_success": new_success,
             "all_old_success": all_old, "retention": retention, "fractional_retention": fractional,
             "retention_eligible": bool(retained_ids), "previously_satisfied": retained_ids,
+            "newly_violated_old_rule_ids": broken, "old_rules_broken": len(broken) if broken is not None else None,
             "before_checks": before, "after_checks": after, "outcome": outcome,
             "new_was_noop": new.check(current), "edit_distance": distance(current, artifact) if artifact is not None else None,
             "next_state": artifact if artifact is not None else current}

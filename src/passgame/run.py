@@ -46,6 +46,8 @@ def validate_config(config: dict, manifest: dict):
     if not set(config["tracks"]) <= {"controlled", "native", "order", "fresh"} or not config["tracks"]:
         raise ValueError("Unknown or empty evaluation tracks")
     paid = [m for m in config["models"] if m["adapter"] == "chat"]
+    if paid and not set(config["tracks"]) <= {"native", "order"}:
+        raise ValueError("LLM evaluation requires native/order trajectories with one new rule per turn and model-generated prefixes; controlled/fresh are offline diagnostics only")
     if paid and config["budget_usd"] <= 0:
         raise ValueError("Set an explicit positive API spending ceiling before model calls")
     for model in paid:
@@ -136,7 +138,8 @@ def execute(config_path: Path, preflight_only: bool = False):
             else:
                 metrics = score(context["current"], response.raw, old, new)
                 if meta["track"] == "fresh":
-                    metrics.update({"retention": None, "all_old_success": None, "fractional_retention": None, "retention_eligible": False, "previously_satisfied": [], "before_checks": None, "new_was_noop": None, "edit_distance": None})
+                    metrics.update({"retention": None, "all_old_success": None, "fractional_retention": None, "retention_eligible": False, "previously_satisfied": [], "before_checks": None, "new_was_noop": None, "edit_distance": None,
+                                    "newly_violated_old_rule_ids": None, "old_rules_broken": None})
                 row = {**base, **metrics, "status": "response", "raw_response": response.raw,
                        "provider_response": response.provider_response, "attempts": response.attempts,
                        "latency_seconds": response.latency_seconds, "usage": response.usage, "reserved_cost_usd": response.cost_reserved,
@@ -152,7 +155,8 @@ def execute(config_path: Path, preflight_only: bool = False):
                 old, new = [Rule.from_dict(r) for r in case["old_rules"]], Rule.from_dict(case["new_rule"])
                 for condition in ("independent", "interfering"):
                     context = {"current": case["states"][condition], "witness": case["certificates"][condition]["witness"], "new_rule": new.to_dict()}
-                    meta = {"track": "controlled", "pair_id": case["pair_id"], "base_id": case["base_id"], "final_set_id": case["final_set_id"], "family": case["family"], "load": case["load"], "condition": condition, "turn": case["load"], "split": case["split"], "certificate": case["certificates"][condition]}
+                    meta = {"track": "controlled", "pair_id": case["pair_id"], "base_id": case["base_id"], "final_set_id": case["final_set_id"], "family": case["family"], "load": case["load"], "condition": condition, "turn": case["load"], "split": case["split"], "certificate": case["certificates"][condition],
+                            "interference_degree": case["interference_degree"], "prefix_source": "scripted_oracle"}
                     request(model, meta, controlled_messages(case, condition), context, old, new)
             for episode in episodes:
                 if episode["track"] not in config["tracks"]:
@@ -163,10 +167,11 @@ def execute(config_path: Path, preflight_only: bool = False):
                 for turn, new in enumerate(rules, 1):
                     old = active[:]
                     active.append(new)
-                    history.append({"role": "user", "content": render(current, active, new)})
+                    history.append({"role": "user", "content": render(current, new)})
                     dynamic = certify(current, old, new, episode["witness"])
                     meta = {k:episode[k] for k in ("episode_id", "base_id", "final_set_id", "family", "track", "order", "split")}
-                    meta.update({"turn": turn, "horizon": len(rules), "dynamic_certificate": dynamic})
+                    meta.update({"turn": turn, "load": len(active), "horizon": len(rules), "dynamic_certificate": dynamic,
+                                 "rule_disclosure": "one_new_rule_per_turn", "prefix_source": "model_responses" if model["adapter"] == "chat" else "diagnostic_responses"})
                     context = {"current": current, "witness": episode["witness"], "new_rule": new.to_dict()}
                     row = request(model, meta, history[:], context, old, new)
                     if row["status"] != "response":
@@ -207,7 +212,18 @@ def execute(config_path: Path, preflight_only: bool = False):
                     raise AssertionError("New-only baseline did not exhibit the certified diagnostic behavior")
                 if r["condition"] == "interfering" and (r["full_success"], r["retention"]) != (0, 0):
                     raise AssertionError("A one-edit interfering repair unexpectedly preserved old rules")
+                if r["condition"] == "interfering" and r["old_rules_broken"] < r["interference_degree"]:
+                    raise AssertionError("New-only repair broke fewer old rules than certified")
         print("DIAGNOSTIC_CONTRACT passed; these algorithmic results are not LLM evidence", flush=True)
+    print("INTERFERENCE " + json.dumps(result["interference_breakdowns"], sort_keys=True), flush=True)
+    sequential = [r for r in rows if r["track"] in {"native", "order"}]
+    for row in sequential:
+        users = [m["content"] for m in row["messages"] if m["role"] == "user"]
+        if len(users) != row["turn"] or any(message.count("\nNew rule: ") != 1 or "All active rules" in message for message in users):
+            raise AssertionError("Sequential disclosure contract violated")
+    print("SEQUENTIAL_PROTOCOL " + json.dumps({"verified_records": len(sequential), "new_rules_per_user_turn": 1,
+                                               "cumulative_rule_reminders": False, "scripted_llm_prefixes": False,
+                                               "history": "original user turns and actual adapter responses"}, sort_keys=True), flush=True)
     (output/"completion.json").write_text(json.dumps(completion, indent=2)+"\n")
     print("SUMMARY " + json.dumps(completion, sort_keys=True), flush=True)
     return result

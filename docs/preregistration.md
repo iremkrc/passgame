@@ -1,27 +1,39 @@
-# PassGame validation release: prespecified design
+# PassGame version 2: prespecified design
 
-This document is frozen with the benchmark-validation baseline. It specifies diagnostic validation and a future model study; no diagnostic result is evidence about LLMs.
+This amendment implements multiple-rule interference and sequential disclosure at the user's request, before any LLM evaluation. The original validation release is preserved on its completed experiment branch. Diagnostic results establish benchmark correctness, not LLM behavior.
 
 ## Dataset and matching
 
-Seed: 20261008. Four retained pair templates: numeric sum/digit-count budget; fixed position with character count; fixed position with required substring; fixed position with forbidden substring. Each pair has identical old/new rules, equal input length, new-only minimum distance one, and certified full distance one versus two. Non-numeric pairs additionally match character multiplicities in the incoming states. The nominal 3/5/8 active-rule strata include some easy/redundant rules and must not be called a calibrated complexity axis.
+Seed: 20261008. Preserve the four original templates and their rules, parameters and incoming states. Append two numeric families with certified interference degrees two and three, using a separate random stream seeded 20261009. Degree k means every shortest new-only repair breaks at least k old rules, and at least one breaks exactly k. The failing rule IDs may differ across repairs.
 
-There are 24 development base pairs and 120 disjoint test base pairs (four families × three loads × ten test cases). Variants never cross splits. The native suite uses 30 test base sets with two initial strings; the order suite uses 20 test final sets with original, reverse and two seeded random orders. Final constraint witnesses prove every prefix satisfiable.
+Two-rule interference uses exact digit count, an upper digit-sum budget, exact multiplicity of a protected digit, and exact length. Three-rule interference also requires a digit adjacency pattern. The new rule fixes a digit at a specified position. Pairs match old/new constraints, input length and character multiplicities. Independent full distance is one; interfering full distance is two. The complete radius-one certificate includes substitutions, insertions and deletions and is independently audited. Distinct constraints produce the multiple-rule breakage.
 
-Controlled prefixes use already-valid unchanged artifacts at earlier turns. Controlled repair estimates therefore condition on an oracle-supplied valid prefix. Native trajectories start from `seed0!` or `seed9!` and use the model's own responses. They never inherit a fixed interference label after the current state changes. If complete certification cannot be obtained, the dynamic label is unknown.
+Version 2 has 32 development pairs and 160 test pairs: 120 original test pairs and 40 multi-rule test pairs. Original loads are 3/5/8, degree-two loads 5/8, degree-three loads 6/8. Load includes old rules plus the new rule and is not a calibrated complexity measure. Cross-template degree comparisons are descriptive and may include family/load differences.
 
-## Evaluation and endpoints
+The native suite uses 30 test base sets, balanced across six families, with two initial strings per set. The order suite uses 20 test final sets with original, reverse and two seeded random orders. Development suites contain all six families. Final witnesses prove all prefixes satisfiable. A 20-pair human audit spans the six families and degrees one/two/three.
 
-No training. No LLM judge. One semantic attempt per turn. All active rules and the exact current artifact are repeated. No minimum-edit requirement, tool use, provider JSON enforcement, semantic retries or oracle repairs of model state. Format/domain failures preserve the previous state; transport failures are missing evidence and stop that episode.
+## LLM exposure and trajectories
 
-Primary H1: independent-minus-interfering full-success difference on paired controlled repairs, per model. H2: unconditional new-success/retention-failure rate, its paired condition contrast, and descriptive retention failure conditional on new success. Retention is limited to rules satisfied on the incoming state. H3: original-minus-reverse final and whole-episode success differences, blocked by identical final set and initial string. Random-order results are descriptive.
+No training, LLM judge, tools or provider JSON enforcement. One semantic attempt per turn. Reveal exactly one new rule per user message alongside the current password. Earlier rules remain binding and appear only in their original conversation turns. Preserve original conversation history; do not repeat or summarize the cumulative rule list. Every assistant message and intermediate password comes from the evaluated model. The evaluator retains the full rule set and certificates privately for scoring.
 
-Report 95% paired bootstrap intervals from 2,000 seeded resamples. Bootstrap base scenario blocks for controlled repairs and final-set blocks for order contrasts. No confirmatory p-values are planned for this release. If formal tests are later added, specify tests, familywise multiplicity treatment and meaningful effect sizes before accessing paid held-out responses. Do not claim equivalence from an interval crossing zero.
+LLM runs may use only native/order tracks. Scripted controlled prefixes and all-at-once fresh-solve prompts are offline diagnostics only and rejected for chat adapters. Zero-cost validation includes controlled diagnostics to check templates and native/order diagnostic trajectories to check disclosure and state transitions.
 
-Record infrastructure missingness, format failures, semantic failure classes, denominators, first failure, right-censoring at the horizon, recovery and edit sizes. Fresh-solve controls have no retention or incoming-artifact edit metric. Model settings, IDs, prices, budget and exposure method remain pending and must be frozen on a pilot child before the held-out study.
+Start from seed0! or seed9!. Parsed domain-valid responses become the next password even when wrong. Format/domain failures count as failed turns and preserve the previous password; raw responses remain in history. Transport failures are missing evidence and stop the episode. Full rewrites count as success; no minimum-edit requirement, semantic retry or oracle repair.
 
-## Audit gate and limitations
+Interference depends on the actual incoming password. Recompute certificates from model states; never copy fixed offline labels onto trajectories. Already-invalid old states or repairs outside the proven search bound are unknown; no-ops are separate. A model can avoid a template's intended interference through its own choices. This is part of autonomous evaluation.
 
-Every generated input, witness and certificate receives automated validation. Independent small-domain exhaustive checker tests cover all rule kinds. A 20-case stratified human audit is planned and remains pending until signed by a researcher; no automated process marks it complete. The pending gate blocks paid test evaluation but permits development pilots and diagnostic baseline checks. This follows the accepted project plan's instruction to audit before held-out model evaluation.
+## Endpoints and inference
 
-Model access, total spending ceiling, pilot-based precision estimates, and evidence from actual LLMs are not yet established. The baseline will report benchmark correctness and diagnostic behavior only. Balanced brackets are implemented but generated bracket cases and extra prompt ablations are outside this release. Model-derived H1–H3 conclusions remain pending.
+LLM H1: descriptive full-success comparisons across certified on-policy interference degrees, with denominators, family/load context and unknown/no-op rates. This replaces the original paired controlled H1 effect: autonomous states are not randomized/matched, so no causal interference claim is planned. Paired independent-minus-interfering contrasts remain offline diagnostic-only.
+
+LLM H2: new-rule success with regression of previously satisfied old rules, unconditional and conditional on new-rule success. Record the number and IDs of newly violated old rules. Existing failures are not new regressions. Invalid outputs have unknown breakage counts while full/new/retention failures remain zero where eligible. Paired H2 contrasts remain diagnostic-only.
+
+H3: original-minus-reverse final and whole-episode success differences, blocked by identical final set and initial string. Random orders are descriptive. Report 95% paired bootstrap intervals from 2,000 seeded resamples for offline contrasts and H3. No confirmatory p-values, equivalence conclusions or independent-turn inference. On-policy interference summaries receive no spurious paired confidence intervals.
+
+Record exact prompts, responses, before/after checks, edit distances, dynamic certificates, infrastructure missingness, semantic/format failures, denominators, first failure, right-censoring and recovery. Freeze model IDs, verified prices, settings and spending ceiling after a development pilot and before held-out calls.
+
+## Audit and limitations
+
+Automated validation audits inputs, witnesses and every shortest new-only candidate with an independent checker. A human reviewer separately signs the 20-pair audit; automation never marks it complete. Pending review blocks paid held-out evaluation and permits development pilots and zero-cost diagnostics, following the accepted plan. Changing this requirement requires an explicit amendment before paid held-out evaluation.
+
+Model access, model choices, spending ceiling and LLM evidence remain pending. The six families are templates, not proof of unseen-template generalization. Balanced brackets are implemented and tested but generated bracket cases remain deferred.
