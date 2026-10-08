@@ -1,0 +1,85 @@
+"""Frozen prompts, strict parsing, retention scoring and artifact transitions."""
+
+import json
+from .constraints import Rule, checks, in_domain
+from .oracle import distance
+
+SYSTEM = (
+    "Update a persistent artificial string to satisfy every active rule. "
+    "Earlier rules remain binding. You may rewrite any part of the string. "
+    "Strings must have 1-32 characters drawn only from ASCII letters, ASCII digits, and !_-()[]. "
+    "There is no whitespace in the string. Matching is case sensitive. "
+    "Return exactly one JSON object with exactly one field named password whose value is the updated string. "
+    "Do not include markdown or explanations."
+)
+
+
+def render(current: str, active: list[Rule], new: Rule) -> str:
+    listing = "\n".join(f"{r.id}: {r.describe()}" for r in active)
+    return f"Current string: {json.dumps(current)}\nAll active rules:\n{listing}\nNewly introduced rule: {new.id}\nReturn the updated string as JSON."
+
+
+def controlled_messages(case: dict, condition: str) -> list[dict]:
+    old = [Rule.from_dict(r) for r in case["old_rules"]]
+    new = Rule.from_dict(case["new_rule"])
+    current = case["states"][condition]
+    messages = [{"role": "system", "content": SYSTEM}]
+    for i, rule in enumerate(old):
+        messages.append({"role": "user", "content": render(current, old[:i+1], rule)})
+        messages.append({"role": "assistant", "content": json.dumps({"password": current})})
+    messages.append({"role": "user", "content": render(current, old+[new], new)})
+    return messages
+
+
+def fresh_messages(rules: list[Rule]) -> list[dict]:
+    listing = "\n".join(f"{r.id}: {r.describe()}" for r in rules)
+    return [{"role": "system", "content": SYSTEM}, {"role": "user", "content": f"Create a string satisfying these rules. No current artifact is supplied.\n{listing}"}]
+
+
+def _unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("Duplicate JSON key")
+        result[key] = value
+    return result
+
+
+def parse(raw: str) -> tuple[str | None, str | None]:
+    try:
+        data = json.loads(raw, object_pairs_hook=_unique_object)
+    except (ValueError, TypeError):
+        return None, "format_failure"
+    if not isinstance(data, dict) or set(data) != {"password"} or not isinstance(data["password"], str):
+        return None, "format_failure"
+    if not in_domain(data["password"]):
+        return None, "domain_failure"
+    return data["password"], None
+
+
+def score(current: str, raw: str, old: list[Rule], new: Rule) -> dict:
+    before = checks(current, old)
+    retained_ids = [rid for rid, passed in before.items() if passed]
+    artifact, error = parse(raw)
+    after = checks(artifact, old+[new]) if artifact is not None else None
+    full = int(after is not None and all(after.values()))
+    new_success = int(after is not None and after[new.id])
+    all_old = int(after is not None and all(after[r.id] for r in old)) if old else None
+    retention = int(after is not None and all(after[rid] for rid in retained_ids)) if retained_ids else None
+    fractional = sum(after[rid] for rid in retained_ids)/len(retained_ids) if after is not None and retained_ids else (0.0 if retained_ids else None)
+    if error:
+        outcome = error
+    elif full:
+        outcome = "full_success"
+    elif new_success:
+        outcome = "new_success_old_failure"
+    elif all_old:
+        outcome = "new_failure_old_retained"
+    else:
+        outcome = "new_and_old_failure"
+    return {"artifact": artifact, "parse_error": error, "full_success": full, "new_success": new_success,
+            "all_old_success": all_old, "retention": retention, "fractional_retention": fractional,
+            "retention_eligible": bool(retained_ids), "previously_satisfied": retained_ids,
+            "before_checks": before, "after_checks": after, "outcome": outcome,
+            "new_was_noop": new.check(current), "edit_distance": distance(current, artifact) if artifact is not None else None,
+            "next_state": artifact if artifact is not None else current}

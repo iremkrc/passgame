@@ -1,0 +1,16 @@
+study: benchmark-validation-v1
+dataset_dir: data
+split: test
+tracks: [controlled, native, order, fresh]
+models:
+  - name: reference_oracle
+    adapter: diagnostic
+  - name: unchanged
+    adapter: diagnostic
+  - name: new_only
+    adapter: diagnostic
+output_dir: outputs/benchmark-validation
+budget_usd: 0
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_paid_test: true
