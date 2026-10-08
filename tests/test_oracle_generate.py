@@ -1,7 +1,7 @@
 from collections import Counter
 from passgame.constraints import Rule
 from passgame.generate import build, digest, validate_cases
-from passgame.oracle import certify, distance, one_edits
+from passgame.oracle import certify, distance, new_only, one_edits
 
 
 def test_proposal_exact_sum_repair_and_matched_bound_example():
@@ -24,6 +24,15 @@ def test_neighborhood_exhaustiveness_and_distance():
     assert all(distance("ab", x) == 1 for x in actual)
     assert distance("ab", "ba") == 2
     assert distance("", "abc") == 3
+
+
+def test_independence_does_not_guarantee_greedy_choice_is_safe():
+    old = [Rule("count", "digit_count", 2), Rule("sum", "digit_sum", 11, "le")]
+    new = Rule("new", "contains", "8")
+    assert certify("A29x!", old, new)["label"] == "independent"
+    greedy = new_only("A29x!", new)
+    assert new.check(greedy) and distance("A29x!", greedy) == 1
+    assert not all(r.check(greedy) for r in old)
 
 
 def test_generator_matches_rules_and_split_blocks():

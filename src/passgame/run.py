@@ -188,13 +188,13 @@ def execute(config_path: Path, preflight_only: bool = False):
     result = write_analysis(rows, output, config["bootstrap_repetitions"], config["seed"])
     diagnostic = all(m["adapter"] == "diagnostic" for m in config["models"])
     completion = {"study": config["study"], "diagnostic_only": diagnostic, "record_count": len(rows), "planned_records": effective["planned_records"], "complete": len(rows) == effective["planned_records"] and result["infrastructure_failures"] == 0, "reserved_usd": budget.reserved, "stopped": stopped, "output_dir": str(output)}
-    (output/"completion.json").write_text(json.dumps(completion, indent=2)+"\n")
     for summary in result["summary"]:
         print("METRIC " + json.dumps(summary, sort_keys=True), flush=True)
     for label in ("h1", "h2", "h3"):
         print(label.upper() + " " + json.dumps(result[label], sort_keys=True), flush=True)
-    print("SUMMARY " + json.dumps(completion, sort_keys=True), flush=True)
     if not completion["complete"]:
+        (output/"completion.json").write_text(json.dumps(completion, indent=2)+"\n")
+        print("SUMMARY " + json.dumps(completion, sort_keys=True), flush=True)
         raise SystemExit(2)
     if diagnostic:
         for r in rows:
@@ -203,10 +203,13 @@ def execute(config_path: Path, preflight_only: bool = False):
             if r["track"] == "controlled" and r["model"] == "unchanged" and (r["full_success"], r["new_success"], r["retention"]) != (0, 0, 1):
                 raise AssertionError("Unchanged baseline failed the focal-input contract")
             if r["track"] == "controlled" and r["model"] == "new_only":
-                expected = 1 if r["condition"] == "independent" else 0
-                if (r["full_success"], r["new_success"], r["retention"]) != (expected, 1, expected):
+                if r["new_success"] != 1 or r["edit_distance"] != 1:
                     raise AssertionError("New-only baseline did not exhibit the certified diagnostic behavior")
+                if r["condition"] == "interfering" and (r["full_success"], r["retention"]) != (0, 0):
+                    raise AssertionError("A one-edit interfering repair unexpectedly preserved old rules")
         print("DIAGNOSTIC_CONTRACT passed; these algorithmic results are not LLM evidence", flush=True)
+    (output/"completion.json").write_text(json.dumps(completion, indent=2)+"\n")
+    print("SUMMARY " + json.dumps(completion, sort_keys=True), flush=True)
     return result
 
 
