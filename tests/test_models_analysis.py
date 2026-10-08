@@ -49,3 +49,22 @@ def test_missing_infrastructure_is_not_model_failure():
     assert result["infrastructure_failures"] == 1
     assert result["summary"][1]["full_success"]["denominator"] == 0
     assert paired_interval([0, 1], 100, 1) == paired_interval([0, 1], 100, 1)
+
+
+def test_self_hosted_endpoint_works_without_api_credentials_or_spend():
+    sent = []
+    def handler(request):
+        sent.append(request)
+        return httpx.Response(200, json={"choices":[{"message":{"content":"{\"password\":\"A\"}"}}]})
+    config = configuration()
+    config.update({"deployment":"self_hosted", "input_price_per_million":0,"output_price_per_million":0,
+                   "parameters":{"max_tokens":20,"temperature":0}})
+    budget = Budget(0)
+    adapter = ChatAdapter(config, budget, transport=httpx.MockTransport(handler))
+    response = adapter.complete([{"role":"user","content":"one new rule"}], {"witness":"PRIVATE_EVALUATOR_WITNESS"})
+    assert response.raw == '{"password":"A"}' and budget.reserved == 0
+    assert 'authorization' not in sent[0].headers
+    payload = json.loads(sent[0].content)
+    assert payload["max_tokens"] == 20 and payload["temperature"] == 0
+    assert 'PRIVATE_EVALUATOR_WITNESS' not in sent[0].content.decode()
+    adapter.close()

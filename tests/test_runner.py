@@ -58,6 +58,25 @@ def test_llm_tracks_reject_scripted_prefixes_and_all_at_once(tracks):
         validate_config(config, {})
 
 
+def test_self_hosted_zero_api_budget_keeps_sequential_protocol_and_audit():
+    model = {"name":"open-model", "adapter":"chat", "deployment":"self_hosted", "model_id":"test-open-model",
+             "base_url":"http://127.0.0.1:8000/v1", "input_price_per_million":0,"output_price_per_million":0,
+             "pricing_verified_on":"2026-10-08","max_input_tokens":32768}
+    config = {"split":"development", "models":[model], "tracks":["native","order"], "budget_usd":0}
+    validate_config(config, {"human_audit_status":"pending"})
+    config["split"] = "test"
+    with pytest.raises(ValueError, match="human audit"):
+        validate_config(config, {"human_audit_status":"pending"})
+    validate_config(config, {"human_audit_status":"complete"})
+    config["tracks"] = ["controlled"]
+    with pytest.raises(ValueError, match="model-generated prefixes"):
+        validate_config(config, {"human_audit_status":"complete"})
+    config["tracks"] = ["native"]
+    model["input_price_per_million"] = 1
+    with pytest.raises(ValueError, match="explicit zero API token prices"):
+        validate_config(config, {"human_audit_status":"complete"})
+
+
 def test_llm_episode_uses_actual_responses_and_original_single_rule_turns(tmp_path, monkeypatch):
     data, output = tmp_path/"data", tmp_path/"output"
     small_dataset(data)
@@ -104,7 +123,8 @@ def test_llm_episode_uses_actual_responses_and_original_single_rule_turns(tmp_pa
             assert prompt == sent[j][-1]["content"]  # No rewriting or later reminders.
 
 
-def test_uncertain_paid_request_blocks_duplicate_replay(tmp_path):
+@pytest.mark.parametrize("started", [{"paid":True}, {"paid":False,"model_request":True}])
+def test_uncertain_model_request_blocks_duplicate_replay(tmp_path, started):
     data, output = tmp_path/"data", tmp_path/"output"
     small_dataset(data)
     config = {"study":"test-fixture", "dataset_dir":str(data), "split":"development", "tracks":["controlled"], "models":[{"name":"unchanged","adapter":"diagnostic"}], "output_dir":str(output), "budget_usd":0,"bootstrap_repetitions":20,"seed":1}
@@ -112,6 +132,6 @@ def test_uncertain_paid_request_blocks_duplicate_replay(tmp_path):
     path.write_text(yaml.safe_dump(config))
     execute(path)
     with (output/"events.jsonl").open("a") as f:
-        f.write(json.dumps({"event":"started","request_key":"unknown-paid","paid":True})+"\n")
+        f.write(json.dumps({"event":"started","request_key":"unknown-model",**started})+"\n")
     with pytest.raises(ValueError, match="unknown outcome"):
         execute(path)

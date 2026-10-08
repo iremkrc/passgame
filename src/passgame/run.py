@@ -40,24 +40,31 @@ def validate_config(config: dict, manifest: dict):
         raise ValueError("Model names must be unique and nonempty")
     if any(m["adapter"] not in {"diagnostic", "chat"} for m in config["models"]):
         raise ValueError("Unknown model adapter")
-    allowed = {"name", "adapter", "model_id", "base_url", "api_key_env", "max_input_tokens", "input_price_per_million", "output_price_per_million", "pricing_verified_on", "parameters", "transport_retries", "timeout_seconds"}
+    allowed = {"name", "adapter", "deployment", "model_id", "base_url", "api_key_env", "max_input_tokens", "input_price_per_million", "output_price_per_million", "pricing_verified_on", "parameters", "transport_retries", "timeout_seconds"}
     if any(set(m)-allowed for m in config["models"]):
         raise ValueError("Unsupported model fields; credentials must use environment variables")
     if not set(config["tracks"]) <= {"controlled", "native", "order", "fresh"} or not config["tracks"]:
         raise ValueError("Unknown or empty evaluation tracks")
-    paid = [m for m in config["models"] if m["adapter"] == "chat"]
-    if paid and not set(config["tracks"]) <= {"native", "order"}:
+    chat = [m for m in config["models"] if m["adapter"] == "chat"]
+    if any(m.get("deployment", "provider") not in {"provider", "self_hosted"} for m in chat):
+        raise ValueError("Unknown deployment; select provider or self_hosted")
+    for model in chat:
+        if model.get("deployment") == "self_hosted" and any(model.get(k) != 0 for k in ("input_price_per_million", "output_price_per_million")):
+            raise ValueError("Self-hosted endpoints require explicit zero API token prices")
+    paid = [m for m in chat if m.get("deployment", "provider") != "self_hosted"]
+    if chat and not set(config["tracks"]) <= {"native", "order"}:
         raise ValueError("LLM evaluation requires native/order trajectories with one new rule per turn and model-generated prefixes; controlled/fresh are offline diagnostics only")
     if paid and config["budget_usd"] <= 0:
         raise ValueError("Set an explicit positive API spending ceiling before model calls")
-    for model in paid:
+    for model in chat:
         for key in ("model_id", "base_url", "input_price_per_million", "output_price_per_million", "pricing_verified_on", "max_input_tokens"):
             if model.get(key) is None:
                 raise ValueError(f"Model {model['name']} needs {key}")
         if model["model_id"].startswith("SET_"):
             raise ValueError("Replace placeholder model ID")
         datetime.fromisoformat(model["pricing_verified_on"])
-    if paid and config["split"] == "test" and config.get("human_audit_required_for_paid_test", True) and manifest.get("human_audit_status") != "complete":
+    audit_required = config.get("human_audit_required_for_model_test", config.get("human_audit_required_for_paid_test", True))
+    if chat and config["split"] == "test" and audit_required and manifest.get("human_audit_status") != "complete":
         raise ValueError("Held-out evaluation awaits the preregistered human audit; use development for the pilot")
 
 
@@ -110,9 +117,9 @@ def execute(config_path: Path, preflight_only: bool = False):
     ledger(reserved)
     events = load_jsonl(events_path) if events_path.exists() else []
     closed_without_response = {e["request_key"] for e in events if e["event"] == "budget_stopped"}
-    uncertain = {e["request_key"] for e in events if e["event"] == "started" and e.get("paid")} - set(cache) - closed_without_response
+    uncertain = {e["request_key"] for e in events if e["event"] == "started" and (e.get("paid") or e.get("model_request"))} - set(cache) - closed_without_response
     if uncertain:
-        raise ValueError("An interrupted paid request has an unknown outcome; reconcile it before resuming")
+        raise ValueError("An interrupted model request has an unknown outcome; reconcile it before resuming")
     adapters = {}
     stopped = None
     try:
@@ -126,7 +133,10 @@ def execute(config_path: Path, preflight_only: bool = False):
             base = {**meta, "model": model["name"], "model_config": model, "request_key": key, "timestamp": stamp, "messages": messages,
                     "current": context["current"], "old_rules": [r.to_dict() for r in old], "new_rule": new.to_dict(),
                     "config_hash": effective["config_hash"], "code_hash": effective["code_hash"], "dataset_hash": effective["dataset_hash"]}
-            append(events_path, {"event": "started", "request_key": key, "timestamp": stamp, "paid": model["adapter"] == "chat"})
+            # Preserve duplicate-request protection for self-hosted inference too.
+            append(events_path, {"event": "started", "request_key": key, "timestamp": stamp,
+                                 "paid": model["adapter"] == "chat" and model.get("deployment", "provider") != "self_hosted",
+                                 "model_request": model["adapter"] == "chat"})
             try:
                 response = adapters[model["name"]].complete(messages, context)
             except BudgetExceeded:

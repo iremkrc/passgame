@@ -28,6 +28,8 @@ Use `configs/pilot.example.yaml` on a child experiment, fill exact model IDs, en
 
 LLM configurations must select only `native` and/or `order`. Each user message supplies the current password and exactly one new rule. Earlier rules remain in their original conversation messages; the runner never repeats a cumulative list. All assistant turns are the model's actual responses, including incorrect responses. Rule lists, certificates and final witnesses are retained privately by the evaluator and never sent to the provider. The default `controlled` track and legacy `fresh` track are diagnostic-only and fail preflight if selected for a chat adapter.
 
+For open-weight models on an SSH machine, use `configs/ssh-pilot.example.yaml` and `docs/ssh-evaluation.md`. Run the evaluator in the remote execution environment and point it at that environment's compatible model server. `deployment: self_hosted` with explicit zero token prices permits `budget_usd: 0`; that ledger tracks API token spend rather than GPU accounting. API credentials are optional when the server has authentication disabled. Development pilots are allowed immediately; the existing human-review requirement still applies to held-out model evaluation.
+
 ```sh
 uv run --locked python -m passgame.run --config configs/experiment.yaml --preflight
 ```
