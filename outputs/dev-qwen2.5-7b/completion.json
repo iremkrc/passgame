@@ -1,0 +1,10 @@
+{
+  "study": "dev-qwen2.5-7b",
+  "diagnostic_only": false,
+  "record_count": 288,
+  "planned_records": 288,
+  "complete": true,
+  "reserved_usd": 0.0,
+  "stopped": null,
+  "output_dir": "outputs/dev-qwen2.5-7b"
+}

@@ -1,0 +1,26 @@
+# Development-split pilot: Qwen2.5-7B-Instruct served by vLLM 0.24.0 (scripts/serve_and_eval.sh).
+study: dev-qwen2.5-7b
+dataset_dir: data
+split: development
+tracks: [native, order]
+models:
+  - name: qwen2.5-7b-instruct
+    adapter: chat
+    deployment: self_hosted
+    model_id: qwen2.5-7b-instruct  # must match vllm --served-model-name
+    base_url: http://127.0.0.1:8000/v1
+    api_key_env: null  # Set an environment-variable name if the server requires auth.
+    max_input_tokens: 32768  # Conservative bound; match the server's context capacity.
+    input_price_per_million: 0
+    output_price_per_million: 0
+    pricing_verified_on: '2026-10-08'  # Zero API token billing; GPU accounting is separate.
+    parameters:
+      max_tokens: 256
+      temperature: 0
+    transport_retries: 2
+    timeout_seconds: 180
+output_dir: outputs/dev-qwen2.5-7b
+budget_usd: 0  # API token spending only.
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true

@@ -6,3 +6,7 @@ __pycache__/
 outputs/
 .DS_Store
 
+
+# Per-person cluster wrappers and local run logs (see scripts/slurm.example.sbatch)
+scripts/local/
+logs/
