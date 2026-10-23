@@ -68,3 +68,64 @@ def test_self_hosted_endpoint_works_without_api_credentials_or_spend():
     assert payload["max_tokens"] == 20 and payload["temperature"] == 0
     assert 'PRIVATE_EVALUATOR_WITNESS' not in sent[0].content.decode()
     adapter.close()
+
+
+def test_historical_reset_analysis_is_labelled_separately():
+    def row(key, track, condition, full, new, retention, **extra):
+        return {"request_key":key, "model":"m", "track":track, "base_id":"same-pair",
+                "condition":condition, "status":"response", "full_success":full,
+                "new_success":new, "retention":retention, "outcome":"full_success" if full else "new_success_old_failure",
+                "interference_degree":2, "state_policy":"reset_each_turn" if track == "fixed_start" else "scripted", **extra}
+    rows = [row("prefix", "fixed_start", "interfering", 1, 1, 1, phase="prefix"),
+            row("fi", "fixed_start", "independent", 1, 1, 1, phase="focal", load=5),
+            row("ff", "fixed_start", "interfering", 0, 1, 0, phase="focal", load=5),
+            row("ci", "controlled", "independent", 1, 1, 1),
+            row("cf", "controlled", "interfering", 1, 1, 1)]
+    result = analyze(rows, repetitions=20)
+    assert result["record_count"] == 5 and result["legacy_reset_prefix_records"] == 1
+    assert {(h["track"], h["estimate"], h["blocks"]) for h in result["h1"]} == {("controlled", 0, 1), ("legacy_reset", 1, 1)}
+    assert {(h["track"], h["estimate"]) for h in result["h2"]} == {("controlled", 0), ("legacy_reset", 1)}
+    summary = next(s for s in result["summary"] if s["track"] == "legacy_reset" and s["condition"] == "interfering")
+    assert summary["records"] == 1 and summary["full_success"]["rate"] == 0
+    assert {b["track"] for b in result["interference_breakdowns"]} == {"controlled", "legacy_reset"}
+
+
+def test_fixed_start_survival_excludes_episodes_that_have_already_ended():
+    rows = []
+    for episode, horizon in (("short", 1), ("long", 2)):
+        for turn in range(1, horizon+1):
+            rows.append({"request_key":f"{episode}-{turn}", "model":"m", "track":"fixed_start",
+                         "episode_id":episode, "base_id":episode, "final_set_id":episode,
+                         "order":"original", "turn":turn, "load":turn, "horizon":horizon,
+                         "status":"response", "full_success":1, "new_success":1, "retention":None,
+                         "outcome":"full_success", "state_policy":"model_responses"})
+    result = analyze(rows, repetitions=20)
+    assert result["summary"][0]["records"] == 3
+    assert [(s["turn"],s["numerator"],s["denominator"]) for s in result["survival"]] == [(1,2,2),(2,1,1)]
+    assert all(h["blocks"] == 0 for h in result["h1"])
+
+
+@pytest.mark.parametrize("infrastructure", [False, True])
+def test_early_rule_failure_is_completed_but_infrastructure_is_missing(infrastructure):
+    rows = []
+    for turn in (1, 2):
+        rows.append({"request_key":str(turn), "model":"m", "track":"fixed_start",
+                     "episode_id":"e", "base_id":"e", "final_set_id":"e", "order":"original",
+                     "turn":turn, "load":turn, "horizon":3, "state_policy":"model_responses",
+                     "termination_policy":"first_failure", "status":"response", "full_success":int(turn == 1),
+                     "new_success":1, "retention":int(turn == 1),
+                     "outcome":"full_success" if turn == 1 else "new_success_old_failure"})
+    if infrastructure:
+        rows[-1].update(status="infrastructure_failure", full_success=None, new_success=None, retention=None)
+    result = analyze(rows, repetitions=20)
+    episode = result["episodes"][0]
+    assert result["record_count"] == 2
+    assert episode["turns_observed"] == 2 and not episode["reached_horizon"]
+    assert episode["complete"] == episode["terminated_on_failure"] == (not infrastructure)
+    if infrastructure:
+        assert episode["final_success"] is None and result["infrastructure_failures"] == 1
+        assert episode["termination_reason"] == "infrastructure_failure"
+    else:
+        assert episode["whole_episode_success"] == episode["final_success"] == 0
+        assert episode["first_failure"] == 2 and result["infrastructure_failures"] == 0
+        assert [(s["turn"],s["at_risk"],s["numerator"]) for s in result["survival"]] == [(1,1,1),(2,1,0),(3,0,0)]

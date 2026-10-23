@@ -1,5 +1,7 @@
 from collections import Counter
-from passgame.constraints import Rule
+import pytest
+from passgame.audit import reference_check, reference_domain
+from passgame.constraints import Rule, satisfies
 from passgame.generate import build, digest, validate_cases
 from passgame.oracle import certify, distance, new_only, one_edits
 
@@ -12,9 +14,58 @@ def test_proposal_exact_sum_repair_and_matched_bound_example():
     assert certify("A47x!", [count, exact], new, "A38x!")["d_full"] == 2
     assert certify("A29x!", [count, bound], new)["label"] == "independent"
     assert certify("A47x!", [count, bound], new, "A38x!")["label"] == "interfering"
-    assert certify("A47x!", [count, bound], new)["label"] == "unknown"
+    assert certify("A47x!", [count, bound], new)["label"] == "interfering"
     assert certify("A38x!", [count, exact], new)["label"] == "no_op"
     assert certify("A4x!", [count, exact], new)["reason"] == "incoming_state_not_fully_valid"
+
+
+@pytest.mark.parametrize("hint", [None, "xdUUOHJ!fvt", "invalid hint"])
+def test_adaptive_witness_uses_current_state_and_active_rules(hint):
+    old = [Rule("bang", "contains", "!"), Rule("us", "char_count", "U", count=2),
+           Rule("digits", "digit_count", 0), Rule("length", "length", 11),
+           Rule("ban", "forbids", "Z")]
+    new = Rule("new", "char_at", "x", position=1)
+    current = "UU!!!______"
+    certificate = certify(current, old, new, hint)
+    assert certificate["label"] == "interfering"
+    assert certificate["d_new"] == 1 and certificate["d_full"] == 2
+    assert certificate["min_old_rules_broken"] == 1
+    assert distance(current, certificate["witness"]) == 2
+    assert reference_domain(certificate["witness"])
+    assert all(reference_check(certificate["witness"], r.to_dict()) for r in old + [new])
+
+
+def test_two_edit_witness_can_require_a_new_invalid_intermediate():
+    old = [Rule("as", "char_count", "a", count=3)]
+    new = Rule("new", "forbids", "aa")
+    # Two insertions separate all three a's. No intermediate one-edit string
+    # both retains three a's and avoids aa, so searching only new-valid
+    # intermediates cannot discover this repair.
+    assert not any(satisfies(s, old + [new]) for s in one_edits("aaa"))
+    certificate = certify("aaa", old, new)
+    assert certificate["label"] == "interfering"
+    assert distance("aaa", certificate["witness"]) == 2
+    assert satisfies(certificate["witness"], old + [new])
+
+
+def test_witness_search_limit_preserves_unknown_and_breakage_evidence():
+    old = [Rule("us", "char_count", "U", count=2), Rule("length", "length", 11)]
+    new = Rule("new", "char_at", "x", position=1)
+    certificate = certify("UU!!!______", old, new, witness_search_limit=1)
+    assert certificate["label"] == "unknown" and certificate["d_full"] is None
+    assert certificate["witness_search_status"] == "candidate_limit"
+    assert certificate["witness_search_candidates"] == 1
+    assert certificate["min_old_rules_broken"] == 1
+    assert certificate["search_complete"] is True  # Radius one was still exhaustive.
+    assert "witness" not in certificate
+
+
+def test_exhausted_two_edit_search_does_not_invent_a_witness():
+    old = [Rule("length", "length", 1), Rule("digits", "digit_count", 1)]
+    certificate = certify("0", old, Rule("new", "contains", "!"))
+    assert certificate["label"] == "unknown" and certificate["d_full"] is None
+    assert certificate["witness_search_status"] == "exhausted"
+    assert "witness" not in certificate
 
 
 def test_neighborhood_exhaustiveness_and_distance():

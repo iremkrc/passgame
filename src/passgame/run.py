@@ -43,8 +43,13 @@ def validate_config(config: dict, manifest: dict):
     allowed = {"name", "adapter", "deployment", "model_id", "base_url", "api_key_env", "max_input_tokens", "input_price_per_million", "output_price_per_million", "pricing_verified_on", "parameters", "transport_retries", "timeout_seconds"}
     if any(set(m)-allowed for m in config["models"]):
         raise ValueError("Unsupported model fields; credentials must use environment variables")
-    if not set(config["tracks"]) <= {"controlled", "native", "order", "fresh"} or not config["tracks"]:
+    if not set(config["tracks"]) <= {"controlled", "native", "order", "fresh", "fixed_start"} or not config["tracks"]:
         raise ValueError("Unknown or empty evaluation tracks")
+    rule_count = config.get("rule_count")
+    if rule_count is not None and (type(rule_count) is not int or rule_count < 1):
+        raise ValueError("rule_count must be a positive integer")
+    if type(config.get("remind_previous_rules", False)) is not bool:
+        raise ValueError("remind_previous_rules must be a boolean")
     chat = [m for m in config["models"] if m["adapter"] == "chat"]
     if any(m.get("deployment", "provider") not in {"provider", "self_hosted"} for m in chat):
         raise ValueError("Unknown deployment; select provider or self_hosted")
@@ -52,8 +57,8 @@ def validate_config(config: dict, manifest: dict):
         if model.get("deployment") == "self_hosted" and any(model.get(k) != 0 for k in ("input_price_per_million", "output_price_per_million")):
             raise ValueError("Self-hosted endpoints require explicit zero API token prices")
     paid = [m for m in chat if m.get("deployment", "provider") != "self_hosted"]
-    if chat and not set(config["tracks"]) <= {"native", "order"}:
-        raise ValueError("LLM evaluation requires native/order trajectories with one new rule per turn and model-generated prefixes; controlled/fresh are offline diagnostics only")
+    if chat and not set(config["tracks"]) <= {"native", "order", "fixed_start"}:
+        raise ValueError("LLM evaluation requires native/order/fixed_start conversations with one new rule per turn and model-generated prefixes; controlled/fresh are offline diagnostics only")
     if paid and config["budget_usd"] <= 0:
         raise ValueError("Set an explicit positive API spending ceiling before model calls")
     for model in chat:
@@ -73,13 +78,30 @@ def execute(config_path: Path, preflight_only: bool = False):
     data_dir = Path(config["dataset_dir"])
     manifest = verify_manifest(data_dir)
     validate_config(config, manifest)
+    remind_previous_rules = config.get("remind_previous_rules", False)
+    prompt_protocol = {"version": "cumulative_rule_reminders_v1" if remind_previous_rules else "history_only_v1",
+                       "remind_previous_rules": remind_previous_rules}
     cases = load_jsonl(data_dir/"pairs.jsonl")
     validation = validate_cases(cases)
     cases = [c for c in cases if c["split"] == config["split"]]
     episodes = [e for e in load_jsonl(data_dir/"episodes.jsonl") if e["split"] == config["split"]]
+    rule_count = config.get("rule_count")
+    if rule_count is not None:
+        cases = [c for c in cases if len(c["old_rules"])+1 == rule_count]
+        episodes = [e for e in episodes if len(e["rules"]) == rule_count]
     unique_cases = {c["final_set_id"]: c for c in cases}
     per_model = (2*len(cases) if "controlled" in config["tracks"] else 0) + sum(len(e["rules"]) for e in episodes if e["track"] in config["tracks"]) + (len(unique_cases) if "fresh" in config["tracks"] else 0)
-    effective = {"config": config, "config_hash": digest(config), "code_hash": source_hash(), "dataset_hash": digest(manifest["files"]), "planned_records": per_model*len(config["models"]), "validation": validation}
+    if "fixed_start" in config["tracks"]:
+        per_model += 2*sum(len(c["old_rules"])+1 for c in cases)
+    per_model_episodes = sum(e["track"] in config["tracks"] for e in episodes)
+    if "fixed_start" in config["tracks"]:
+        per_model_episodes += 2*len(cases)
+    if per_model == 0:
+        raise ValueError("No cases or episodes match the selected split, tracks, and rule_count")
+    effective = {"config": config, "config_hash": digest(config), "code_hash": source_hash(), "dataset_hash": digest(manifest["files"]), "planned_records": per_model*len(config["models"]),
+                 "planned_records_are_upper_bound": True, "planned_episodes": per_model_episodes*len(config["models"]),
+                 "selection": {"rule_count": rule_count, "pairs": len(cases), "native_order_episodes": sum(e["track"] in config["tracks"] for e in episodes)},
+                 "episode_termination_policy": "first_failure", "prompt_protocol": prompt_protocol, "validation": validation}
     print("CONFIG " + json.dumps({k:v for k,v in effective.items() if k != "validation"}, sort_keys=True), flush=True)
     print("VALIDATION " + json.dumps(validation, sort_keys=True), flush=True)
     output = Path(config["output_dir"]).resolve()
@@ -122,6 +144,7 @@ def execute(config_path: Path, preflight_only: bool = False):
         raise ValueError("An interrupted model request has an unknown outcome; reconcile it before resuming")
     adapters = {}
     stopped = None
+    skipped_after_failure = 0
     try:
         for model in config["models"]:
             adapters[model["name"]] = DiagnosticAdapter(model["name"]) if model["adapter"] == "diagnostic" else ChatAdapter(model, budget, ledger)
@@ -145,6 +168,8 @@ def execute(config_path: Path, preflight_only: bool = False):
             except InfrastructureError as error:
                 row = {**base, "status": "infrastructure_failure", "failure_reason": str(error), "raw_response": None,
                        "full_success": None, "new_success": None, "retention": None, "next_state": context["current"]}
+                if meta.get("termination_policy") == "first_failure":
+                    row.update({"episode_terminal": True, "episode_end_reason": "infrastructure_failure", "next_state": None})
             else:
                 metrics = score(context["current"], response.raw, old, new)
                 if meta["track"] == "fresh":
@@ -154,6 +179,12 @@ def execute(config_path: Path, preflight_only: bool = False):
                        "provider_response": response.provider_response, "attempts": response.attempts,
                        "latency_seconds": response.latency_seconds, "usage": response.usage, "reserved_cost_usd": response.cost_reserved,
                        "diagnostic_not_llm": model["adapter"] == "diagnostic"}
+                if meta.get("termination_policy") == "first_failure":
+                    failed = not metrics["full_success"]
+                    row["episode_terminal"] = failed or meta["turn"] == meta["horizon"]
+                    row["episode_end_reason"] = (metrics["parse_error"] or "rule_failure") if failed else ("horizon_reached" if row["episode_terminal"] else None)
+                    if failed:
+                        row["next_state"] = None
             append(records_path, row)
             cache[key] = row
             rows.append(row)
@@ -168,6 +199,44 @@ def execute(config_path: Path, preflight_only: bool = False):
                     meta = {"track": "controlled", "pair_id": case["pair_id"], "base_id": case["base_id"], "final_set_id": case["final_set_id"], "family": case["family"], "load": case["load"], "condition": condition, "turn": case["load"], "split": case["split"], "certificate": case["certificates"][condition],
                             "interference_degree": case["interference_degree"], "prefix_source": "scripted_oracle"}
                     request(model, meta, controlled_messages(case, condition), context, old, new)
+            for case in cases if "fixed_start" in config["tracks"] else []:
+                rules = [Rule.from_dict(r) for r in case["old_rules"]+[case["new_rule"]]]
+                for condition in ("independent", "interfering"):
+                    initial = current = case["states"][condition]
+                    history = [{"role": "system", "content": SYSTEM}]
+                    for turn, new in enumerate(rules, 1):
+                        old, focal = rules[:turn-1], turn == len(rules)
+                        # Standardize the initial state only. Every later input
+                        # follows the actual response and normal parse policy.
+                        history.append({"role": "user", "content": render(current, new, old, remind_previous_rules=remind_previous_rules)})
+                        certificate = certify(current, old, new)
+                        meta = {"track": "fixed_start", "phase": "focal" if focal else "prefix",
+                                "episode_id": f"fixed-start-{case['pair_id']}-{condition}",
+                                "pair_id": case["pair_id"], "base_id": case["base_id"],
+                                "final_set_id": case["final_set_id"], "family": case["family"],
+                                "initial_condition": condition, "initial": initial,
+                                "turn": turn, "load": turn, "horizon": len(rules),
+                                "order": "original", "split": case["split"],
+                                "intended_interference_degree": case["interference_degree"],
+                                "dynamic_certificate": certificate,
+                                "rule_disclosure": "one_new_rule_per_turn",
+                                "remind_previous_rules": remind_previous_rules,
+                                "prompt_protocol_version": prompt_protocol["version"],
+                                "prefix_source": "model_responses" if model["adapter"] == "chat" else "diagnostic_responses",
+                                "state_source": "predefined_case" if turn == 1 else "previous_next_state",
+                                "state_policy": "model_responses",
+                                "termination_policy": "first_failure",
+                                "protocol_version": ("predefined_start_then_model_outputs_with_rule_reminders_stop_on_failure_v3"
+                                                     if remind_previous_rules else "predefined_start_then_model_outputs_stop_on_failure_v2")}
+                        context = {"current": current, "witness": case["final_witness"], "new_rule": new.to_dict()}
+                        row = request(model, meta, history[:], context, old, new)
+                        if row["status"] != "response":
+                            break
+                        if not row["full_success"]:
+                            skipped_after_failure += len(rules)-turn
+                            break
+                        current = row["next_state"]
+                        history.append({"role": "assistant", "content": row["raw_response"]})
             for episode in episodes:
                 if episode["track"] not in config["tracks"]:
                     continue
@@ -177,15 +246,21 @@ def execute(config_path: Path, preflight_only: bool = False):
                 for turn, new in enumerate(rules, 1):
                     old = active[:]
                     active.append(new)
-                    history.append({"role": "user", "content": render(current, new)})
-                    dynamic = certify(current, old, new, episode["witness"])
+                    history.append({"role": "user", "content": render(current, new, old, remind_previous_rules=remind_previous_rules)})
+                    dynamic = certify(current, old, new)
                     meta = {k:episode[k] for k in ("episode_id", "base_id", "final_set_id", "family", "track", "order", "split")}
                     meta.update({"turn": turn, "load": len(active), "horizon": len(rules), "dynamic_certificate": dynamic,
-                                 "rule_disclosure": "one_new_rule_per_turn", "prefix_source": "model_responses" if model["adapter"] == "chat" else "diagnostic_responses"})
+                                 "rule_disclosure": "one_new_rule_per_turn", "prefix_source": "model_responses" if model["adapter"] == "chat" else "diagnostic_responses",
+                                 "remind_previous_rules": remind_previous_rules, "prompt_protocol_version": prompt_protocol["version"],
+                                 "termination_policy": "first_failure", "protocol_version": ("sequential_with_rule_reminders_stop_on_failure_v2"
+                                                                                            if remind_previous_rules else "sequential_stop_on_failure_v1")})
                     context = {"current": current, "witness": episode["witness"], "new_rule": new.to_dict()}
                     row = request(model, meta, history[:], context, old, new)
                     if row["status"] != "response":
                         break  # Do not fabricate a conversation response after infrastructure failure.
+                    if not row["full_success"]:
+                        skipped_after_failure += len(rules)-turn
+                        break
                     current = row["next_state"]
                     history.append({"role": "assistant", "content": row["raw_response"]})
             if "fresh" in config["tracks"]:
@@ -202,7 +277,15 @@ def execute(config_path: Path, preflight_only: bool = False):
                 adapter.close()
     result = write_analysis(rows, output, config["bootstrap_repetitions"], config["seed"])
     diagnostic = all(m["adapter"] == "diagnostic" for m in config["models"])
-    completion = {"study": config["study"], "diagnostic_only": diagnostic, "record_count": len(rows), "planned_records": effective["planned_records"], "complete": len(rows) == effective["planned_records"] and result["infrastructure_failures"] == 0, "reserved_usd": budget.reserved, "stopped": stopped, "output_dir": str(output)}
+    completed_episodes = sum(e["complete"] for e in result["episodes"])
+    completion = {"study": config["study"], "diagnostic_only": diagnostic, "record_count": len(rows), "planned_records": effective["planned_records"],
+                  "prompt_protocol": prompt_protocol,
+                  "planned_records_are_upper_bound": True, "skipped_after_failure": skipped_after_failure,
+                  "expected_records": effective["planned_records"]-skipped_after_failure,
+                  "planned_episodes": effective["planned_episodes"], "completed_episodes": completed_episodes,
+                  "terminated_on_failure": sum(e["terminated_on_failure"] for e in result["episodes"]),
+                  "complete": len(rows)+skipped_after_failure == effective["planned_records"] and completed_episodes == effective["planned_episodes"] and result["infrastructure_failures"] == 0 and stopped is None,
+                  "reserved_usd": budget.reserved, "stopped": stopped, "output_dir": str(output)}
     for summary in result["summary"]:
         print("METRIC " + json.dumps(summary, sort_keys=True), flush=True)
     for label in ("h1", "h2", "h3"):
@@ -226,13 +309,19 @@ def execute(config_path: Path, preflight_only: bool = False):
                     raise AssertionError("New-only repair broke fewer old rules than certified")
         print("DIAGNOSTIC_CONTRACT passed; these algorithmic results are not LLM evidence", flush=True)
     print("INTERFERENCE " + json.dumps(result["interference_breakdowns"], sort_keys=True), flush=True)
-    sequential = [r for r in rows if r["track"] in {"native", "order"}]
+    sequential = [r for r in rows if r["track"] in {"native", "order", "fixed_start"}]
     for row in sequential:
         users = [m["content"] for m in row["messages"] if m["role"] == "user"]
-        if len(users) != row["turn"] or any(message.count("\nNew rule: ") != 1 or "All active rules" in message for message in users):
+        expected_prompt = render(row["current"], Rule.from_dict(row["new_rule"]),
+                                 [Rule.from_dict(r) for r in row["old_rules"]],
+                                 remind_previous_rules=remind_previous_rules)
+        if (len(users) != row["turn"] or any(message.count("\nNew rule: ") != 1 for message in users)
+                or row["messages"][-1] != {"role": "user", "content": expected_prompt}
+                or row["remind_previous_rules"] != remind_previous_rules):
             raise AssertionError("Sequential disclosure contract violated")
     print("SEQUENTIAL_PROTOCOL " + json.dumps({"verified_records": len(sequential), "new_rules_per_user_turn": 1,
-                                               "cumulative_rule_reminders": False, "scripted_llm_prefixes": False,
+                                               "cumulative_rule_reminders": remind_previous_rules,
+                                               "prompt_protocol_version": prompt_protocol["version"], "scripted_llm_prefixes": False,
                                                "history": "original user turns and actual adapter responses"}, sort_keys=True), flush=True)
     (output/"completion.json").write_text(json.dumps(completion, indent=2)+"\n")
     print("SUMMARY " + json.dumps(completion, sort_keys=True), flush=True)

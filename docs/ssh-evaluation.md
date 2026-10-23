@@ -1,6 +1,6 @@
 # Open-weight model evaluation over SSH
 
-Preparation status: code and configuration template are ready; host, exact models, GPU availability and serving environment are pending. No SSH connection, model download, server launch or remote model call has been attempted.
+Galvani has a prepared Qwen2.5-7B-Instruct revision and vLLM 0.24.0 container. A corrected mixed-length, stop-on-first-failure pilot completed as job 2993023. The current study selects eight-rule games and repeats previous rules on each turn. It uses a fresh source snapshot and output directory; earlier history-only and reset studies remain separate.
 
 ## Execution layout
 
@@ -14,9 +14,13 @@ Use `configs/ssh-pilot.example.yaml` as the basis for `configs/experiment.yaml` 
 
 Select `deployment: self_hosted`, with both API token prices zero and `budget_usd: 0`. The ledger accounts for API token charges only. Set `api_key_env` to the name of a credential environment variable if server authentication is enabled; otherwise null is supported. Never place credentials in the config or URL.
 
-Only native/order tracks are available to LLMs. Each turn reveals one new rule; original earlier turns and actual model responses stay in history. The evaluator tracks cumulative rules and interference privately. No scripted initial valid prefixes, cumulative rule reminder lists or all-at-once LLM prompts.
+Native/order and fixed_start tracks are available to LLMs. Each turn reveals one new rule; original earlier turns and actual model responses stay in history. With remind_previous_rules: true, the latest message also repeats every earlier rule using its original ID and description. Future rules and certificates remain private. Scripted assistant prefixes and all-at-once LLM prompts remain excluded. The optional configs/dev-qwen2.5-7b-eight-rules-no-reminders.yaml disables reminders and writes to a separate output directory.
 
-The development suite contains 12 native and 24 order episodes, each eight turns: 288 planned requests per model. Semantically incorrect answers are scored once, then carried forward when domain-valid. Transport retries have a fixed cap. The first pilot should establish serving compatibility, strict-format behavior, context fit, and runtime before committing the held-out model settings.
+Use configs/dev-qwen2.5-7b-eight-rules.yaml with rule_count: 8 and remind_previous_rules: true. Initialize each conversation once, then carry successful model outputs forward without resets. Stop on the first rule, format, or domain failure and do not reveal the next rule. There are 24 development games with eight scheduled rules each and at most 192 requests per model; held-out has 120 games and at most 960 requests. All six families and intended interference degrees one/two/three are retained. Recompute interference from actual incoming states; initial-case labels and reminders do not guarantee later interference. Results go to outputs/dev-qwen2.5-7b-eight-rules-reminders-stop-on-failure. Held-out audit requirements still apply.
+
+The current packaged launcher verifies eight-rule selection and the cumulative-rule-reminder protocol, and reads its configuration/result paths from the snapshot manifest. On the Mac, run bash run-pilot.sh --check to validate the package, then bash run-pilot.sh --new to submit a fresh study. This reuses the prepared weights/container and preserves prior results; do not launch from an archived source snapshot with another prompt condition.
+
+The development suite contains 12 native and 24 order episodes with an eight-turn maximum: at most 288 requests per model. Failed model answers are scored once and terminate that episode; later stages remain unattempted. Infrastructure missingness is reported separately. Transport retries have a fixed cap. The first pilot should establish serving compatibility, strict-format behavior, context fit, and runtime before committing held-out settings.
 
 ## Remote prerequisites and provenance
 

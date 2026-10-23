@@ -1,6 +1,10 @@
 """Exact edit neighborhoods and completed minimal-distance certificates."""
 
+from itertools import chain
+
 from .constraints import ALPHABET, MAX_LENGTH, Rule, in_domain, satisfies
+
+MAX_WITNESS_CANDIDATES = 100_000
 
 
 def distance(left: str, right: str) -> int:
@@ -28,7 +32,37 @@ def one_edits(text: str, alphabet: str = ALPHABET, maximum: int = MAX_LENGTH) ->
     return sorted(candidates)
 
 
-def certify(text: str, old: list[Rule], new: Rule, witness: str | None = None) -> dict:
+def _adaptive_witness(text, old, new, neighborhood, new_candidates, limit):
+    """Look for a two-edit witness from this state, with bounded deterministic work.
+
+    Try repairs of new-valid neighbors first, then all other intermediates:
+    a valid two-edit solution need not satisfy the new rule after its first edit.
+    Only distinct radius-two candidates count toward the limit.
+    """
+    seen = set(neighborhood)
+    seen.add(text)
+    preferred = set(new_candidates)
+    intermediates = chain(new_candidates, (s for s in neighborhood if s not in preferred))
+    examined = 0
+    rules = [new] + old
+    for intermediate in intermediates:
+        for candidate in one_edits(intermediate):
+            if candidate in seen:
+                continue
+            if examined >= limit:
+                return None, {"witness_search_candidates": examined, "witness_search_status": "candidate_limit"}
+            seen.add(candidate)
+            examined += 1
+            if all(rule.check(candidate) for rule in rules):
+                return candidate, {"witness_search_candidates": examined, "witness_search_status": "found"}
+    return None, {"witness_search_candidates": examined, "witness_search_status": "exhausted"}
+
+
+def certify(text: str, old: list[Rule], new: Rule, witness: str | None = None,
+            *, witness_search_limit: int = MAX_WITNESS_CANDIDATES) -> dict:
+    """Certify this incoming state; an optional stored witness is only a hint."""
+    if type(witness_search_limit) is not int or witness_search_limit < 0:
+        raise ValueError("Witness search limit must be a nonnegative integer")
     if not satisfies(text, old):
         return {"label": "unknown", "reason": "incoming_state_not_fully_valid"}
     if new.check(text):
@@ -42,6 +76,11 @@ def certify(text: str, old: list[Rule], new: Rule, witness: str | None = None) -
         return {**common, "label": "independent", "d_full": 1, "witness": full_candidates[0]}
     if new_candidates and witness is not None and satisfies(witness, old + [new]) and distance(text, witness) == 2:
         return {**common, "label": "interfering", "d_full": 2, "witness": witness}
+    if new_candidates:
+        adaptive, search = _adaptive_witness(text, old, new, neighborhood, new_candidates, witness_search_limit)
+        common.update(search)
+        if adaptive is not None:
+            return {**common, "label": "interfering", "d_full": 2, "witness": adaptive}
     return {**common, "label": "unknown", "reason": "no_exact_upper_bound", "d_full": None}
 
 

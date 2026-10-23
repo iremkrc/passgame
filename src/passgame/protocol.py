@@ -14,9 +14,16 @@ SYSTEM = (
 )
 
 
-def render(current: str, new: Rule) -> str:
-    """Reveal exactly one rule. Old rules belong only in their original turns."""
-    return f"Current string: {json.dumps(current)}\nNew rule: {new.id}: {new.describe()}\nReturn the updated string as JSON."
+def render(current: str, new: Rule, old: list[Rule] | None = None, *,
+           remind_previous_rules: bool = False) -> str:
+    """Introduce one rule, optionally repeating the exact previously active rules."""
+    if not remind_previous_rules:
+        return f"Current string: {json.dumps(current)}\nNew rule: {new.id}: {new.describe()}\nReturn the updated string as JSON."
+    previous = "\n".join(f"{rule.id}: {rule.describe()}" for rule in (old or []))
+    return (f"Current string: {json.dumps(current)}\nPrevious rules (still binding):\n"
+            f"{previous or '(none; this is the first turn)'}\n\n"
+            f"New rule: {new.id}: {new.describe()}\n"
+            "Return the updated string satisfying all active rules as JSON.")
 
 
 def controlled_messages(case: dict, condition: str) -> list[dict]:

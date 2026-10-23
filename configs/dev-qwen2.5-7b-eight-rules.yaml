@@ -1,0 +1,31 @@
+# Eight-rule-only development pilot. Initialize each game once from its
+# predefined string, carry successful model outputs forward, and stop at
+# the first rule, format, or domain failure. Repeat all previous rules on
+# each turn. No resets or padding rules.
+study: dev-qwen2.5-7b-eight-rules-reminders-stop-on-failure
+dataset_dir: data
+split: development
+tracks: [fixed_start]
+rule_count: 8
+remind_previous_rules: true
+models:
+  - name: qwen2.5-7b-instruct
+    adapter: chat
+    deployment: self_hosted
+    model_id: qwen2.5-7b-instruct
+    base_url: http://127.0.0.1:8000/v1
+    api_key_env: null
+    max_input_tokens: 32768
+    input_price_per_million: 0
+    output_price_per_million: 0
+    pricing_verified_on: '2026-10-22'
+    parameters:
+      max_tokens: 256
+      temperature: 0
+    transport_retries: 2
+    timeout_seconds: 180
+output_dir: outputs/dev-qwen2.5-7b-eight-rules-reminders-stop-on-failure
+budget_usd: 0
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true

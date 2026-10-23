@@ -30,6 +30,7 @@ The central question is whether a model can coordinate repairs when the easiest 
 | Version 2 dataset and exact focal distance certificates | Generated and automatically validated |
 | Multiple-rule interference | Certified degree-two and degree-three families included |
 | Sequential native/order conversations | Implemented; each new user message introduces exactly one rule |
+| Fixed-start model conversations | Implemented; initialize once from a predefined string, then carry actual model outputs forward |
 | Diagnostic algorithms and analysis | Implemented and exercised in a completed validation run |
 | Chat-completions adapter and self-hosted configuration | Implemented |
 | Human audit of the held-out sample | Pending in the checked-in manifest |
@@ -74,6 +75,8 @@ With the current default configuration, the recipe makes **no external model cal
 | [configs/experiment.yaml](configs/experiment.yaml) | Configuration read by the fixed evaluation command |
 | [configs/pilot.example.yaml](configs/pilot.example.yaml) | Paid/provider development-pilot template |
 | [configs/ssh-pilot.example.yaml](configs/ssh-pilot.example.yaml) | Open-weight, self-hosted development-pilot template |
+| [configs/dev-qwen2.5-7b-fixed-start.yaml](configs/dev-qwen2.5-7b-fixed-start.yaml) | Open-weight pilot with the same predefined initial strings across models |
+| [configs/dev-qwen2.5-7b-eight-rules.yaml](configs/dev-qwen2.5-7b-eight-rules.yaml) | Current eight-rule-only pilot, with predefined initial strings and first-failure termination |
 | [data/manifest.json](data/manifest.json) | Dataset version, hashes, counts, validation, and human-audit status |
 | [data/pairs.jsonl](data/pairs.jsonl) | Matched independent/interfering offline cases and certificates |
 | [data/episodes.jsonl](data/episodes.jsonl) | Native and order episodes, initial strings, ordered rules, and private witnesses |
@@ -96,27 +99,33 @@ With the current default configuration, the recipe makes **no external model cal
 
 ## Sequential model protocol
 
-An episode starts from a shared initial string, `seed0!` or `seed9!`. Each turn proceeds as follows:
+A native/order episode starts from a shared initial string, `seed0!` or `seed9!`. Each turn proceeds as follows:
 
-1. Append a user message containing the current string and **one new rule**.
+1. Append a user message containing the current string and **one new rule**. In the main reminder condition, also list every previously introduced rule with its original ID and description.
 2. Send the system message and the complete original conversation history to the model.
 3. Parse and score the model's response against the cumulative rules privately.
-4. Append the exact raw assistant response to history and update the current string according to the transition rules below.
+4. If every active rule passes, carry the returned string and exact response into the next turn. Otherwise save the failed response and terminate the conversation before revealing another rule.
 
-Earlier rules appear only in the user turns where they were first introduced. There is no cumulative reminder list, summarized rule list, scripted correct assistant prefix, or evaluator repair in an LLM conversation. Because the endpoint is stateless, the client resends the original history on each request; previous rule turns remain visible in that history.
+The main pilot sets `remind_previous_rules: true`. Each latest message repeats the exact earlier rules under `Previous rules (still binding)` and introduces one new rule. Future rules, witnesses, and certificates are not disclosed. Full original history and actual assistant responses are retained. Only outputs satisfying every active rule advance to the next stage; a rule, format, or domain failure ends the episode. The `fixed_start` track standardizes only the initial string. Because the endpoint is stateless, the client resends the original history on each request.
+
+The optional history-only comparison sets `remind_previous_rules: false`; omitted settings also default to false for compatibility with earlier configurations. In that condition, earlier rules appear only in their original user turns. Configurations, record protocol versions, and output directories distinguish the conditions; do not pool their scores.
 
 For example, the latest user message can be:
 
 ```text
-Current string: "5991"
-New rule: new: Character at one-based position 4 must be '8'.
-Return the updated string as JSON.
+Current string: "x2e!hau3"
+Previous rules (still binding):
+r1: There must be exactly 2 ASCII digits.
+r2: The sum of all digit occurrences must be at most 5.
+
+New rule: r3: Length must be exactly 9 characters.
+Return the updated string satisfying all active rules as JSON.
 ```
 
-The model must remember and satisfy the rules introduced in previous turns. The required response is a JSON object with exactly one string field:
+The model must satisfy both the previous rules and the new rule. The required response is a JSON object with exactly one string field:
 
 ```json
-{"password":"5918"}
+{"password":"x2e!hau3_"}
 ```
 
 The evaluator accepts **any** domain-valid string satisfying the active constraints. It does not require the stored witness, a particular repair, or a minimum number of edits. Full rewrites are allowed.
@@ -126,12 +135,12 @@ The evaluator accepts **any** domain-valid string satisfying the active constrai
 | Response/event | Score and next state |
 | --- | --- |
 | Valid JSON, allowed string, all active rules satisfied | Full success; use the returned string next turn |
-| Valid JSON and allowed string, but a rule is violated | Semantic failure; still use the returned string next turn |
-| Invalid JSON, duplicate keys, extra fields, wrong type, prose, or Markdown fences | Format failure; preserve the incoming string |
-| JSON with an empty, overlong, whitespace-containing, or otherwise out-of-domain string | Domain failure; preserve the incoming string |
+| Valid JSON and allowed string, but any old or new rule is violated | Semantic failure; record the answer and terminate the episode |
+| Invalid JSON, duplicate keys, extra fields, wrong type, prose, or Markdown fences | Format failure; record the answer and terminate the episode |
+| JSON with an empty, overlong, whitespace-containing, or otherwise out-of-domain string | Domain failure; record the answer and terminate the episode |
 | Transport/provider infrastructure failure after allowed retries | Missing evidence; stop that episode without fabricating an assistant turn |
 
-Outer whitespace around JSON is allowed. Whitespace inside the password is forbidden. JSON escapes are decoded before domain checks. Incorrect, malformed, and truncated model answers are scored once; there is no semantic retry or corrective feedback. A format/domain failure's raw response stays in the conversation even though the password state is preserved.
+Outer whitespace around JSON is allowed. Whitespace inside the password is forbidden. JSON escapes are decoded before domain checks. Incorrect, malformed, and truncated model answers are scored once and retained in evidence; there is no semantic retry, corrective feedback, or subsequent stage after a failed answer. Terminal failures have `next_state: null` and record `episode_end_reason`.
 
 The chat request contains the model ID, messages, `stream: false`, and configured decoding parameters. Full rule lists, certificates, and witnesses are evaluator data and are not additional request fields. Provider-enforced JSON mode, tools, and tool-assisted solving are disabled. See [protocol.py](src/passgame/protocol.py) and [models.py](src/passgame/models.py) for the exact contract.
 
@@ -186,7 +195,9 @@ The checker exhaustively enumerates distinct, domain-valid strings at distance o
 | `interfering` | At least one one-edit string satisfies the new rule, none satisfies all rules, and a verified full-valid witness is exactly two edits away; `d_new = 1`, `d_full = 2` |
 | `unknown` | Incoming old-rule validity fails, or the bounded search/witness does not prove the exact full distance |
 
-The two-edit witness proves an upper bound; the complete one-edit search proves the matching lower bound. The checker does not exhaustively search arbitrary distances. `search_complete: true` means the **radius-one neighborhood** was completely searched. Unknown outcomes are never relabeled interfering merely because a repair was not found.
+The two-edit witness proves an upper bound; the complete one-edit search proves the matching lower bound. Native/order certificates search adaptively from the actual incoming string using only the currently active rules. They do not use the episode's fixed final witness. The search tries second edits from new-valid one-edit neighbors first, then other one-edit neighbors, because a valid two-edit repair may satisfy the new rule only after its second edit. It checks at most 100,000 distinct radius-two candidates per call. Offline dataset validation can still supply a known witness as a hint, which is accepted only after checking its validity and distance from the incoming string.
+
+The checker does not search arbitrary distances. `search_complete: true` means the **radius-one neighborhood** was completely searched. Adaptive searches also record `witness_search_candidates` and `witness_search_status` (`found`, `candidate_limit`, or `exhausted`). Reaching the candidate limit or exhausting radius two without a witness leaves the exact full distance unknown; it does not prove unsatisfiability. Unknown outcomes are never relabeled interfering merely because a repair was not found.
 
 Independent means a safe shortest repair **exists**. It does not mean every shortest new-only repair is safe, so a greedy new-only algorithm can still choose an unsafe repair in an independent case.
 
@@ -223,7 +234,7 @@ Old rules require exactly four digits, a digit sum at most 24, exactly one `1`, 
 
 Inserting instead gives `59981`, breaking four old rules. The certified minimum is three. Only the sum and substring rules fail under every shortest repair; other failed IDs vary. Thus the intersection of affected IDs can have size two even when the guaranteed minimum count is three.
 
-The old-rule lists in these examples are reader explanations. Actual latest-turn LLM prompts contain only the new rule, as described in the [protocol](#sequential-model-protocol).
+The main pilot repeats the previously introduced rules in each latest-turn prompt, alongside one new rule, as described in the [protocol](#sequential-model-protocol). The optional history-only comparison leaves those rules in their original conversation turns.
 
 ### Certificate and worksheet column glossary
 
@@ -275,8 +286,11 @@ Load counts the old rules **plus the new rule** in an offline case. Additional r
 | Native requests per model | 96 | 480 | 576 |
 | Order requests per model | 192 | 640 | 832 |
 | Combined native/order requests per model | **288** | **1,120** | **1,408** |
+| Eight-rule pairs selected for the current pilot | **12** | **60** | **72** |
+| Eight-rule fixed-start games per model | **24** | **120** | **144** |
+| Eight-rule fixed-start requests per model, maximum | **192** | **960** | **1,152** |
 
-Each episode has eight turns. Request counts are planned semantic requests with complete execution; transport retries can cause additional HTTP attempts, and infrastructure failures can stop an episode early. Each additional model repeats the selected suite.
+The current pilot sets `rule_count: 8`, selecting cases and episodes by their actual rule-list length. Native/order episodes already have eight scheduled turns. Every selected fixed-start game also has eight scheduled rules; earlier failure can still end it before turn eight. Request counts are upper bounds, and transport retries can cause additional HTTP attempts. The versioned dataset retains its other rule counts for historical reproducibility, but they are excluded from the current pilot.
 
 Base scenarios are disjoint across development/test, and variants remain in the same split. Offline pair members share the same old/new constraints and input length. Multiple-rule pairs also match character multiplicities. Final witnesses establish that every episode prefix is satisfiable.
 
@@ -286,10 +300,38 @@ Base scenarios are disjoint across development/test, and variants remain in the 
 | --- | --- | --- |
 | `native` | Eight sequential turns starting from shared initial strings; every intermediate response comes from the evaluated model | Yes |
 | `order` | The same final constraint sets under original, reverse, and two seeded random orders, each with the same initial string | Yes |
+| `fixed_start` | Identical predefined initial strings across models; each subsequent input comes from the model's previous output | Yes |
 | `controlled` | Matched focal independent/interfering states with scripted offline prefixes; one recorded focal response per state | No; diagnostic only |
 | `fresh` | Legacy all-at-once solving diagnostic | No; diagnostic only, absent from the default configuration |
 
 The test native suite uses 30 base sets with two initial strings per set. The test order suite uses 20 final sets with four permutations per set. Actual interference in a native/order episode is recomputed from the model's incoming string; an offline template label is not copied onto its trajectory.
+
+### Eight-rule predefined-start evaluation
+
+Use [configs/dev-qwen2.5-7b-eight-rules.yaml](configs/dev-qwen2.5-7b-eight-rules.yaml) for the current development pilot. It sets `rule_count: 8` and selects only existing eight-rule cases without padding or regenerating rules. Each pair supplies two initial strings and the same ordered rules. Every model starts from the same string for a given pair member. The dataset's independent/interfering labels describe those initial strings under the eventual focal rule set; they do not describe later model-generated states.
+
+Initialize a fresh conversation from the predefined string once. Introduce one rule per turn, repeat the previous rules, and retain each exact model response. If it satisfies every active rule, its password becomes the next input. Any rule, format, or domain failure ends that conversation before another rule is introduced. There are no resets, oracle repairs, semantic retries, or fabricated assistant replies. Transport failures stop the conversation as missing infrastructure evidence.
+
+Score every attempted turn, including the failed terminal answer. Earlier turns retain `phase: prefix` and the final scheduled rule has `phase: focal`, but both enter trajectory summaries when reached. Record `initial_condition` and `intended_interference_degree` as scenario metadata. Recompute `dynamic_certificate` from the actual incoming string and active rules, and use only that certificate for interference breakdowns. Fixed-start conversations enter final/whole-episode and survival summaries; recovery is impossible under the new termination policy. H3 remains specific to rule-order episodes. Initial-case labels do not justify paired independent/interfering repair contrasts for evolved states.
+
+The eight-rule development suite has 24 games and at most 192 requests per model. Each of the six rule families contributes four games (two pairs). The 12 pairs have intended degrees one/two/three in counts 8/2/2. Held-out has 120 games and at most 960 requests, with 40/10/10 pairs by intended degree. Actual interference is still measured from model-generated states. The human-audit gate applies to held-out chat evaluations.
+
+The earlier mixed-length pilot used 64 development games and at most 364 requests. Its data and [configuration](configs/dev-qwen2.5-7b-fixed-start.yaml) remain available as a historical reference. The main reminder study writes to `outputs/dev-qwen2.5-7b-eight-rules-reminders-stop-on-failure/` and uses a fresh frozen snapshot. It selects eight-rule games and repeats previous rules; state propagation, first-failure termination, model settings, and deterministic scoring retain the corrected protocol. Records use `prompt_protocol_version: cumulative_rule_reminders_v1`, and metadata/completion reports record the prompt condition. Reminders do not guarantee that a game reaches a certified interference challenge.
+
+The [eight-rule history-only comparison](configs/dev-qwen2.5-7b-eight-rules-no-reminders.yaml) has the same cases and model settings with reminders disabled and writes to `outputs/dev-qwen2.5-7b-eight-rules-stop-on-failure/`. Use an unused directory if that configuration has already been evaluated; historical evidence cannot be resumed under changed source code or prompts.
+
+Protocol correction (2026-10-23): an earlier assistant implementation reset the string before every turn, misinterpreting the request for shared initial strings. Its completed results at `outputs/dev-qwen2.5-7b-fixed-start/` and archived source snapshot `f212179af77943cb5a3d422400f19b74f2facd1b` belong to that rejected reset protocol. They are retained as historical evidence and must not be used as results for the corrected experiment. Reanalysis explicitly labels their records `legacy_reset`. Following the user's additional clarification, new conversations also terminate on the first failed response. The corrected config writes to `outputs/dev-qwen2.5-7b-predefined-starts-stop-on-failure/`; use a fresh snapshot of the corrected source rather than cloning the archived reset snapshot.
+
+With a compatible server already running, use a fresh output directory for each changed code/configuration:
+
+```sh
+uv run --locked python -m passgame.run \
+  --config configs/dev-qwen2.5-7b-eight-rules.yaml --preflight
+uv run --locked python -m passgame.run \
+  --config configs/dev-qwen2.5-7b-eight-rules.yaml
+```
+
+The packaged Galvani launcher uses this eight-rule config. From the repo folder on the Mac, run `bash run-pilot.sh --new` to submit a new study instead of resuming the earlier mixed-length run. `bash run-pilot.sh --check` validates the packaged snapshot without connecting or submitting a job.
 
 ### Diagnostic algorithms
 
@@ -410,7 +452,8 @@ Paths are resolved relative to the process's working directory, so use the repos
 | `study` | Name recorded with this evaluation |
 | `dataset_dir` | Directory containing manifest, pair, and episode files |
 | `split` | Explicitly `development` or `test` |
-| `tracks` | Nonempty track list; chat adapters permit only `native`/`order` |
+| `tracks` | Nonempty track list; chat adapters permit `native`, `order`, and `fixed_start` |
+| `rule_count` | Optional exact number of scheduled rules; the current pilot sets `8`. Cases and episodes with other lengths are excluded before planning or requests; an empty selection is rejected |
 | `models` | Model/algorithm configurations with unique names |
 | `output_dir` | Evidence directory; choose a new path for changed code/data/config |
 | `budget_usd` | Conservative API-token spending ceiling; positive for provider deployment |
@@ -474,21 +517,21 @@ The regression summaries are:
 - `new_success_with_regression`: new-rule success with retention failure, divided by all retention-eligible responses.
 - `regression_given_new_success`: retention failures among new-rule-successful, retention-eligible responses.
 
-Episode summaries record first full-success failure, later recovery, final success, and whole-episode success. Whole-episode success requires all eight responses to satisfy their active rules. Final success can be 1 after an earlier failure. Endpoints are null for incomplete episodes; complete episodes without a failure are right-censored at the horizon. Survival summaries use complete episodes and report how many have avoided a first failure through each turn.
+Episode summaries record the first failure, observed turn count, termination reason, and whether the horizon was reached. A first rule/format/domain failure is a completed episode outcome with zero whole-episode and final success, even if later rules were never revealed. Later stages remain unattempted; no synthetic response rows are written. Infrastructure failures and interrupted episodes have unknown episode endpoints. Historical continue-after-failure runs retain their original recovery semantics. Survival summaries include early failed episodes as failures at their observed turn, with `at_risk` and `failures_at_turn` counts; shorter successful episodes are excluded from later denominators.
 
 ### Research endpoints and interpretation
 
 | Endpoint | Current analysis scope |
 | --- | --- |
-| H1: constraint interference | Paired independent-minus-interfering full-success contrast for offline controlled diagnostics; actual LLM interference strata are descriptive and state-dependent |
-| H2: new-rule success with regression | Paired interfering-minus-independent regression contrast for offline diagnostics; LLM trajectories report observed regression rates and broken-rule counts |
+| H1: constraint interference | Paired independent-minus-interfering full-success contrast for controlled diagnostics; native/order/fixed-start actual-state strata are descriptive and state-dependent |
+| H2: new-rule success with regression | Paired interfering-minus-independent regression contrast for controlled diagnostics; native/order/fixed-start trajectories report observed regression rates and broken-rule counts |
 | H3: rule order | Original-minus-reverse final and whole-episode success, paired by final rule set and shared initial string; random orders are descriptive |
 
 The configured analysis uses 2,000 seeded paired-bootstrap resamples for 95% intervals on the supported paired contrasts. It produces no confirmatory p-values or equivalence conclusions. Turns and order variants are not treated as independent scenario blocks.
 
 In native/order-only LLM runs, the legacy `h1`/`h2` paired entries have zero blocks and null estimates because there are no controlled responses. Use trajectory summaries, `interference_breakdowns`, `state_certification`, and H3 as applicable. See the [prespecified design](docs/preregistration.md) for interpretation.
 
-`interference-summary.csv` groups controlled rows by the family's intended offline degree, including their independent members. Native/order rows are grouped by the **actual incoming state's** certified minimum breakage; independent states can have degree zero. Unknown/no-op states are omitted from this degree table and counted separately in `state_certification`. Degree strata from autonomous model states do not establish a causal interference effect.
+`interference-summary.csv` includes a `track` column. Controlled diagnostic rows use the family's intended offline degree, including independent members. Native/order/fixed-start rows use the **actual incoming state's** certified minimum breakage; independent states can have degree zero. Unknown/no-op states are counted separately in `state_certification`. Autonomous degree strata do not establish a causal interference effect. Archived per-turn-reset data is explicitly separated as `legacy_reset`; only that historical protocol retains focal-only scoring and paired contrasts. `legacy_reset_prefix_records` counts its excluded setup rows.
 
 ## Outputs, caching, and resumption
 
@@ -505,7 +548,7 @@ An evaluation writes the following under its configured `output_dir`:
 | `interference-summary.csv` | Degree-stratified success, retention, and mean broken-rule counts |
 | `completion.json` | Normal completion or handled partial-run status, planned/observed records, spending, and stop reason |
 
-Errors before execution, or unexpected crashes, may occur before completion/analysis files are written. Exit code 2 indicates a handled incomplete run, including budget exhaustion or infrastructure missingness. A model's semantic failures do not themselves make execution incomplete: all planned responses can be collected even when success is low.
+Errors before execution, or unexpected crashes, may occur before completion/analysis files are written. Exit code 2 indicates a handled incomplete run, including budget exhaustion or infrastructure missingness. A model's terminal failure is an observed outcome and does not itself make execution incomplete. `planned_records` is an upper bound; `skipped_after_failure` counts later turns intentionally not requested. Successful execution has `record_count + skipped_after_failure == planned_records`, all planned conversations ended normally or on a model failure, and no infrastructure missingness or budget stop. Replaying cached terminal failures does not request later stages.
 
 The runner also emits structured stdout lines prefixed `CONFIG`, `VALIDATION`, `PROGRESS`, `METRIC`, `H1`/`H2`/`H3`, `INTERFERENCE`, `SEQUENTIAL_PROTOCOL`, and `SUMMARY`. Diagnostic runs add `DIAGNOSTIC_CONTRACT` checks. Raw evidence, not a status badge alone, supports interpretation.
 
@@ -593,7 +636,7 @@ Completed experiment snapshots remain immutable. Make benchmark or model-setting
 | Placeholder-model or missing-price error | Fill the pilot template with the exact ID, prices/accounting date, input bound, and completion cap |
 | Zero-budget error for a local model | Select `deployment: self_hosted` and explicitly set both token prices to zero |
 | Held-out audit error | Use `development` for the pilot; complete the signed review before test evaluation |
-| `controlled`/`fresh` rejected for a model | Use only `native` and/or `order` with `adapter: chat` |
+| `controlled`/`fresh` rejected for a model | Use `native`, `order`, or `fixed_start` with `adapter: chat`; the scripted diagnostic prefixes remain unavailable to chat models |
 | Missing credential environment variable | Export the exact configured variable; `.env` is not loaded automatically |
 | Connection refused or request timeout | Verify the server from the evaluator's node/container and its endpoint/port; preflight does not connect |
 | Unsupported parameter or bad chat template | Match token-limit/decoding fields and serving template to the selected model/engine |

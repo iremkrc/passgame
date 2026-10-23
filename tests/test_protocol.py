@@ -52,3 +52,27 @@ def test_single_rule_disclosure_and_multiple_old_rule_regressions():
     inherited = score("5998", '{"password":"5998"}', old, new)
     assert inherited["old_rules_broken"] == 0
     assert inherited["newly_violated_old_rule_ids"] == []
+
+
+def test_reminders_list_each_previous_rule_and_introduce_only_the_new_rule():
+    old = [Rule("r1", "digit_count", 2), Rule("r2", "digit_sum", 5, "le")]
+    new = Rule("r3", "length", 9)
+    prompt = render("x2e!hau3", new, old, remind_previous_rules=True)
+    previous, introduced = prompt.split("\nNew rule: ")
+    assert 'Current string: "x2e!hau3"' in previous
+    assert "Previous rules (still binding):" in previous
+    for rule in old:
+        assert previous.count(f"{rule.id}: {rule.describe()}") == 1
+        assert rule.describe() not in introduced
+    assert new.describe() not in previous
+    assert introduced.startswith(f"{new.id}: {new.describe()}")
+    assert "satisfying all active rules" in introduced
+    # The comparison condition preserves the exact original prompt.
+    assert render("x2e!hau3", new, old) == render("x2e!hau3", new)
+
+
+def test_first_turn_reminder_prompt_has_no_previous_rules():
+    new = Rule("r1", "digit_count", 2)
+    prompt = render("xue32!hau", new, [], remind_previous_rules=True)
+    assert "(none; this is the first turn)" in prompt
+    assert prompt.count(f"{new.id}: {new.describe()}") == 1
