@@ -141,11 +141,13 @@ The evaluator accepts **any** domain-valid string satisfying the active constrai
 | --- | --- |
 | Valid JSON, allowed string, all active rules satisfied | Full success; use the returned string next turn |
 | Valid JSON and allowed string, but any old or new rule is violated | Semantic failure; record the answer and terminate the episode |
-| Invalid JSON, duplicate keys, extra fields, wrong type, prose, or Markdown fences | Format failure; record the answer and terminate the episode |
+| Invalid JSON, duplicate keys, extra fields, wrong type, prose, or Markdown fences in strict mode | Format failure; record the answer and terminate the episode |
 | JSON with an empty, overlong, whitespace-containing, or otherwise out-of-domain string | Domain failure; record the answer and terminate the episode |
 | Transport/provider infrastructure failure after allowed retries | Missing evidence; stop that episode without fabricating an assistant turn |
 
 Outer whitespace around JSON is allowed. Whitespace inside the password is forbidden. JSON escapes are decoded before domain checks. Incorrect, malformed, and truncated model answers are scored once and retained in evidence; there is no semantic retry, corrective feedback, or subsequent stage after a failed answer. Terminal failures have `next_state: null` and record `episode_end_reason`.
+
+The optional `allow_markdown_fences: true` response condition also accepts one complete outer triple-backtick block, either unlabelled or labelled `json`. Only that wrapper is removed for parsing; the JSON schema, string domain, and all rule checks remain identical. Surrounding prose, multiple blocks, other language labels, and malformed JSON still fail. Exact raw replies, including fences, remain in evidence and subsequent conversation history. Records include `markdown_fence_removed` and `strict_parse_error`; metadata and completion identify the response protocol. The default remains strict. Use a new configuration/output directory for this condition; do not relabel the completed strict study.
 
 The chat request contains the model ID, messages, `stream: false`, and configured decoding parameters. Full rule lists, certificates, and witnesses are evaluator data and are not additional request fields. Provider-enforced JSON mode, tools, and tool-assisted solving are disabled. See [protocol.py](src/passgame/protocol.py) and [models.py](src/passgame/models.py) for the exact contract.
 
@@ -462,6 +464,8 @@ The current repository does not contain a finished Galvani allocation/server-sta
 
 ### Provider-hosted models
 
+For Tübingen ML Cloud LiteLLM models, use the [ML Cloud setup guide](docs/mlcloud-evaluation.md) and [v3 development configuration](configs/mlcloud.example.yaml). The guide includes private key entry, discovery of model IDs available to your key, and local evaluator commands.
+
 Use [configs/pilot.example.yaml](configs/pilot.example.yaml) on a model-preparation branch. Fill the exact model ID, compatible HTTPS endpoint, supported decoding parameters, verified input/output token prices and verification date, prompt bound, and positive spending ceiling. Export the credential under the configured `api_key_env` name before preflight and execution.
 
 The adapter uses the [chat-completions request schema](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create). A provider with a different schema needs a compatible frontend or a separately implemented adapter. Do not assume every endpoint supports the same token-limit or temperature parameters.
@@ -485,6 +489,7 @@ Paths are resolved relative to the process's working directory, so use the repos
 | `split` | Explicitly `development` or `test` |
 | `tracks` | V3 permits `seeded` and `order`; legacy v2 additionally permits `native`/`fixed_start` for chat |
 | `rule_count` | Optional exact number of scheduled rules; the current pilot sets `8`. Cases and episodes with other lengths are excluded before planning or requests; an empty selection is rejected |
+| `allow_markdown_fences` | Boolean, default `false`; accept one outer unlabelled/JSON code fence before the same strict JSON/domain/rule checks |
 | `models` | Model/algorithm configurations with unique names |
 | `output_dir` | Evidence directory; choose a new path for changed code/data/config |
 | `budget_usd` | Conservative API-token spending ceiling; positive for provider deployment |

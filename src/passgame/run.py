@@ -55,6 +55,8 @@ def validate_config(config: dict, manifest: dict):
         raise ValueError("rule_count must be a positive integer")
     if type(config.get("remind_previous_rules", False)) is not bool:
         raise ValueError("remind_previous_rules must be a boolean")
+    if type(config.get("allow_markdown_fences", False)) is not bool:
+        raise ValueError("allow_markdown_fences must be a boolean")
     chat = [m for m in config["models"] if m["adapter"] == "chat"]
     if any(m.get("deployment", "provider") not in {"provider", "self_hosted"} for m in chat):
         raise ValueError("Unknown deployment; select provider or self_hosted")
@@ -86,6 +88,9 @@ def execute(config_path: Path, preflight_only: bool = False):
     remind_previous_rules = config.get("remind_previous_rules", False)
     prompt_protocol = {"version": "cumulative_rule_reminders_v1" if remind_previous_rules else "history_only_v1",
                        "remind_previous_rules": remind_previous_rules}
+    allow_markdown_fences = config.get("allow_markdown_fences", False)
+    response_protocol = {"version": "optional_markdown_fence_v1" if allow_markdown_fences else "strict_json_v1",
+                         "allow_markdown_fences": allow_markdown_fences}
     if manifest.get("version") == 3:
         cases = []
         episodes = load_jsonl(data_dir/"episodes.jsonl")
@@ -112,7 +117,8 @@ def execute(config_path: Path, preflight_only: bool = False):
     effective = {"config": config, "config_hash": digest(config), "code_hash": source_hash(), "dataset_hash": digest(manifest["files"]), "planned_records": per_model*len(config["models"]),
                  "planned_records_are_upper_bound": True, "planned_episodes": per_model_episodes*len(config["models"]),
                  "selection": {"rule_count": rule_count, "pairs": len(cases), "native_order_episodes": sum(e["track"] in config["tracks"] for e in episodes)},
-                 "episode_termination_policy": "first_failure", "prompt_protocol": prompt_protocol, "validation": validation}
+                 "episode_termination_policy": "first_failure", "prompt_protocol": prompt_protocol,
+                 "response_protocol": response_protocol, "validation": validation}
     if manifest.get("version") == 3:
         effective["selection"] = {"rule_count":rule_count, "pairs":0,
                                   "seeded_episodes":sum(e["track"] == "seeded" for e in episodes if e["track"] in config["tracks"]),
@@ -171,6 +177,7 @@ def execute(config_path: Path, preflight_only: bool = False):
             stamp = datetime.now(timezone.utc).isoformat()
             base = {**meta, "model": model["name"], "model_config": model, "request_key": key, "timestamp": stamp, "messages": messages,
                     "current": context["current"], "old_rules": [r.to_dict() for r in old], "new_rule": new.to_dict(),
+                    "response_protocol_version": response_protocol["version"], "allow_markdown_fences": allow_markdown_fences,
                     "config_hash": effective["config_hash"], "code_hash": effective["code_hash"], "dataset_hash": effective["dataset_hash"]}
             # Preserve duplicate-request protection for self-hosted inference too.
             append(events_path, {"event": "started", "request_key": key, "timestamp": stamp,
@@ -187,7 +194,8 @@ def execute(config_path: Path, preflight_only: bool = False):
                 if meta.get("termination_policy") == "first_failure":
                     row.update({"episode_terminal": True, "episode_end_reason": "infrastructure_failure", "next_state": None})
             else:
-                metrics = score(context["current"], response.raw, old, new)
+                metrics = score(context["current"], response.raw, old, new,
+                                allow_markdown_fences=allow_markdown_fences)
                 if meta["track"] == "fresh":
                     metrics.update({"retention": None, "all_old_success": None, "fractional_retention": None, "retention_eligible": False, "previously_satisfied": [], "before_checks": None, "new_was_noop": None, "edit_distance": None,
                                     "newly_violated_old_rule_ids": None, "old_rules_broken": None})
@@ -306,7 +314,7 @@ def execute(config_path: Path, preflight_only: bool = False):
     diagnostic = all(m["adapter"] == "diagnostic" for m in config["models"])
     completed_episodes = sum(e["complete"] for e in result["episodes"])
     completion = {"study": config["study"], "diagnostic_only": diagnostic, "record_count": len(rows), "planned_records": effective["planned_records"],
-                  "prompt_protocol": prompt_protocol,
+                  "prompt_protocol": prompt_protocol, "response_protocol": response_protocol,
                   "planned_records_are_upper_bound": True, "skipped_after_failure": skipped_after_failure,
                   "expected_records": effective["planned_records"]-skipped_after_failure,
                   "planned_episodes": effective["planned_episodes"], "completed_episodes": completed_episodes,
@@ -348,6 +356,7 @@ def execute(config_path: Path, preflight_only: bool = False):
             raise AssertionError("Sequential disclosure contract violated")
     print("SEQUENTIAL_PROTOCOL " + json.dumps({"verified_records": len(sequential), "new_rules_per_user_turn": 1,
                                                "cumulative_rule_reminders": remind_previous_rules,
+                                               "response_protocol": response_protocol,
                                                "prompt_protocol_version": prompt_protocol["version"], "scripted_llm_prefixes": False,
                                                "history": "original user turns and actual adapter responses"}, sort_keys=True), flush=True)
     (output/"completion.json").write_text(json.dumps(completion, indent=2)+"\n")

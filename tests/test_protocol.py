@@ -15,6 +15,49 @@ def test_parser_domain_and_literal_whitespace():
     assert parse(' {"password":"A"} \n') == ("A", None)
 
 
+@pytest.mark.parametrize("raw", [
+    '{"password":"A"}',
+    '```json\n{"password":"A"}\n```',
+    '```\n{"password":"A"}\n```',
+    ' \t```JSON\r\n{"password":"A"}\r\n```\n',
+])
+def test_optional_fence_accepts_one_complete_json_block(raw):
+    assert parse(raw, allow_markdown_fences=True) == ("A", None)
+
+
+@pytest.mark.parametrize("raw", [
+    'Here is the answer:\n```json\n{"password":"A"}\n```',
+    '```json\n{"password":"A"}\n```\nExplanation',
+    '```json\n{"password":"A"}\n```\n```json\n{"password":"B"}\n```',
+    '```python\n{"password":"A"}\n```',
+    '```json\n{"password":"A"}',
+    '```json\n{"password":"A",}\n```',
+    '```json\n{"password":"A","password":"B"}\n```',
+    '```json\n{"password":"A","extra":1}\n```',
+    '```json\n{"password":1}\n```',
+    '```json\n["A"]\n```',
+    '',
+])
+def test_optional_fence_does_not_repair_or_extract_answers(raw):
+    assert parse(raw, allow_markdown_fences=True) == (None, "format_failure")
+
+
+def test_optional_fence_preserves_domain_and_rule_checks():
+    assert parse('```json\n{"password":"bad space"}\n```', allow_markdown_fences=True) == (None, "domain_failure")
+    old, new = [Rule("length", "length", 4)], Rule("new", "contains", "8")
+    raw = '```json\n{"password":"abc8x"}\n```'
+    result = score("abc1", raw, old, new, allow_markdown_fences=True)
+    assert result["markdown_fence_removed"] is True
+    assert result["strict_parse_error"] == "format_failure" and result["parse_error"] is None
+    assert result["artifact"] == "abc8x"
+    assert result["outcome"] == "new_success_old_failure"
+    assert result["full_success"] == 0 and result["retention"] == 0
+    assert score("abc1", raw, old, new)["outcome"] == "format_failure"
+    bare = score("abc1", '{"password":"abc8"}', old, new, allow_markdown_fences=True)
+    assert bare["full_success"] == 1 and bare["markdown_fence_removed"] is False
+    assert bare["strict_parse_error"] is None
+
+
 def test_retention_only_tracks_incoming_satisfied_rules():
     old = [Rule("count", "digit_count", 2), Rule("sum", "digit_sum", 11)]
     new = Rule("new", "contains", "8")

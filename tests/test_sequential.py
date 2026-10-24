@@ -106,7 +106,8 @@ def test_writer_preserves_historical_data_and_keeps_human_audit_pending(tmp_path
         validate_config(config,{"version":2})
 
 
-def test_seeded_runner_uses_real_outputs_stops_and_recertifies_actual_state(tmp_path,monkeypatch):
+@pytest.mark.parametrize("allow_markdown_fences", [False, True])
+def test_seeded_runner_uses_real_outputs_stops_and_recertifies_actual_state(tmp_path,monkeypatch,allow_markdown_fences):
     data, output = tmp_path/"data", tmp_path/"results"
     write_dataset(data,dev_per_family=1,test_per_family=1)
     episode = next(e for e in load_jsonl(data/"episodes.jsonl") if e["episode_id"] == "seeded-v3-development-numeric-000")
@@ -127,7 +128,10 @@ def test_seeded_runner_uses_real_outputs_stops_and_recertifies_actual_state(tmp_
             if self.name == "fails" and turn == 3:
                 answer = "abc48"
             calls.append((self.name,messages))
-            return Response(json.dumps({"password":answer}),{},1,0,{})
+            raw = json.dumps({"password":answer})
+            if allow_markdown_fences:
+                raw = f"```json\n{raw}\n```"
+            return Response(raw,{},1,0,{})
         def close(self):
             pass
 
@@ -137,7 +141,8 @@ def test_seeded_runner_uses_real_outputs_stops_and_recertifies_actual_state(tmp_
                "output_price_per_million":0,"pricing_verified_on":"2026-10-24","max_input_tokens":32768}
               for name in ("succeeds","anticipates","fails")]
     config = {"study":"v3-fixture","dataset_dir":str(data),"split":"development","tracks":["seeded"],
-              "rule_count":8,"remind_previous_rules":True,"models":models,"output_dir":str(output),
+              "rule_count":8,"remind_previous_rules":True,"allow_markdown_fences":allow_markdown_fences,
+              "models":models,"output_dir":str(output),
               "budget_usd":0,"bootstrap_repetitions":20,"seed":1}
     path = tmp_path/"config.yaml"
     path.write_text(yaml.safe_dump(config))
@@ -149,6 +154,10 @@ def test_seeded_runner_uses_real_outputs_stops_and_recertifies_actual_state(tmp_
     assert len(rows) == 19 and sum(e["whole_episode_success"] for e in result["episodes"]) == 2
     completion = json.loads((output/"completion.json").read_text())
     assert completion["complete"] is True and completion["skipped_after_failure"] == 5
+    response_protocol = {"version":"optional_markdown_fence_v1" if allow_markdown_fences else "strict_json_v1",
+                         "allow_markdown_fences":allow_markdown_fences}
+    assert completion["response_protocol"] == plan["response_protocol"] == response_protocol
+    assert json.loads((output/"metadata.json").read_text())["response_protocol"] == response_protocol
     assert result["infrastructure_failures"] == 0
     for name in ("succeeds","anticipates","fails"):
         group = [r for r in rows if r["model"] == name]
@@ -156,6 +165,10 @@ def test_seeded_runner_uses_real_outputs_stops_and_recertifies_actual_state(tmp_
         history = [{"role":"system","content":SYSTEM}]
         current = "abc1"
         for turn,row in enumerate(group,1):
+            assert row["markdown_fence_removed"] is allow_markdown_fences
+            assert row["strict_parse_error"] == ("format_failure" if allow_markdown_fences else None)
+            assert row["response_protocol_version"] == response_protocol["version"]
+            assert row["allow_markdown_fences"] is allow_markdown_fences
             assert row["current"] == current and row["initial"] == "abc1"
             assert "initial_condition" not in row and "pair_id" not in row
             old = [Rule.from_dict(r) for r in row["old_rules"]]
@@ -173,9 +186,15 @@ def test_seeded_runner_uses_real_outputs_stops_and_recertifies_actual_state(tmp_
         assert third["dynamic_certificate"]["label"] == ("no_op" if name == "anticipates" else "interfering")
         if name == "fails":
             assert third["episode_terminal"] and third["next_state"] is None
+            assert third["episode_end_reason"] == "rule_failure"
     assert any(x["track"] == "seeded" and x["degree"] == 1 for x in result["interference_breakdowns"])
     count = len(calls)
     execute(path)
+    assert len(calls) == count
+    config["allow_markdown_fences"] = not allow_markdown_fences
+    path.write_text(yaml.safe_dump(config))
+    with pytest.raises(ValueError,match="different code/data/config"):
+        execute(path)
     assert len(calls) == count
     config["split"] = "test"
     with pytest.raises(ValueError,match="human audit"):

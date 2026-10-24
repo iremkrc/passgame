@@ -95,6 +95,14 @@ def test_reminder_setting_rejects_non_boolean_values(value):
         validate_config(config, {})
 
 
+@pytest.mark.parametrize("value", ["true", "false", 1, None])
+def test_markdown_fence_setting_rejects_non_boolean_values(value):
+    config = {"split":"development", "models":[{"name":"reference_oracle","adapter":"diagnostic"}],
+              "tracks":["fixed_start"], "allow_markdown_fences":value}
+    with pytest.raises(ValueError, match="allow_markdown_fences must be a boolean"):
+        validate_config(config, {})
+
+
 @pytest.mark.parametrize("tracks", [["controlled"], ["fresh"], ["native", "controlled"], ["order", "fresh"]])
 def test_llm_tracks_reject_scripted_prefixes_and_all_at_once(tracks):
     config = {"split":"development", "models":[{"name":"m","adapter":"chat"}],

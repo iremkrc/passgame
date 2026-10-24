@@ -1,6 +1,7 @@
 """Frozen prompts, strict parsing, retention scoring and artifact transitions."""
 
 import json
+import re
 from .constraints import Rule, checks, in_domain
 from .oracle import distance
 
@@ -54,7 +55,19 @@ def _unique_object(pairs):
     return result
 
 
-def parse(raw: str) -> tuple[str | None, str | None]:
+_MARKDOWN_FENCE = re.compile(
+    r'[ \t\r\n]*```(?:json)?[ \t]*\r?\n(.*?)\r?\n```[ \t\r\n]*',
+    re.DOTALL | re.IGNORECASE,
+)
+
+
+def _unwrap_markdown_fence(raw: str, allowed: bool) -> tuple[str, bool]:
+    match = _MARKDOWN_FENCE.fullmatch(raw) if allowed and isinstance(raw, str) else None
+    return (match.group(1), True) if match else (raw, False)
+
+
+def parse(raw: str, *, allow_markdown_fences: bool = False) -> tuple[str | None, str | None]:
+    raw, _ = _unwrap_markdown_fence(raw, allow_markdown_fences)
     try:
         data = json.loads(raw, object_pairs_hook=_unique_object)
     except (ValueError, TypeError):
@@ -66,10 +79,13 @@ def parse(raw: str) -> tuple[str | None, str | None]:
     return data["password"], None
 
 
-def score(current: str, raw: str, old: list[Rule], new: Rule) -> dict:
+def score(current: str, raw: str, old: list[Rule], new: Rule, *,
+          allow_markdown_fences: bool = False) -> dict:
     before = checks(current, old)
     retained_ids = [rid for rid, passed in before.items() if passed]
-    artifact, error = parse(raw)
+    artifact, strict_error = parse(raw)
+    normalized, fence_removed = _unwrap_markdown_fence(raw, allow_markdown_fences)
+    artifact, error = parse(normalized) if fence_removed else (artifact, strict_error)
     after = checks(artifact, old+[new]) if artifact is not None else None
     full = int(after is not None and all(after.values()))
     new_success = int(after is not None and after[new.id])
@@ -87,7 +103,8 @@ def score(current: str, raw: str, old: list[Rule], new: Rule) -> dict:
         outcome = "new_failure_old_retained"
     else:
         outcome = "new_and_old_failure"
-    return {"artifact": artifact, "parse_error": error, "full_success": full, "new_success": new_success,
+    return {"artifact": artifact, "parse_error": error, "strict_parse_error": strict_error,
+            "markdown_fence_removed": fence_removed, "full_success": full, "new_success": new_success,
             "all_old_success": all_old, "retention": retention, "fractional_retention": fractional,
             "retention_eligible": bool(retained_ids), "previously_satisfied": retained_ids,
             "newly_violated_old_rule_ids": broken, "old_rules_broken": len(broken) if broken is not None else None,
