@@ -1,9 +1,10 @@
-# Optional comparison: the same eight-rule games and model settings,
-# with earlier rules available only in the original conversation history.
-study: dev-qwen2.5-7b-eight-rules-stop-on-failure
-dataset_dir: data
+# Progressive v3 pilot: neutral initial strings, eight sequential rules,
+# and verified example repair challenges by turns 3-5. Actual model states
+# are certified independently; reference paths are never sent to the LLM.
+study: dev-qwen2.5-7b-progressive-eight-rules-v3-no-reminders
+dataset_dir: data/sequential-v3
 split: development
-tracks: [fixed_start]
+tracks: [seeded]
 rule_count: 8
 remind_previous_rules: false
 models:
@@ -22,7 +23,7 @@ models:
       temperature: 0
     transport_retries: 2
     timeout_seconds: 180
-output_dir: outputs/dev-qwen2.5-7b-eight-rules-stop-on-failure
+output_dir: outputs/dev-qwen2.5-7b-progressive-eight-rules-v3-no-reminders
 budget_usd: 0
 bootstrap_repetitions: 2000
 seed: 20261008

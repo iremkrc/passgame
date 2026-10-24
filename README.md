@@ -2,7 +2,9 @@
 
 PassGame is a synthetic benchmark for **preserving accumulated constraints while updating a string**. An LLM receives one new rule per conversation turn and produces the next password itself. A deterministic evaluator checks whether the response satisfies the new rule and preserves earlier rules.
 
-The central question is whether a model can coordinate repairs when the easiest change for a new rule would break several old rules. Version 2 includes matched offline cases with certified interference degrees of one, two, and three, plus autonomous eight-turn episodes and rule-order comparisons.
+For experiment definitions and step-by-step local/Galvani commands, read the [experiment and run guide](docs/experiment-guide.md).
+
+The central question is whether a model can coordinate repairs when the easiest change for a new rule would break several old rules. The current **version 3** suite uses simple starting strings and eight progressive rules, with validated example interference challenges at turns 3–5. Version 2 focal pairs and historical studies remain unchanged.
 
 ## Contents
 
@@ -30,16 +32,16 @@ The central question is whether a model can coordinate repairs when the easiest 
 | Version 2 dataset and exact focal distance certificates | Generated and automatically validated |
 | Multiple-rule interference | Certified degree-two and degree-three families included |
 | Sequential native/order conversations | Implemented; each new user message introduces exactly one rule |
-| Fixed-start model conversations | Implemented; initialize once from a predefined string, then carry actual model outputs forward |
+| Progressive `seeded` conversations | Implemented; neutral initial once, actual successful outputs, first-failure termination |
 | Diagnostic algorithms and analysis | Implemented and exercised in a completed validation run |
 | Chat-completions adapter and self-hosted configuration | Implemented |
 | Human audit of the held-out sample | Pending in the checked-in manifest |
-| Actual LLM evaluation | Pending; diagnostic results are not LLM results |
-| Galvani GPU serving environment and exact model selection | Pending |
+| Actual LLM evaluation | Historical Qwen pilots completed; the corrected v3 model pilot is pending |
+| Galvani GPU serving environment and exact model selection | Qwen runtime prepared; reproducible packaging and explicit model-weight selection implemented |
 
 The completed version 2 diagnostic validation produced 4,320 records, including 3,360 native/order requests, with zero API spending. The diagnostic contracts and sequential-disclosure checks passed. These checks establish behavior of the benchmark implementation and its algorithms; they do not measure an LLM.
 
-The checked-in [default configuration](configs/experiment.yaml) still selects diagnostic algorithms. The [provider pilot](configs/pilot.example.yaml) and [SSH pilot](configs/ssh-pilot.example.yaml) are templates with model choices still to fill in. Dataset version `2` and Python package version `0.1.0` are separate version numbers.
+The checked-in [default configuration](configs/experiment.yaml) still selects diagnostic algorithms. The [provider pilot](configs/pilot.example.yaml) and [SSH pilot](configs/ssh-pilot.example.yaml) are templates with model choices still to fill in. Dataset versions `2`/`3` and Python package version `0.1.0` are separate version numbers.
 
 ## Quick start
 
@@ -76,7 +78,10 @@ With the current default configuration, the recipe makes **no external model cal
 | [configs/pilot.example.yaml](configs/pilot.example.yaml) | Paid/provider development-pilot template |
 | [configs/ssh-pilot.example.yaml](configs/ssh-pilot.example.yaml) | Open-weight, self-hosted development-pilot template |
 | [configs/dev-qwen2.5-7b-fixed-start.yaml](configs/dev-qwen2.5-7b-fixed-start.yaml) | Open-weight pilot with the same predefined initial strings across models |
-| [configs/dev-qwen2.5-7b-eight-rules.yaml](configs/dev-qwen2.5-7b-eight-rules.yaml) | Current eight-rule-only pilot, with predefined initial strings and first-failure termination |
+| [configs/dev-qwen2.5-7b-eight-rules.yaml](configs/dev-qwen2.5-7b-eight-rules.yaml) | Current v3 pilot: neutral starts, progressive eight-rule games, reminders and first-failure termination |
+| [data/sequential-v3/development-games.txt](data/sequential-v3/development-games.txt) | All 24 individual pilot games, starting strings, rules, and private example paths |
+| [src/passgame/sequential.py](src/passgame/sequential.py) | Version-3 generation, validation, and readable references |
+| [scripts/package_pilot.py](scripts/package_pilot.py) | Build the Galvani snapshot from a clean checkout |
 | [data/manifest.json](data/manifest.json) | Dataset version, hashes, counts, validation, and human-audit status |
 | [data/pairs.jsonl](data/pairs.jsonl) | Matched independent/interfering offline cases and certificates |
 | [data/episodes.jsonl](data/episodes.jsonl) | Native and order episodes, initial strings, ordered rules, and private witnesses |
@@ -99,14 +104,14 @@ With the current default configuration, the recipe makes **no external model cal
 
 ## Sequential model protocol
 
-A native/order episode starts from a shared initial string, `seed0!` or `seed9!`. Each turn proceeds as follows:
+A v3 `seeded` episode starts from its explicit neutral `initial` string, such as `abc1`. Legacy v2 native/order episodes use `seed0!` or `seed9!`. Each turn proceeds as follows:
 
 1. Append a user message containing the current string and **one new rule**. In the main reminder condition, also list every previously introduced rule with its original ID and description.
 2. Send the system message and the complete original conversation history to the model.
 3. Parse and score the model's response against the cumulative rules privately.
 4. If every active rule passes, carry the returned string and exact response into the next turn. Otherwise save the failed response and terminate the conversation before revealing another rule.
 
-The main pilot sets `remind_previous_rules: true`. Each latest message repeats the exact earlier rules under `Previous rules (still binding)` and introduces one new rule. Future rules, witnesses, and certificates are not disclosed. Full original history and actual assistant responses are retained. Only outputs satisfying every active rule advance to the next stage; a rule, format, or domain failure ends the episode. The `fixed_start` track standardizes only the initial string. Because the endpoint is stateless, the client resends the original history on each request.
+The main pilot sets `remind_previous_rules: true`. Each latest message repeats the exact earlier rules under `Previous rules (still binding)` and introduces one new rule. Future rules, witnesses, and certificates are not disclosed. Full original history and actual assistant responses are retained. Only outputs satisfying every active rule advance to the next stage; a rule, format, or domain failure ends the episode. The current `seeded` track standardizes only the initial string; historical `fixed_start` uses the v2 focal-state starts. Because the endpoint is stateless, the client resends the original history on each request.
 
 The optional history-only comparison sets `remind_previous_rules: false`; omitted settings also default to false for compatibility with earlier configurations. In that condition, earlier rules appear only in their original user turns. Configurations, record protocol versions, and output directories distinguish the conditions; do not pool their scores.
 
@@ -272,7 +277,7 @@ The authoritative sizes and SHA-256 hashes are in [data/manifest.json](data/mani
 
 Load counts the old rules **plus the new rule** in an offline case. Additional rules can be easy or redundant; load is not a calibrated complexity scale. The multiple-rule guarantees come from distinct predicates, rather than duplicate copies of one rule.
 
-### Split sizes and request counts
+### Historical version-2 split sizes and request counts
 
 | Item | Development | Held-out test | Total |
 | --- | ---: | ---: | ---: |
@@ -286,11 +291,11 @@ Load counts the old rules **plus the new rule** in an offline case. Additional r
 | Native requests per model | 96 | 480 | 576 |
 | Order requests per model | 192 | 640 | 832 |
 | Combined native/order requests per model | **288** | **1,120** | **1,408** |
-| Eight-rule pairs selected for the current pilot | **12** | **60** | **72** |
+| Eight-rule pairs in the historical fixed-start subset | **12** | **60** | **72** |
 | Eight-rule fixed-start games per model | **24** | **120** | **144** |
 | Eight-rule fixed-start requests per model, maximum | **192** | **960** | **1,152** |
 
-The current pilot sets `rule_count: 8`, selecting cases and episodes by their actual rule-list length. Native/order episodes already have eight scheduled turns. Every selected fixed-start game also has eight scheduled rules; earlier failure can still end it before turn eight. Request counts are upper bounds, and transport retries can cause additional HTTP attempts. The versioned dataset retains its other rule counts for historical reproducibility, but they are excluded from the current pilot.
+The historical fixed-start configuration sets `rule_count: 8`, selecting cases and episodes by their actual rule-list length. Native/order episodes already have eight scheduled turns. Every selected fixed-start game also has eight scheduled rules; earlier failure can still end it before turn eight. Request counts are upper bounds, and transport retries can cause additional HTTP attempts. The versioned dataset retains its other rule counts for historical reproducibility, but they are excluded from the current pilot.
 
 Base scenarios are disjoint across development/test, and variants remain in the same split. Offline pair members share the same old/new constraints and input length. Multiple-rule pairs also match character multiplicities. Final witnesses establish that every episode prefix is satisfiable.
 
@@ -300,42 +305,68 @@ Base scenarios are disjoint across development/test, and variants remain in the 
 | --- | --- | --- |
 | `native` | Eight sequential turns starting from shared initial strings; every intermediate response comes from the evaluated model | Yes |
 | `order` | The same final constraint sets under original, reverse, and two seeded random orders, each with the same initial string | Yes |
-| `fixed_start` | Identical predefined initial strings across models; each subsequent input comes from the model's previous output | Yes |
+| `seeded` | V3 neutral seed followed by eight progressive rules and actual model responses | Yes; current main track |
+| `fixed_start` | Historical v2 focal-state starts; first seven rules are initially satisfied | Yes; historical comparison only |
 | `controlled` | Matched focal independent/interfering states with scripted offline prefixes; one recorded focal response per state | No; diagnostic only |
 | `fresh` | Legacy all-at-once solving diagnostic | No; diagnostic only, absent from the default configuration |
 
 The test native suite uses 30 base sets with two initial strings per set. The test order suite uses 20 final sets with four permutations per set. Actual interference in a native/order episode is recomputed from the model's incoming string; an offline template label is not copied onto its trajectory.
 
-### Eight-rule predefined-start evaluation
+### Progressive eight-rule evaluation (version 3)
 
-Use [configs/dev-qwen2.5-7b-eight-rules.yaml](configs/dev-qwen2.5-7b-eight-rules.yaml) for the current development pilot. It sets `rule_count: 8` and selects only existing eight-rule cases without padding or regenerating rules. Each pair supplies two initial strings and the same ordered rules. Every model starts from the same string for a given pair member. The dataset's independent/interfering labels describe those initial strings under the eventual focal rule set; they do not describe later model-generated states.
+The current [configuration](configs/dev-qwen2.5-7b-eight-rules.yaml) selects `dataset_dir: data/sequential-v3`, `tracks: [seeded]`, `rule_count: 8`, and `remind_previous_rules: true`.
 
-Initialize a fresh conversation from the predefined string once. Introduce one rule per turn, repeat the previous rules, and retain each exact model response. If it satisfies every active rule, its password becomes the next input. Any rule, format, or domain failure ends that conversation before another rule is introduced. There are no resets, oracle repairs, semantic retries, or fabricated assistant replies. Transport failures stop the conversation as missing infrastructure evidence.
+There are **24 distinct development games**, four per family, and **120 held-out games**, twenty per family. These are individual episodes, not 12 independent/interfering pairs. Each game has a simple neutral seed shared across models and eight fixed rules. The first rule requires a change from the seed. Reference paths require a repair at every turn and prove that every prefix is satisfiable; the final witness also satisfies every rule. Example challenge degrees one/two/three appear by turns 3/4/5. These are conditional proofs about the private reference paths, not guaranteed labels for actual model trajectories.
 
-Score every attempted turn, including the failed terminal answer. Earlier turns retain `phase: prefix` and the final scheduled rule has `phase: focal`, but both enter trajectory summaries when reached. Record `initial_condition` and `intended_interference_degree` as scenario metadata. Recompute `dynamic_certificate` from the actual incoming string and active rules, and use only that certificate for interference breakdowns. Fixed-start conversations enter final/whole-episode and survival summaries; recovery is impossible under the new termination policy. H3 remains specific to rule-order episodes. Initial-case labels do not justify paired independent/interfering repair contrasts for evolved states.
+[Read all 24 pilot games](data/sequential-v3/development-games.txt). Game 1 starts at `abc1` and has the possible path `abc12 → abc47 → abc38 → abc38_ → abc38! → Xbc38! → XAc38! → XAc83!`. Interference is certified at turns 3 and 8 on that example path. Reference outputs, witnesses and certificates are never supplied as LLM assistant replies or required answers.
 
-The eight-rule development suite has 24 games and at most 192 requests per model. Each of the six rule families contributes four games (two pairs). The 12 pairs have intended degrees one/two/three in counts 8/2/2. Held-out has 120 games and at most 960 requests, with 40/10/10 pairs by intended degree. Actual interference is still measured from model-generated states. The human-audit gate applies to held-out chat evaluations.
+Only actual successful model outputs advance the state. The current string, exact original conversation, earlier rule reminders, and one new rule are sent each turn. Any rule, format or domain failure is recorded once and ends the game before another rule is introduced. There are no resets, semantic retries or oracle repairs. Every attempted input is certified independently; a model can already satisfy a planned challenge. Record actual no-op, independent, interfering and unknown coverage and do not assign persistent independent/interfering labels to games. All v3 rows use `phase: sequential`; the final turn is not the sole focal step.
 
-The earlier mixed-length pilot used 64 development games and at most 364 requests. Its data and [configuration](configs/dev-qwen2.5-7b-fixed-start.yaml) remain available as a historical reference. The main reminder study writes to `outputs/dev-qwen2.5-7b-eight-rules-reminders-stop-on-failure/` and uses a fresh frozen snapshot. It selects eight-rule games and repeats previous rules; state propagation, first-failure termination, model settings, and deterministic scoring retain the corrected protocol. Records use `prompt_protocol_version: cumulative_rule_reminders_v1`, and metadata/completion reports record the prompt condition. Reminders do not guarantee that a game reaches a certified interference challenge.
+Maximum requests per model are **192 development** and **960 held-out**. The v3 dataset also contains original/reverse/two random order variants of each game: selecting `order` instead gives 96 development or 480 held-out games. Each permutation retains the same initial string and final rule set. Use a distinct configuration and output directory for order evaluation. The held-out human-audit gate remains pending; v3 has its own 12-game audit sample.
 
-The [eight-rule history-only comparison](configs/dev-qwen2.5-7b-eight-rules-no-reminders.yaml) has the same cases and model settings with reminders disabled and writes to `outputs/dev-qwen2.5-7b-eight-rules-stop-on-failure/`. Use an unused directory if that configuration has already been evaluated; historical evidence cannot be resumed under changed source code or prompts.
-
-Protocol correction (2026-10-23): an earlier assistant implementation reset the string before every turn, misinterpreting the request for shared initial strings. Its completed results at `outputs/dev-qwen2.5-7b-fixed-start/` and archived source snapshot `f212179af77943cb5a3d422400f19b74f2facd1b` belong to that rejected reset protocol. They are retained as historical evidence and must not be used as results for the corrected experiment. Reanalysis explicitly labels their records `legacy_reset`. Following the user's additional clarification, new conversations also terminate on the first failed response. The corrected config writes to `outputs/dev-qwen2.5-7b-predefined-starts-stop-on-failure/`; use a fresh snapshot of the corrected source rather than cloning the archived reset snapshot.
-
-With a compatible server already running, use a fresh output directory for each changed code/configuration:
+The ready [order-sensitivity configuration](configs/dev-qwen2.5-7b-v3-order.yaml) runs all four orders (96 development games, at most 768 requests). It is supported by the Galvani packager:
 
 ```sh
-uv run --locked python -m passgame.run \
-  --config configs/dev-qwen2.5-7b-eight-rules.yaml --preflight
-uv run --locked python -m passgame.run \
-  --config configs/dev-qwen2.5-7b-eight-rules.yaml
+uv run --locked python scripts/package_pilot.py --config configs/dev-qwen2.5-7b-v3-order.yaml
+bash run-pilot.sh --check
+bash run-pilot.sh --new
 ```
 
-The packaged Galvani launcher uses this eight-rule config. From the repo folder on the Mac, run `bash run-pilot.sh --new` to submit a new study instead of resuming the earlier mixed-length run. `bash run-pilot.sh --check` validates the packaged snapshot without connecting or submitting a job.
+The order run writes to `outputs/dev-qwen2.5-7b-v3-order/` within its snapshot. `order-summary.csv` reports success and mean successful prefix length per order; `order-survival.csv` reports stage-by-stage reach; `order-effects.csv` compares original against reverse and each random variant for success and completed turns, paired by final rules, initial string and horizon. Progress excludes the failed terminal turn; incomplete infrastructure histories are counted separately and excluded from paired estimates. Original-versus-reverse is primary, with random comparisons as secondary descriptive checks. See the [run guide](docs/experiment-guide.md#rule-order-experiment).
+
+Regenerate the checked-in suite and export references:
+
+```sh
+uv run --locked python -m passgame.sequential --output data/sequential-v3
+uv run --locked python -m passgame.export --dataset data/sequential-v3 --output outputs/readable-v3
+```
+
+With a compatible server already running:
+
+```sh
+uv run --locked python -m passgame.run --config configs/dev-qwen2.5-7b-eight-rules.yaml --preflight
+uv run --locked python -m passgame.run --config configs/dev-qwen2.5-7b-eight-rules.yaml
+```
+
+For cluster execution, copy `configs/cluster.example.env` to the git-ignored `configs/cluster.local.env` and fill in machine-specific values privately. Shared source and documentation use placeholders. The private file is excluded from source snapshots; generated runtime settings and run artifacts should remain private.
+
+To build and launch on Galvani from a configured checkout:
+
+```sh
+uv run --locked python scripts/package_pilot.py
+bash run-pilot.sh --check
+bash run-pilot.sh --new
+```
+
+Packaging creates a fresh Git snapshot, runs its preflight, includes the tracked batch wrapper and records code/config/data hashes. Ignored archives are reconstructed locally, not prerequisites for cloning. Old snapshots and job state remain preserved. A changed snapshot requires `--new`; running without it resumes monitoring the matching saved job. The default Qwen weights and container must already be prepared on Galvani. For other models, pass a copied configuration with a unique model name/output plus `--model-dir /absolute/remote/weights --model-revision REVISION` to the packager. Merely changing the model ID does not switch weights.
+
+The [no-reminder configuration](configs/dev-qwen2.5-7b-eight-rules-no-reminders.yaml) uses the same v3 games and model settings in a separate output directory. Run it directly against an existing endpoint; the packaged launcher supports `seeded` or `order` with reminders enabled.
+
+**Historical design correction (2026-10-24):** v2 `fixed_start` reused certified pre-repair focal states as episode starts. Those states already satisfied the first seven rules. Its earlier 24-game reminder study, job 2996659, is preserved as evidence for that older design. [The historical config](configs/dev-qwen2.5-7b-prevalidated-starts.yaml), original data and frozen snapshots remain available. V3 replaces this initialization design and writes to `outputs/dev-qwen2.5-7b-progressive-eight-rules-v3/`. Neither historical reset results nor prevalidated-start results are merged with the new study. The earlier reset protocol was also an incorrect interpretation of shared initial strings; it remains explicitly labelled `legacy_reset` by historical reanalysis.
 
 ### Diagnostic algorithms
 
-- `reference_oracle` returns a supplied full-valid witness. It is an implementation check and upper-bound diagnostic with privileged information.
+- `reference_oracle` returns a privileged valid witness. For v3 seeded diagnostics it follows the private reference path, one valid example per turn; for legacy/order diagnostics it returns the full-valid witness. It is an implementation check and upper-bound diagnostic with privileged information.
 - `unchanged` returns the current string.
 - `new_only` searches distance one using the new rule only, preferring same-length candidates and then lexicographic order. It does not inspect old rules and stops at radius one.
 
@@ -450,9 +481,9 @@ Paths are resolved relative to the process's working directory, so use the repos
 | Setting | Meaning |
 | --- | --- |
 | `study` | Name recorded with this evaluation |
-| `dataset_dir` | Directory containing manifest, pair, and episode files |
+| `dataset_dir` | Dataset manifest and episode files; v2 additionally contains focal pairs |
 | `split` | Explicitly `development` or `test` |
-| `tracks` | Nonempty track list; chat adapters permit `native`, `order`, and `fixed_start` |
+| `tracks` | V3 permits `seeded` and `order`; legacy v2 additionally permits `native`/`fixed_start` for chat |
 | `rule_count` | Optional exact number of scheduled rules; the current pilot sets `8`. Cases and episodes with other lengths are excluded before planning or requests; an empty selection is rejected |
 | `models` | Model/algorithm configurations with unique names |
 | `output_dir` | Evidence directory; choose a new path for changed code/data/config |
@@ -583,7 +614,7 @@ Substitute the actual evidence path for another study. This CLI uses 2,000 repet
 
 ## Inspecting rules and completing the audit
 
-The machine-readable rules are in [pairs.jsonl](data/pairs.jsonl) and [episodes.jsonl](data/episodes.jsonl). Export a readable reference with:
+For current v3 games, use [the readable reference](data/sequential-v3/development-games.txt) or `uv run --locked python -m passgame.export --dataset data/sequential-v3 --output outputs/readable-v3`. It produces a rules CSV, both split references and an unsigned audit worksheet. The following instructions describe the preserved v2 dataset. Its machine-readable rules are in [pairs.jsonl](data/pairs.jsonl) and [episodes.jsonl](data/episodes.jsonl). Export the legacy reference with:
 
 ```sh
 uv run --locked python -m passgame.export \

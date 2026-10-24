@@ -14,7 +14,8 @@ import pytest
 
 @pytest.mark.parametrize("launcher", ["run-pilot.sh", "pilot.command"])
 @pytest.mark.parametrize("late_completion", [True, False])
-def test_empty_queue_rechecks_completion_before_reporting_failure(tmp_path, launcher, late_completion):
+@pytest.mark.parametrize("new_run",[False,True])
+def test_empty_queue_rechecks_completion_before_reporting_failure(tmp_path, launcher, late_completion, new_run):
     root = Path(__file__).resolve().parents[1]
     shutil.copy2(root/launcher, tmp_path/launcher)
     (tmp_path/"src/passgame").mkdir(parents=True)
@@ -39,13 +40,17 @@ def test_empty_queue_rechecks_completion_before_reporting_failure(tmp_path, laun
         "state_policy": "initialize_once_then_successful_model_outputs",
         "rule_count": 8, "remind_previous_rules": True,
         "prompt_protocol_version": "cumulative_rule_reminders_v1",
+        "dataset_version":3, "initialization_policy":"neutral_seed",
+        "tracks":["seeded"],
         "snapshot_commit": "fixture", "result_directory": "fixture-reminders",
     }
     (output/"pilot-stop-on-failure-snapshot.json").write_text(json.dumps(metadata))
     (output/"pilot-last-run.json").write_text(json.dumps({
         "snapshot_commit": "fixture", "job_id": "12345",
-        "run_dir": "/mnt/lustre/work/eickhoff/esx797/passgame/runs/predefined-stop-fixture",
+        "run_dir": "/cluster/workspace/passgame/runs/predefined-stop-fixture",
     }))
+    if new_run:
+        (output/"pilot-last-run.json").unlink()
     binaries = tmp_path/"bin"
     binaries.mkdir()
     ssh = binaries/"ssh"
@@ -66,6 +71,16 @@ if command.startswith("squeue "):
 if command.startswith("sacct "):
     print("12345 FAILED 1:0")
     sys.exit(0)
+if command.startswith("if [ -f ") or command.startswith("mkdir -p "):
+    sys.exit(0)
+if command.startswith("cd "):
+    body = sys.stdin.read()
+    assert "bash -s -- 'fixture-account' 'fixture-gpu' 'gpu:a100:1'" in command
+    assert '--account="$1" --partition="$2"' in body
+    assert '--gres="$3"' in body
+    (root/"submission").write_text("checked")
+    print("12345")
+    sys.exit(0)
 raise SystemExit("Unexpected SSH command: "+command)
 ''')
     scp = binaries/"scp"
@@ -73,6 +88,9 @@ raise SystemExit("Unexpected SSH command: "+command)
 import json, sys
 from pathlib import Path
 source, destination = sys.argv[-2], Path(sys.argv[-1])
+if source.endswith("pilot-stop-on-failure.tar.gz"):
+    assert sys.argv[-1].startswith("fixture-cluster:")
+    sys.exit(0)
 if source.endswith(".log"):
     (destination/"evaluate-12345.log").write_text("completed\\n")
 else:
@@ -84,10 +102,15 @@ else:
     ssh.chmod(0o755)
     scp.chmod(0o755)
     env = {**os.environ, "PATH":str(binaries)+os.pathsep+os.environ["PATH"],
-           "PASSGAME_MOCK_DIR":str(tmp_path), "PASSGAME_LATE_COMPLETION":"1" if late_completion else "0"}
-    result = subprocess.run(["bash", str(tmp_path/launcher)], cwd=tmp_path, env=env,
+           "PASSGAME_MOCK_DIR":str(tmp_path), "PASSGAME_LATE_COMPLETION":"1" if late_completion else "0",
+           "PASSGAME_SSH_HOST":"fixture-cluster", "PASSGAME_REMOTE_ROOT":"/cluster/workspace/passgame",
+           "PASSGAME_ACCOUNT":"fixture-account", "PASSGAME_PARTITION":"fixture-gpu",
+           "PASSGAME_GPU_RESOURCE":"gpu:a100:1",
+           "PASSGAME_CLUSTER_CONFIG":str(tmp_path/"absent-private-config.env")}
+    result = subprocess.run(["bash", str(tmp_path/launcher),*(["--new"] if new_run else [])], cwd=tmp_path, env=env,
                             capture_output=True, text=True, timeout=10)
     assert (tmp_path/"completion-probes").read_text() == "2"
+    assert (tmp_path/"submission").exists() == new_run
     report = output/"pilot-results-12345/fixture-reminders/completion.json"
     if late_completion:
         assert result.returncode == 0, result.stdout+result.stderr

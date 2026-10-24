@@ -1,5 +1,7 @@
 # PassGame version 2: prespecified design
 
+Current main study: the version-3 neutral-seed amendment dated 2026-10-24 below supersedes v2 focal-state initialization. Earlier design text and amendments remain as historical records, not a claim that later changes were preregistered before the pilots.
+
 This amendment implements multiple-rule interference and sequential disclosure at the user's request, before any LLM evaluation. The original validation release is preserved on its completed experiment branch. Diagnostic results establish benchmark correctness, not LLM behavior.
 
 ## Dataset and matching
@@ -58,7 +60,23 @@ Reminders are available to fixed_start/native/order trajectories. Omitted settin
 
 The eight-rule selection, cases, starting strings, rule order, model settings, scoring, actual-state certification, successful-output propagation, first-failure termination, and held-out audit gate remain unchanged. Reminders reduce dependence on locating earlier constraints in history; their effect on success or certified interference exposure must be measured. This is a retrospective design amendment, not a pre-pilot registration or a guarantee of reaching interference.
 
+## Neutral-seed progressive amendment (2026-10-24, after development evidence)
+
+The v2 fixed_start runner reused incoming focal-repair states as starts for whole conversations. These states were valid under the first seven rules. This was incorrect for the requested progressive game. Preserve data/ and completed snapshots/results; use the new versioned data/sequential-v3 dataset for new main evaluations. The current configuration selects seeded, eight rules, reminders, and development; its output is outputs/dev-qwen2.5-7b-progressive-eight-rules-v3.
+
+V3 contains 24 distinct development episodes and 120 held-out episodes, balanced four/twenty per family. Seeds such as abc1 contain no case-specific prepared final solution and fail the first rule. Fixed eight-rule sequences are identical across models for each episode. Private reference paths require a repair at each step and independently verified valid outputs establish satisfiability of every cumulative prefix. On those reference paths, degree-one challenges occur by turn 3, degree-two by turn 4, and degree-three by turn 5. There can also be later challenges. The fixed first numeric game implements the discussed abc1-to-XAc83! example.
+
+Initialize once, retain actual replies, repeat previous rules, introduce one new rule, and advance only on full success. Stop on any model failure. No reference outputs, future rules, certificates or solution witnesses enter the chat messages. The offline reference_oracle diagnostic may follow the privileged example path; that is not LLM evidence. Record phase sequential rather than treating the last rule as the sole focal turn. Recompute all certificates from actual model inputs and keep no-op/unknown coverage explicit. Reference degrees are conditional on example states, not permanent episode treatments or guaranteed model exposure; autonomous H1/H2 strata remain descriptive.
+
+Order variants reuse the same neutral seed and final set in original, reverse and two seeded random permutations. Their final witness proves every prefix satisfiable, but the original reference path is not reused as fabricated replies for the reordered conversation. A separate order config/output is required. Human review of the new 12-game held-out audit sample remains pending and continues to gate all held-out model evaluation.
+
+The new dataset, generator, readable reference, runner support, tests and Galvani batch/packaging recipe are versioned together. The historical prevalidated-start configuration remains configs/dev-qwen2.5-7b-prevalidated-starts.yaml. Use new code/data/config hashes and a fresh frozen snapshot; never overwrite or relabel previous model evidence. This amendment follows pilot evidence and is not a pre-pilot registration.
+
 ## Endpoints and inference
+
+Order-analysis amendment (2026-10-24, before the v3 order model study): configs/dev-qwen2.5-7b-v3-order.yaml enables original, reverse and two fixed seeded random orders of all 24 development final sets. Keep each set's starting string and model settings identical across orders, use a fresh conversation for each variant, carry only actual successful outputs, and terminate on the first failure. There are 96 games and at most 768 requests per model. Keep order results separate from seeded-only results.
+
+Report per-order success, successful turns before first failure, failure-stage histograms and survival. Add paired original-minus-comparator estimates for whole-game success and turns_completed, blocked by final rule set, initial string and horizon. Whole-game success and legacy final success coincide under first-failure termination. Progress can differ even when both binary endpoints are zero. Original versus reverse remains primary; comparisons to random_1/random_2 are secondary descriptive estimates. Use the configured paired bootstrap, report block counts, and do not introduce confirmatory p-values. Exclude incomplete histories from paired estimates and report their missingness. Historical episode results remain unchanged; reanalysis with these new fields is a separate analysis version.
 
 Autonomous LLM H1: descriptive full-success comparisons across certified on-policy interference degrees, with denominators, family/load context and unknown/no-op rates. Native/order/fixed-start actual states are not randomized/matched at the focal turn, so no causal interference claim is planned. Controlled diagnostic contrasts remain separate; historical reset-protocol contrasts are explicitly labelled legacy_reset.
 

@@ -14,6 +14,7 @@ from .generate import digest, load_jsonl, validate_cases, verify_manifest
 from .models import Budget, BudgetExceeded, ChatAdapter, DiagnosticAdapter, InfrastructureError
 from .oracle import certify
 from .protocol import SYSTEM, controlled_messages, fresh_messages, render, score
+from .sequential import validate_episodes
 
 
 def source_hash() -> str:
@@ -43,8 +44,12 @@ def validate_config(config: dict, manifest: dict):
     allowed = {"name", "adapter", "deployment", "model_id", "base_url", "api_key_env", "max_input_tokens", "input_price_per_million", "output_price_per_million", "pricing_verified_on", "parameters", "transport_retries", "timeout_seconds"}
     if any(set(m)-allowed for m in config["models"]):
         raise ValueError("Unsupported model fields; credentials must use environment variables")
-    if not set(config["tracks"]) <= {"controlled", "native", "order", "fresh", "fixed_start"} or not config["tracks"]:
+    if not set(config["tracks"]) <= {"controlled", "native", "order", "fresh", "fixed_start", "seeded"} or not config["tracks"]:
         raise ValueError("Unknown or empty evaluation tracks")
+    if manifest.get("version") == 3 and not set(config["tracks"]) <= {"seeded", "order"}:
+        raise ValueError("Version 3 uses explicit seeded/order episodes, not fixed focal states")
+    if "seeded" in config["tracks"] and manifest.get("version") != 3:
+        raise ValueError("The seeded track requires the version-3 sequential dataset")
     rule_count = config.get("rule_count")
     if rule_count is not None and (type(rule_count) is not int or rule_count < 1):
         raise ValueError("rule_count must be a positive integer")
@@ -57,8 +62,8 @@ def validate_config(config: dict, manifest: dict):
         if model.get("deployment") == "self_hosted" and any(model.get(k) != 0 for k in ("input_price_per_million", "output_price_per_million")):
             raise ValueError("Self-hosted endpoints require explicit zero API token prices")
     paid = [m for m in chat if m.get("deployment", "provider") != "self_hosted"]
-    if chat and not set(config["tracks"]) <= {"native", "order", "fixed_start"}:
-        raise ValueError("LLM evaluation requires native/order/fixed_start conversations with one new rule per turn and model-generated prefixes; controlled/fresh are offline diagnostics only")
+    if chat and not set(config["tracks"]) <= {"native", "order", "fixed_start", "seeded"}:
+        raise ValueError("LLM evaluation requires native/order/fixed_start/seeded conversations with one new rule per turn and model-generated prefixes; controlled/fresh are offline diagnostics only")
     if paid and config["budget_usd"] <= 0:
         raise ValueError("Set an explicit positive API spending ceiling before model calls")
     for model in chat:
@@ -81,10 +86,16 @@ def execute(config_path: Path, preflight_only: bool = False):
     remind_previous_rules = config.get("remind_previous_rules", False)
     prompt_protocol = {"version": "cumulative_rule_reminders_v1" if remind_previous_rules else "history_only_v1",
                        "remind_previous_rules": remind_previous_rules}
-    cases = load_jsonl(data_dir/"pairs.jsonl")
-    validation = validate_cases(cases)
+    if manifest.get("version") == 3:
+        cases = []
+        episodes = load_jsonl(data_dir/"episodes.jsonl")
+        validation = validate_episodes(episodes)
+    else:
+        cases = load_jsonl(data_dir/"pairs.jsonl")
+        validation = validate_cases(cases)
+        episodes = load_jsonl(data_dir/"episodes.jsonl")
     cases = [c for c in cases if c["split"] == config["split"]]
-    episodes = [e for e in load_jsonl(data_dir/"episodes.jsonl") if e["split"] == config["split"]]
+    episodes = [e for e in episodes if e["split"] == config["split"]]
     rule_count = config.get("rule_count")
     if rule_count is not None:
         cases = [c for c in cases if len(c["old_rules"])+1 == rule_count]
@@ -102,6 +113,11 @@ def execute(config_path: Path, preflight_only: bool = False):
                  "planned_records_are_upper_bound": True, "planned_episodes": per_model_episodes*len(config["models"]),
                  "selection": {"rule_count": rule_count, "pairs": len(cases), "native_order_episodes": sum(e["track"] in config["tracks"] for e in episodes)},
                  "episode_termination_policy": "first_failure", "prompt_protocol": prompt_protocol, "validation": validation}
+    if manifest.get("version") == 3:
+        effective["selection"] = {"rule_count":rule_count, "pairs":0,
+                                  "seeded_episodes":sum(e["track"] == "seeded" for e in episodes if e["track"] in config["tracks"]),
+                                  "native_order_episodes":sum(e["track"] == "order" for e in episodes if e["track"] in config["tracks"])}
+        effective.update({"dataset_version":3, "episode_suite":manifest["suite"]})
     print("CONFIG " + json.dumps({k:v for k,v in effective.items() if k != "validation"}, sort_keys=True), flush=True)
     print("VALIDATION " + json.dumps(validation, sort_keys=True), flush=True)
     output = Path(config["output_dir"]).resolve()
@@ -254,7 +270,18 @@ def execute(config_path: Path, preflight_only: bool = False):
                                  "remind_previous_rules": remind_previous_rules, "prompt_protocol_version": prompt_protocol["version"],
                                  "termination_policy": "first_failure", "protocol_version": ("sequential_with_rule_reminders_stop_on_failure_v2"
                                                                                             if remind_previous_rules else "sequential_stop_on_failure_v1")})
-                    context = {"current": current, "witness": episode["witness"], "new_rule": new.to_dict()}
+                    witness = episode["witness"]
+                    if manifest.get("version") == 3:
+                        meta.update({"initial":episode["initial"], "state_policy":"model_responses",
+                                     "state_source":"neutral_seed" if turn == 1 else "previous_next_state",
+                                     "phase":"sequential", "dataset_version":3, "episode_suite":episode["suite"],
+                                     "protocol_version":"neutral_seed_model_outputs_stop_on_failure_v1",
+                                     "reference_challenge_turn":str(turn) in episode.get("reference_challenges", {})})
+                        # Only the offline reference algorithm uses this private path.
+                        # ChatAdapter receives the actual conversation messages alone.
+                        if model["adapter"] == "diagnostic" and episode["track"] == "seeded":
+                            witness = episode["reference_outputs"][turn-1]
+                    context = {"current": current, "witness": witness, "new_rule": new.to_dict()}
                     row = request(model, meta, history[:], context, old, new)
                     if row["status"] != "response":
                         break  # Do not fabricate a conversation response after infrastructure failure.
@@ -309,7 +336,7 @@ def execute(config_path: Path, preflight_only: bool = False):
                     raise AssertionError("New-only repair broke fewer old rules than certified")
         print("DIAGNOSTIC_CONTRACT passed; these algorithmic results are not LLM evidence", flush=True)
     print("INTERFERENCE " + json.dumps(result["interference_breakdowns"], sort_keys=True), flush=True)
-    sequential = [r for r in rows if r["track"] in {"native", "order", "fixed_start"}]
+    sequential = [r for r in rows if r["track"] in {"native", "order", "fixed_start", "seeded"}]
     for row in sequential:
         users = [m["content"] for m in row["messages"] if m["role"] == "user"]
         expected_prompt = render(row["current"], Rule.from_dict(row["new_rule"]),

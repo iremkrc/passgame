@@ -2,6 +2,16 @@
 
 The project plan calls for a second-researcher review before held-out model evaluation. Automated validation has a separate status and cannot sign this worksheet.
 
+## Current version-3 progressive suite
+
+Review the 12 individual held-out games in `data/sequential-v3/audit-sample.jsonl`, two per family. Export an unsigned worksheet using `uv run --locked python -m passgame.export --dataset data/sequential-v3 --output outputs/readable-v3`.
+
+For each game, verify that the neutral initial string fails the first rule; that all eight reference outputs satisfy their active prefixes; that each example step requires a change; and that the final witness satisfies the entire rule set. At each recorded reference challenge, check the complete one-edit new-valid neighborhood and the two-edit full-valid witness, including insertion/deletion alternatives and the minimum number of distinct old predicates broken. These certificates apply to the example path only. Actual model trajectories must be classified separately, and any valid answer is accepted.
+
+Record the reviewer, date, sample hash, discrepancies and resolutions in `docs/audit-signoff-v3.md`. Only a human reviewer can sign off; update `human_audit_status` in `data/sequential-v3/manifest.json` to `complete` only after that review. The generator/exporter never does so. A v2 audit does not automatically sign off the new dataset. Keep completed snapshots unchanged.
+
+## Historical version-2 focal pairs
+
 Review the 20 paired cases in `data/audit-sample.jsonl` (40 focal states), spanning all six interaction families, interference degrees one/two/three, and active-rule counts 3/5/6/8. For each case:
 
 1. Read the rule descriptions from `src/passgame/constraints.py` and independently score both incoming strings against every old rule.

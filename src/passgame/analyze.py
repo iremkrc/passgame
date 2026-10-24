@@ -40,6 +40,48 @@ def analysis_track(row):
     return row["track"]
 
 
+def analyze_orders(episodes: list[dict], models: list[str], repetitions: int, seed: int) -> dict:
+    """Pair orders by final rules, actual initial string, and scheduled horizon."""
+    h3, summaries, effects, survival = [], [], [], []
+    for model in models:
+        group = [e for e in episodes if e["model"] == model and e["track"] == "order"]
+        blocks = defaultdict(dict)
+        for episode in group:
+            key = (episode["final_set_id"], episode["initial"], episode["horizon"])
+            if episode["order"] in blocks[key]:
+                raise ValueError("Repeated order variant in a comparison block; analyze separate runs separately")
+            blocks[key][episode["order"]] = episode
+        pairs = [p for p in blocks.values() if all(label in p and p[label]["complete"] for label in ("original","reverse"))]
+        for endpoint in ("final_success","whole_episode_success"):
+            differences = [p["original"][endpoint]-p["reverse"][endpoint] for p in pairs]
+            h3.append({"model":model,"endpoint":endpoint,"contrast":"original_minus_reverse",
+                       **paired_interval(differences,repetitions,seed+2)})
+        for order in sorted({e["order"] for e in group}):
+            observed = [e for e in group if e["order"] == order]
+            complete = [e for e in observed if e["complete"]]
+            summaries.append({"model":model,"order":order,"games":len(observed),
+                              "completed_episodes":len(complete),"incomplete_episodes":len(observed)-len(complete),
+                              "whole_episode_success":rate(complete,"whole_episode_success"),
+                              "mean_turns_completed":mean([e["turns_completed"] for e in complete]),
+                              "reached_horizon":sum(e["reached_horizon"] for e in complete),
+                              "first_failure_histogram":dict(Counter(str(e["first_failure"]) if e["first_failure"] is not None else "passed" for e in complete))})
+            for turn in range(1,max((e["horizon"] for e in complete),default=0)+1):
+                eligible = [e for e in complete if e["horizon"] >= turn]
+                passed = sum(e["turns_completed"] >= turn for e in eligible)
+                survival.append({"model":model,"order":order,"turn":turn,"numerator":passed,
+                                 "denominator":len(eligible),"rate":passed/len(eligible) if eligible else None,
+                                 "at_risk":sum(e["first_failure"] is None or e["first_failure"] >= turn for e in eligible),
+                                 "failures_at_turn":sum(e["first_failure"] == turn for e in eligible)})
+        if group:
+            for i, other in enumerate(("reverse","random_1","random_2")):
+                pairs = [p for p in blocks.values() if all(label in p and p[label]["complete"] for label in ("original",other))]
+                for j, endpoint in enumerate(("whole_episode_success","turns_completed")):
+                    differences = [p["original"][endpoint]-p[other][endpoint] for p in pairs]
+                    effects.append({"model":model,"endpoint":endpoint,"contrast":"original_minus_"+other,
+                                    **paired_interval(differences,repetitions,seed+10+2*i+j)})
+    return {"h3":h3,"order_summary":summaries,"order_effects":effects,"order_survival":survival}
+
+
 def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> dict:
     if repetitions < 1:
         raise ValueError("Bootstrap repetitions must be positive")
@@ -81,7 +123,7 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
             h2.append({"model": model, "track": track, "contrast": "interfering_minus_independent_unconditional_regression", **paired_interval(regressions, repetitions, seed+1)})
     trajectories = defaultdict(list)
     for row in rows:
-        if analysis_track(row) in {"native", "order", "fixed_start"}:
+        if analysis_track(row) in {"native", "order", "fixed_start", "seeded"}:
             trajectories[(row["model"], row["episode_id"])].append(row)
     episode_results = []
     for (model, episode_id), group in sorted(trajectories.items()):
@@ -98,24 +140,17 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
         first_failure = next((r["turn"] for r in group if r["status"] == "response" and not r["full_success"]), None)
         recovery = any(r["turn"] > first_failure and r["full_success"] for r in group if r["status"] == "response") if first_failure is not None else False
         episode_results.append({"model": model, "episode_id": episode_id, "base_id": group[0]["base_id"], "final_set_id": group[0]["final_set_id"], "track": group[0]["track"], "order": group[0]["order"], "initial_condition": group[0].get("initial_condition"), "horizon": horizon, "complete": complete,
+                                "initial":group[0].get("initial",group[0].get("current")),
                                 "turns_observed": len(group), "reached_horizon": reached_horizon, "terminated_on_failure": terminated_on_failure,
+                                "turns_completed":(first_failure-1 if first_failure is not None else horizon) if complete else None,
                                 "termination_reason": last.get("episode_end_reason") or ("infrastructure_failure" if last["status"] != "response" else ("rule_failure" if terminated_on_failure else ("horizon_reached" if reached_horizon else "incomplete"))),
                                 "first_failure": first_failure, "right_censored": complete and first_failure is None,
                                 "whole_episode_success": int(first_failure is None) if complete else None,
                                 "final_success": group[-1]["full_success"] if complete else None, "recovered": recovery if complete else None})
-    h3 = []
-    for model in models:
-        orders = defaultdict(dict)
-        for ep in episode_results:
-            if ep["model"] == model and ep["track"] == "order" and ep["complete"]:
-                orders[ep["final_set_id"]][ep["order"]] = ep
-        complete = [p for p in orders.values() if "original" in p and "reverse" in p]
-        for endpoint in ("final_success", "whole_episode_success"):
-            diffs = [p["original"][endpoint]-p["reverse"][endpoint] for p in complete]
-            h3.append({"model": model, "endpoint": endpoint, "contrast": "original_minus_reverse", **paired_interval(diffs, repetitions, seed+2)})
+    order_results = analyze_orders(episode_results,models,repetitions,seed)
     survival = []
     for model in models:
-        for track in ("native", "order", "fixed_start"):
+        for track in ("native", "order", "fixed_start", "seeded"):
             complete = [e for e in episode_results if e["model"] == model and e["track"] == track and e["complete"]]
             for turn in range(1, max((e["horizon"] for e in complete), default=0)+1):
                 eligible = [e for e in complete if e["horizon"] >= turn]
@@ -138,7 +173,7 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
             degree_groups[(row["model"], track, row.get("interference_degree", 1), row["condition"])].append(row)
             if track == "legacy_reset":
                 certification_groups[(row["model"], track, row.get("family"), row["load"])].append(row)
-        elif track in {"native", "order", "fixed_start"}:
+        elif track in {"native", "order", "fixed_start", "seeded"}:
             certificate = row.get("dynamic_certificate", {})
             certification_groups[(row["model"], row["track"], row.get("family"), row.get("load", row["turn"]))].append(row)
             degree = certificate.get("min_old_rules_broken")
@@ -159,7 +194,7 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
                                     "records": len(group), "incoming_certificate_counts": labels,
                                     "full_success": rate(usable, "full_success"), "new_success": rate(usable, "new_success"),
                                     "retention": rate(usable, "retention"), "old_rules_broken": rate(usable, "old_rules_broken")})
-    return {"record_count": len(rows), "response_count": sum(r["status"] == "response" for r in rows), "infrastructure_failures": sum(r["status"] != "response" for r in rows), "legacy_reset_prefix_records": len(rows)-len(scored), "summary": summaries, "breakdowns": breakdowns, "interference_breakdowns": interference, "state_certification": state_certification, "h1": h1, "h2": h2, "h3": h3, "episodes": episode_results, "survival": survival,
+    return {"record_count": len(rows), "response_count": sum(r["status"] == "response" for r in rows), "infrastructure_failures": sum(r["status"] != "response" for r in rows), "legacy_reset_prefix_records": len(rows)-len(scored), "summary": summaries, "breakdowns": breakdowns, "interference_breakdowns": interference, "state_certification": state_certification, "h1": h1, "h2": h2, **order_results, "episodes": episode_results, "survival": survival,
             "inference": "New conversations carry successful model outputs forward and terminate on the first failed response. A rule/format/domain failure is an observed episode failure; later stages are unattempted rather than fabricated response rows or infrastructure missingness. Historical runs retain their recorded termination policy. Autonomous interference strata remain descriptive. Paired H1/H2 contrasts apply to controlled diagnostics or explicitly identified legacy_reset data only. H3 uses final-set blocks."}
 
 
@@ -180,6 +215,26 @@ def write_analysis(rows: list[dict], output: Path, repetitions=2000, seed=202610
         writer.writeheader()
         for r in result["summary"]:
             writer.writerow({**{k:r[k] for k in ("model", "track", "condition", "records", "missing_infrastructure")}, "full_numerator": r["full_success"]["numerator"], "full_denominator": r["full_success"]["denominator"], "full_rate": r["full_success"]["rate"], "new_rate": r["new_success"]["rate"], "retention_rate": r["retention"]["rate"]})
+    with (output/"order-summary.csv").open("w",newline="") as f:
+        fields = ["model","order","games","completed_episodes","incomplete_episodes","whole_passes","whole_denominator","whole_rate","mean_turns_completed","reached_horizon"]
+        writer = csv.DictWriter(f,fieldnames=fields)
+        writer.writeheader()
+        for row in result["order_summary"]:
+            writer.writerow({**{k:row[k] for k in fields if k in row},
+                             "whole_passes":row["whole_episode_success"]["numerator"],
+                             "whole_denominator":row["whole_episode_success"]["denominator"],
+                             "whole_rate":row["whole_episode_success"]["rate"]})
+    with (output/"order-effects.csv").open("w",newline="") as f:
+        writer = csv.DictWriter(f,fieldnames=["model","contrast","endpoint","blocks","estimate","ci95_low","ci95_high"])
+        writer.writeheader()
+        for row in result["order_effects"]:
+            writer.writerow({**{k:row[k] for k in ("model","contrast","endpoint","blocks","estimate")},
+                             "ci95_low":row["ci95"][0] if row["ci95"] else None,
+                             "ci95_high":row["ci95"][1] if row["ci95"] else None})
+    with (output/"order-survival.csv").open("w",newline="") as f:
+        writer = csv.DictWriter(f,fieldnames=["model","order","turn","numerator","denominator","rate","at_risk","failures_at_turn"])
+        writer.writeheader()
+        writer.writerows(result["order_survival"])
     return result
 
 

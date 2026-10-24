@@ -3,6 +3,8 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .env
+configs/*.local.env
+configs/pilot-runtime.env
 outputs/
 .DS_Store
 
