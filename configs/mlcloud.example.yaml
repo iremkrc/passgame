@@ -1,0 +1,30 @@
+# Copy to a study-specific YAML file and fill the SET_/null fields after
+# checking the models and accounting available to your ML Cloud API key.
+study: dev-mlcloud-progressive-eight-rules-v3
+dataset_dir: data/sequential-v3
+split: development
+tracks: [seeded]
+rule_count: 8
+remind_previous_rules: true
+models:
+  - name: SET_MODEL_LABEL
+    adapter: chat
+    deployment: provider
+    model_id: SET_EXACT_MODEL_ID
+    base_url: https://llm.mlcloud.uni-tuebingen.de/v1
+    api_key_env: TUEBINGEN_API_KEY
+    # Proposed pilot settings; verify context and decoding support per model.
+    max_input_tokens: 32768
+    input_price_per_million: null
+    output_price_per_million: null
+    pricing_verified_on: null
+    parameters:
+      max_tokens: 256
+      # Add temperature/reasoning options only after checking model support.
+    transport_retries: 2
+    timeout_seconds: 180
+output_dir: outputs/dev-mlcloud-progressive-eight-rules-v3
+budget_usd: 0  # Set a positive API spending ceiling before running.
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true

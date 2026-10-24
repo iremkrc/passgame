@@ -1,0 +1,30 @@
+# Independent model allocation; all three allocations sum to the approved $50 ceiling.
+study: dev-mlcloud-four-orders-fence-tolerant-v3-20261024-deepseek
+dataset_dir: data/sequential-v3
+split: development
+tracks:
+- order
+rule_count: 8
+remind_previous_rules: true
+models:
+- name: deepseek-v4.1-flash
+  adapter: chat
+  deployment: provider
+  model_id: deepseek-ai/DeepSeek-V4.1-Flash
+  base_url: https://llm.mlcloud.uni-tuebingen.de/v1
+  api_key_env: TUEBINGEN_API_KEY
+  max_input_tokens: 32768
+  input_price_per_million: 0.15
+  output_price_per_million: 0.6
+  pricing_verified_on: '2026-10-24'
+  parameters:
+    max_tokens: 4096
+    temperature: 0
+  transport_retries: 2
+  timeout_seconds: 180
+output_dir: outputs/dev-mlcloud-order-v3-20261024/deepseek
+budget_usd: 17.25
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true
+allow_markdown_fences: true
