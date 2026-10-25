@@ -9,7 +9,8 @@
 #   SIF          vLLM apptainer image, e.g. built from docker://vllm/vllm-openai:<tag>
 #   MODEL_DIR    local model weights (compute nodes may have no internet)
 #   SERVED_NAME  name vLLM serves the model under (= model_id in CONFIG)
-#   CONFIG       evaluator config, e.g. configs/dev-qwen2.5-7b.yaml
+#   CONFIG       evaluator config, e.g. configs/dev-qwen2.5-7b.yaml; several
+#                space-separated configs run one after another on the same server
 # Optional:
 #   LOG_DIR         where the vLLM server log goes   (default: <repo>/logs)
 #   MAX_MODEL_LEN   vLLM context length, >= max_input_tokens in CONFIG (default: 32768)
@@ -28,7 +29,8 @@ MAX_MODEL_LEN=${MAX_MODEL_LEN:-32768}
 PORT=${PORT:-8000}
 MIN_CUDA_MAJOR=${MIN_CUDA_MAJOR:-13}
 VLLM_CACHE_ROOT=${VLLM_CACHE_ROOT:-${XDG_CACHE_HOME:-$HOME/.cache}/vllm}
-RUN_TAG=$(basename "$CONFIG" .yaml)-${SLURM_JOB_ID:-manual}-$(date +%Y%m%d-%H%M%S)
+read -r -a CONFIGS <<< "$CONFIG"
+RUN_TAG=$(basename "${CONFIGS[0]}" .yaml)-${SLURM_JOB_ID:-manual}-$(date +%Y%m%d-%H%M%S)
 VLLM_LOG=$LOG_DIR/vllm-$RUN_TAG.log
 mkdir -p "$LOG_DIR" "$VLLM_CACHE_ROOT"
 
@@ -77,11 +79,16 @@ echo
 apptainer exec --cleanenv "$SIF" python3 -c "import vllm, torch; print('[job] vllm', vllm.__version__, 'torch', torch.__version__)"
 echo "[job] git $(git -C "$REPO" rev-parse HEAD) dirty=$(git -C "$REPO" status --porcelain | wc -l)"
 
-# 4) Run the evaluator. Exit code 2 = handled incomplete run (see completion.json).
+# 4) Run the evaluator once per config. Exit code 2 = handled incomplete run
+#    (see completion.json); the job exits with the highest status seen.
 cd "$REPO"
-set +e
-uv run --locked python -m passgame.run --config "$CONFIG"
-STATUS=$?
-set -e
-echo "[job] evaluator exit $STATUS"
+STATUS=0
+for config in "${CONFIGS[@]}"; do
+    set +e
+    uv run --locked python -m passgame.run --config "$config"
+    status=$?
+    set -e
+    echo "[job] evaluator exit $status for $config"
+    if [ "$status" -gt "$STATUS" ]; then STATUS=$status; fi
+done
 exit $STATUS
