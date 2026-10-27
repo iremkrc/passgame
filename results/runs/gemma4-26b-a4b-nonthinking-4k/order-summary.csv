@@ -1,0 +1,5 @@
+model,order,games,completed_episodes,incomplete_episodes,whole_passes,whole_denominator,whole_rate,mean_turns_completed,reached_horizon
+gemma-4-26b-a4b-it-bf16,original,24,24,0,6,24,0.25,5.0,8
+gemma-4-26b-a4b-it-bf16,random_1,24,24,0,9,24,0.375,5.625,10
+gemma-4-26b-a4b-it-bf16,random_2,24,24,0,6,24,0.25,5.166666666666667,7
+gemma-4-26b-a4b-it-bf16,reverse,24,24,0,6,24,0.25,4.666666666666667,9

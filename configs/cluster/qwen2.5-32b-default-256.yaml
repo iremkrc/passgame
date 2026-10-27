@@ -1,0 +1,28 @@
+bootstrap_repetitions: 2000
+budget_usd: 0
+dataset_dir: data
+human_audit_required_for_model_test: true
+models:
+- adapter: chat
+  api_key_env: null
+  base_url: http://127.0.0.1:8000/v1
+  deployment: self_hosted
+  input_price_per_million: 0
+  max_input_tokens: 32768
+  model_id: qwen2.5-32b-instruct
+  name: qwen2.5-32b-instruct
+  output_price_per_million: 0
+  parameters:
+    max_tokens: 256
+    temperature: 0
+  pricing_verified_on: '2026-10-25'
+  timeout_seconds: 180
+  transport_retries: 2
+output_dir: outputs/qwen2.5-32b-default-256
+remind_previous_rules: true
+rule_count: 8
+seed: 20261008
+split: development
+study: passgame-qwen2.5-32b-default-256
+tracks:
+- order

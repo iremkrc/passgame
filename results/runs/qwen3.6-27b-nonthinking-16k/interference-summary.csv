@@ -1,0 +1,4 @@
+model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
+qwen3.6-27b-bf16-nonthinking-16k-rep1,order,0,on_policy_order,339,0.8849557522123894,0.9557522123893806,0.9084249084249084,0.07669616519174041,339
+qwen3.6-27b-bf16-nonthinking-16k-rep1,order,1,on_policy_order,38,0.5,0.868421052631579,0.5789473684210527,0.47368421052631576,38
+qwen3.6-27b-bf16-nonthinking-16k-rep1,order,2,on_policy_order,3,0.3333333333333333,1.0,0.3333333333333333,1.3333333333333333,3

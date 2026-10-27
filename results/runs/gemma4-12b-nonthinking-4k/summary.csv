@@ -1,0 +1,2 @@
+model,track,condition,records,missing_infrastructure,full_numerator,full_denominator,full_rate,new_rate,retention_rate
+gemma-4-12b-it-qat-w4a16-ct,order,all,505,0,431,505,0.8534653465346534,0.9326732673267327,0.8850855745721271

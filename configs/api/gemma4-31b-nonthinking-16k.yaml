@@ -1,0 +1,34 @@
+allow_markdown_fences: true
+bootstrap_repetitions: 2000
+budget_usd: 8.5
+dataset_dir: data
+human_audit_required_for_model_test: true
+models:
+- adapter: chat
+  api_key_env: TUEBINGEN_API_KEY
+  base_url: https://llm.mlcloud.uni-tuebingen.de/v1
+  deployment: provider
+  input_price_per_million: 0.12
+  max_input_tokens: 32768
+  model_id: google/gemma-4-31B-it-qat-w4a16-ct
+  name: gemma-4-31b-it-qat-w4a16-ct
+  output_price_per_million: 0.35
+  parameters:
+    cache:
+      no-cache: true
+      no-store: true
+    chat_template_kwargs:
+      enable_thinking: false
+    max_tokens: 16384
+    temperature: 0
+  pricing_verified_on: '2026-10-24'
+  timeout_seconds: 600
+  transport_retries: 2
+output_dir: outputs/gemma4-31b-nonthinking-16k
+remind_previous_rules: true
+rule_count: 8
+seed: 20261008
+split: development
+study: passgame-gemma4-31b-nonthinking-16k
+tracks:
+- order

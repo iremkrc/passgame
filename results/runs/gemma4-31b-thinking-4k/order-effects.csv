@@ -1,0 +1,7 @@
+model,contrast,endpoint,blocks,estimate,ci95_low,ci95_high
+gemma-4-31b-it-qat-w4a16-ct,original_minus_reverse,whole_episode_success,24,0.041666666666666664,-0.08333333333333333,0.16666666666666666
+gemma-4-31b-it-qat-w4a16-ct,original_minus_reverse,turns_completed,24,0.125,-0.08333333333333333,0.4166666666666667
+gemma-4-31b-it-qat-w4a16-ct,original_minus_random_1,whole_episode_success,24,0.041666666666666664,-0.08333333333333333,0.16666666666666666
+gemma-4-31b-it-qat-w4a16-ct,original_minus_random_1,turns_completed,24,0.375,-0.08333333333333333,1.0833333333333333
+gemma-4-31b-it-qat-w4a16-ct,original_minus_random_2,whole_episode_success,24,-0.041666666666666664,-0.125,0.0
+gemma-4-31b-it-qat-w4a16-ct,original_minus_random_2,turns_completed,24,-0.041666666666666664,-0.125,0.0

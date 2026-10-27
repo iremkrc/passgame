@@ -1,0 +1,578 @@
+PassGame v3: 24 individual development games
+
+Each game has a neutral starting string and eight ordered rules.
+Reference outputs below are private validation examples, NOT model answers or LLM prompts.
+Reference challenge labels apply only to these example inputs; real model inputs are recertified.
+
+GAME 1 OF 24: seeded-v3-development-numeric-000
+Family: numeric
+Starting string: abc1
+  Turn 1: There must be exactly 2 ASCII digits.
+    Example valid output: abc12
+  Turn 2: The sum of all digit occurrences must be exactly 11.
+    Example valid output: abc47
+  Turn 3: The string must contain the case-sensitive substring '8'.
+    Example valid output: abc38
+    Certified example interference degree: 1
+  Turn 4: Length must be exactly 6 characters.
+    Example valid output: abc38_
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc38!
+  Turn 6: Character at one-based position 1 must be 'X'.
+    Example valid output: Xbc38!
+  Turn 7: Character at one-based position 2 must be 'A'.
+    Example valid output: XAc38!
+  Turn 8: Character at one-based position 4 must be '8'.
+    Example valid output: XAc83!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 2 OF 24: seeded-v3-development-numeric-001
+Family: numeric
+Starting string: abc1
+  Turn 1: There must be exactly 2 ASCII digits.
+    Example valid output: abc12
+  Turn 2: The sum of all digit occurrences must be exactly 8.
+    Example valid output: abc17
+  Turn 3: The string must contain the case-sensitive substring '6'.
+    Example valid output: abc26
+    Certified example interference degree: 1
+  Turn 4: Length must be exactly 6 characters.
+    Example valid output: abc26_
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc26!
+  Turn 6: Character at one-based position 1 must be 'A'.
+    Example valid output: Abc26!
+  Turn 7: Character at one-based position 2 must be 'G'.
+    Example valid output: AGc26!
+  Turn 8: Character at one-based position 4 must be '6'.
+    Example valid output: AGc62!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 3 OF 24: seeded-v3-development-numeric-002
+Family: numeric
+Starting string: abc1
+  Turn 1: There must be exactly 2 ASCII digits.
+    Example valid output: abc12
+  Turn 2: The sum of all digit occurrences must be exactly 9.
+    Example valid output: abc81
+  Turn 3: The string must contain the case-sensitive substring '2'.
+    Example valid output: abc72
+    Certified example interference degree: 1
+  Turn 4: Length must be exactly 6 characters.
+    Example valid output: abc72_
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc72!
+  Turn 6: Character at one-based position 1 must be 'U'.
+    Example valid output: Ubc72!
+  Turn 7: Character at one-based position 2 must be 'R'.
+    Example valid output: URc72!
+  Turn 8: Character at one-based position 4 must be '2'.
+    Example valid output: URc27!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 4 OF 24: seeded-v3-development-numeric-003
+Family: numeric
+Starting string: abc1
+  Turn 1: There must be exactly 2 ASCII digits.
+    Example valid output: abc12
+  Turn 2: The sum of all digit occurrences must be exactly 7.
+    Example valid output: abc52
+  Turn 3: The string must contain the case-sensitive substring '3'.
+    Example valid output: abc43
+    Certified example interference degree: 1
+  Turn 4: Length must be exactly 6 characters.
+    Example valid output: abc43_
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc43!
+  Turn 6: Character at one-based position 1 must be 'U'.
+    Example valid output: Ubc43!
+  Turn 7: Character at one-based position 2 must be 'T'.
+    Example valid output: UTc43!
+  Turn 8: Character at one-based position 4 must be '3'.
+    Example valid output: UTc34!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 5 OF 24: seeded-v3-development-position_count-000
+Family: position_count
+Starting string: abcd1
+  Turn 1: Character 'F' must occur exactly 2 times.
+    Example valid output: FFcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: FFcd1_
+  Turn 3: Character at one-based position 1 must be 'Y'.
+    Example valid output: YFcd1F
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: YFcd_F
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: YFcd!F
+  Turn 6: Character at one-based position 3 must be 'P'.
+    Example valid output: YFPd!F
+  Turn 7: The string must contain the case-sensitive substring 'N'.
+    Example valid output: YFPN!F
+  Turn 8: Character at one-based position 2 must be 'N'.
+    Example valid output: YNPF!F
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 6 OF 24: seeded-v3-development-position_count-001
+Family: position_count
+Starting string: abcd1
+  Turn 1: Character 'I' must occur exactly 2 times.
+    Example valid output: IIcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: IIcd1_
+  Turn 3: Character at one-based position 1 must be 'L'.
+    Example valid output: LIcd1I
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: LIcd_I
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: LIcd!I
+  Turn 6: Character at one-based position 3 must be 'K'.
+    Example valid output: LIKd!I
+  Turn 7: The string must contain the case-sensitive substring 'J'.
+    Example valid output: LIKJ!I
+  Turn 8: Character at one-based position 2 must be 'J'.
+    Example valid output: LJKI!I
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 7 OF 24: seeded-v3-development-position_count-002
+Family: position_count
+Starting string: abcd1
+  Turn 1: Character 'B' must occur exactly 2 times.
+    Example valid output: BBcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: BBcd1_
+  Turn 3: Character at one-based position 1 must be 'N'.
+    Example valid output: NBcd1B
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: NBcd_B
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: NBcd!B
+  Turn 6: Character at one-based position 3 must be 'E'.
+    Example valid output: NBEd!B
+  Turn 7: The string must contain the case-sensitive substring 'J'.
+    Example valid output: NBEJ!B
+  Turn 8: Character at one-based position 2 must be 'J'.
+    Example valid output: NJEB!B
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 8 OF 24: seeded-v3-development-position_count-003
+Family: position_count
+Starting string: abcd1
+  Turn 1: Character 'Q' must occur exactly 2 times.
+    Example valid output: QQcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: QQcd1_
+  Turn 3: Character at one-based position 1 must be 'F'.
+    Example valid output: FQcd1Q
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: FQcd_Q
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: FQcd!Q
+  Turn 6: Character at one-based position 3 must be 'E'.
+    Example valid output: FQEd!Q
+  Turn 7: The string must contain the case-sensitive substring 'I'.
+    Example valid output: FQEI!Q
+  Turn 8: Character at one-based position 2 must be 'I'.
+    Example valid output: FIEQ!Q
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 9 OF 24: seeded-v3-development-substring_position-000
+Family: substring_position
+Starting string: abcd1
+  Turn 1: The string must contain the case-sensitive substring 'LL'.
+    Example valid output: LLcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: LLcd1_
+  Turn 3: Character at one-based position 1 must be 'H'.
+    Example valid output: HLLd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: HLLd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: HLLd!_
+  Turn 6: Character at one-based position 4 must be 'V'.
+    Example valid output: HLLV!_
+  Turn 7: The string must contain the case-sensitive substring 'S'.
+    Example valid output: HLLV!S
+  Turn 8: Character at one-based position 5 must be 'S'.
+    Example valid output: HLLVS!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 10 OF 24: seeded-v3-development-substring_position-001
+Family: substring_position
+Starting string: abcd1
+  Turn 1: The string must contain the case-sensitive substring 'RR'.
+    Example valid output: RRcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: RRcd1_
+  Turn 3: Character at one-based position 1 must be 'J'.
+    Example valid output: JRRd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: JRRd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: JRRd!_
+  Turn 6: Character at one-based position 4 must be 'K'.
+    Example valid output: JRRK!_
+  Turn 7: The string must contain the case-sensitive substring 'O'.
+    Example valid output: JRRK!O
+  Turn 8: Character at one-based position 5 must be 'O'.
+    Example valid output: JRRKO!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 11 OF 24: seeded-v3-development-substring_position-002
+Family: substring_position
+Starting string: abcd1
+  Turn 1: The string must contain the case-sensitive substring 'BB'.
+    Example valid output: BBcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: BBcd1_
+  Turn 3: Character at one-based position 1 must be 'M'.
+    Example valid output: MBBd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: MBBd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: MBBd!_
+  Turn 6: Character at one-based position 4 must be 'G'.
+    Example valid output: MBBG!_
+  Turn 7: The string must contain the case-sensitive substring 'C'.
+    Example valid output: MBBG!C
+  Turn 8: Character at one-based position 5 must be 'C'.
+    Example valid output: MBBGC!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 12 OF 24: seeded-v3-development-substring_position-003
+Family: substring_position
+Starting string: abcd1
+  Turn 1: The string must contain the case-sensitive substring 'PP'.
+    Example valid output: PPcd1
+  Turn 2: Length must be exactly 6 characters.
+    Example valid output: PPcd1_
+  Turn 3: Character at one-based position 1 must be 'U'.
+    Example valid output: UPPd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: UPPd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: UPPd!_
+  Turn 6: Character at one-based position 4 must be 'Y'.
+    Example valid output: UPPY!_
+  Turn 7: The string must contain the case-sensitive substring 'R'.
+    Example valid output: UPPY!R
+  Turn 8: Character at one-based position 5 must be 'R'.
+    Example valid output: UPPYR!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 13 OF 24: seeded-v3-development-forbidden_position-000
+Family: forbidden_position
+Starting string: abc1
+  Turn 1: Length must be exactly 6 characters.
+    Example valid output: RFcd1_
+  Turn 2: The string must not contain the case-sensitive substring 'RF'.
+    Example valid output: RBcd1_
+  Turn 3: Character at one-based position 2 must be 'F'.
+    Example valid output: BFcd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: BFcd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: BFcd!_
+  Turn 6: Character at one-based position 3 must be 'V'.
+    Example valid output: BFVd!_
+  Turn 7: The string must contain the case-sensitive substring 'P'.
+    Example valid output: BFVP!_
+  Turn 8: Character at one-based position 5 must be 'P'.
+    Example valid output: BFVPP!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 14 OF 24: seeded-v3-development-forbidden_position-001
+Family: forbidden_position
+Starting string: abc1
+  Turn 1: Length must be exactly 6 characters.
+    Example valid output: LAcd1_
+  Turn 2: The string must not contain the case-sensitive substring 'LA'.
+    Example valid output: LWcd1_
+  Turn 3: Character at one-based position 2 must be 'A'.
+    Example valid output: WAcd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: WAcd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: WAcd!_
+  Turn 6: Character at one-based position 3 must be 'X'.
+    Example valid output: WAXd!_
+  Turn 7: The string must contain the case-sensitive substring 'H'.
+    Example valid output: WAXH!_
+  Turn 8: Character at one-based position 5 must be 'H'.
+    Example valid output: WAXHH!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 15 OF 24: seeded-v3-development-forbidden_position-002
+Family: forbidden_position
+Starting string: abc1
+  Turn 1: Length must be exactly 6 characters.
+    Example valid output: BCcd1_
+  Turn 2: The string must not contain the case-sensitive substring 'BC'.
+    Example valid output: BQcd1_
+  Turn 3: Character at one-based position 2 must be 'C'.
+    Example valid output: QCcd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: QCcd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: QCcd!_
+  Turn 6: Character at one-based position 3 must be 'A'.
+    Example valid output: QCAd!_
+  Turn 7: The string must contain the case-sensitive substring 'N'.
+    Example valid output: QCAN!_
+  Turn 8: Character at one-based position 5 must be 'N'.
+    Example valid output: QCANN!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 16 OF 24: seeded-v3-development-forbidden_position-003
+Family: forbidden_position
+Starting string: abc1
+  Turn 1: Length must be exactly 6 characters.
+    Example valid output: JBcd1_
+  Turn 2: The string must not contain the case-sensitive substring 'JB'.
+    Example valid output: JZcd1_
+  Turn 3: Character at one-based position 2 must be 'B'.
+    Example valid output: ZBcd1_
+    Certified example interference degree: 1
+  Turn 4: There must be exactly 0 ASCII digits.
+    Example valid output: ZBcd__
+  Turn 5: The string must contain the case-sensitive substring '!'.
+    Example valid output: ZBcd!_
+  Turn 6: Character at one-based position 3 must be 'Q'.
+    Example valid output: ZBQd!_
+  Turn 7: The string must contain the case-sensitive substring 'F'.
+    Example valid output: ZBQF!_
+  Turn 8: Character at one-based position 5 must be 'F'.
+    Example valid output: ZBQFF!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 17 OF 24: seeded-v3-development-numeric_multi_2-000
+Family: numeric_multi_2
+Starting string: abc1
+  Turn 1: There must be exactly 3 ASCII digits.
+    Example valid output: abc664
+  Turn 2: The sum of all digit occurrences must be at most 11.
+    Example valid output: abc160
+  Turn 3: Character '4' must occur exactly 1 times.
+    Example valid output: abc164
+  Turn 4: Character at one-based position 6 must be '5'.
+    Example valid output: abc145
+    Certified example interference degree: 2
+  Turn 5: Length must be exactly 7 characters.
+    Example valid output: abc145_
+  Turn 6: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc145!
+  Turn 7: Character at one-based position 1 must be 'X'.
+    Example valid output: Xbc145!
+  Turn 8: Character at one-based position 4 must be '4'.
+    Example valid output: Xbc405!
+    Certified example interference degree: 2
+
+------------------------------------------------------------------------
+
+GAME 18 OF 24: seeded-v3-development-numeric_multi_2-001
+Family: numeric_multi_2
+Starting string: abc1
+  Turn 1: There must be exactly 3 ASCII digits.
+    Example valid output: abc885
+  Turn 2: The sum of all digit occurrences must be at most 19.
+    Example valid output: abc680
+  Turn 3: Character '5' must occur exactly 1 times.
+    Example valid output: abc685
+  Turn 4: Character at one-based position 6 must be '7'.
+    Example valid output: abc657
+    Certified example interference degree: 2
+  Turn 5: Length must be exactly 7 characters.
+    Example valid output: abc657_
+  Turn 6: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc657!
+  Turn 7: Character at one-based position 1 must be 'F'.
+    Example valid output: Fbc657!
+  Turn 8: Character at one-based position 4 must be '5'.
+    Example valid output: Fbc507!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 19 OF 24: seeded-v3-development-numeric_multi_2-002
+Family: numeric_multi_2
+Starting string: abc1
+  Turn 1: There must be exactly 3 ASCII digits.
+    Example valid output: abc995
+  Turn 2: The sum of all digit occurrences must be at most 16.
+    Example valid output: abc290
+  Turn 3: Character '5' must occur exactly 1 times.
+    Example valid output: abc295
+  Turn 4: Character at one-based position 6 must be '7'.
+    Example valid output: abc257
+    Certified example interference degree: 2
+  Turn 5: Length must be exactly 7 characters.
+    Example valid output: abc257_
+  Turn 6: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc257!
+  Turn 7: Character at one-based position 1 must be 'V'.
+    Example valid output: Vbc257!
+  Turn 8: Character at one-based position 4 must be '5'.
+    Example valid output: Vbc507!
+    Certified example interference degree: 2
+
+------------------------------------------------------------------------
+
+GAME 20 OF 24: seeded-v3-development-numeric_multi_2-003
+Family: numeric_multi_2
+Starting string: abc1
+  Turn 1: There must be exactly 3 ASCII digits.
+    Example valid output: abc993
+  Turn 2: The sum of all digit occurrences must be at most 18.
+    Example valid output: abc690
+  Turn 3: Character '3' must occur exactly 1 times.
+    Example valid output: abc693
+  Turn 4: Character at one-based position 6 must be '4'.
+    Example valid output: abc634
+    Certified example interference degree: 2
+  Turn 5: Length must be exactly 7 characters.
+    Example valid output: abc634_
+  Turn 6: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc634!
+  Turn 7: Character at one-based position 1 must be 'E'.
+    Example valid output: Ebc634!
+  Turn 8: Character at one-based position 4 must be '3'.
+    Example valid output: Ebc304!
+    Certified example interference degree: 1
+
+------------------------------------------------------------------------
+
+GAME 21 OF 24: seeded-v3-development-numeric_multi_3-000
+Family: numeric_multi_3
+Starting string: abc1
+  Turn 1: There must be exactly 4 ASCII digits.
+    Example valid output: abc8883
+  Turn 2: The sum of all digit occurrences must be at most 20.
+    Example valid output: abc1880
+  Turn 3: Character '3' must occur exactly 1 times.
+    Example valid output: abc1803
+  Turn 4: The string must contain the case-sensitive substring '83'.
+    Example valid output: abc1883
+  Turn 5: Character at one-based position 7 must be '4'.
+    Example valid output: abc1834
+    Certified example interference degree: 3
+  Turn 6: Length must be exactly 8 characters.
+    Example valid output: abc1834_
+  Turn 7: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc1834!
+  Turn 8: Character at one-based position 1 must be 'R'.
+    Example valid output: Rbc1834!
+
+------------------------------------------------------------------------
+
+GAME 22 OF 24: seeded-v3-development-numeric_multi_3-001
+Family: numeric_multi_3
+Starting string: abc1
+  Turn 1: There must be exactly 4 ASCII digits.
+    Example valid output: abc9992
+  Turn 2: The sum of all digit occurrences must be at most 23.
+    Example valid output: abc3990
+  Turn 3: Character '2' must occur exactly 1 times.
+    Example valid output: abc3902
+  Turn 4: The string must contain the case-sensitive substring '92'.
+    Example valid output: abc3992
+  Turn 5: Character at one-based position 7 must be '6'.
+    Example valid output: abc3926
+    Certified example interference degree: 3
+  Turn 6: Length must be exactly 8 characters.
+    Example valid output: abc3926_
+  Turn 7: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc3926!
+  Turn 8: Character at one-based position 1 must be 'K'.
+    Example valid output: Kbc3926!
+
+------------------------------------------------------------------------
+
+GAME 23 OF 24: seeded-v3-development-numeric_multi_3-002
+Family: numeric_multi_3
+Starting string: abc1
+  Turn 1: There must be exactly 4 ASCII digits.
+    Example valid output: abc6663
+  Turn 2: The sum of all digit occurrences must be at most 16.
+    Example valid output: abc1660
+  Turn 3: Character '3' must occur exactly 1 times.
+    Example valid output: abc1603
+  Turn 4: The string must contain the case-sensitive substring '63'.
+    Example valid output: abc1663
+  Turn 5: Character at one-based position 7 must be '5'.
+    Example valid output: abc1635
+    Certified example interference degree: 3
+  Turn 6: Length must be exactly 8 characters.
+    Example valid output: abc1635_
+  Turn 7: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc1635!
+  Turn 8: Character at one-based position 1 must be 'M'.
+    Example valid output: Mbc1635!
+
+------------------------------------------------------------------------
+
+GAME 24 OF 24: seeded-v3-development-numeric_multi_3-003
+Family: numeric_multi_3
+Starting string: abc1
+  Turn 1: There must be exactly 4 ASCII digits.
+    Example valid output: abc9995
+  Turn 2: The sum of all digit occurrences must be at most 30.
+    Example valid output: abc7990
+  Turn 3: Character '5' must occur exactly 1 times.
+    Example valid output: abc7905
+  Turn 4: The string must contain the case-sensitive substring '95'.
+    Example valid output: abc7995
+  Turn 5: Character at one-based position 7 must be '8'.
+    Example valid output: abc7958
+    Certified example interference degree: 3
+  Turn 6: Length must be exactly 8 characters.
+    Example valid output: abc7958_
+  Turn 7: The string must contain the case-sensitive substring '!'.
+    Example valid output: abc7958!
+  Turn 8: Character at one-based position 1 must be 'Z'.
+    Example valid output: Zbc7958!
+
+------------------------------------------------------------------------
+

@@ -1,0 +1,5 @@
+model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
+deepseek-v4.1-flash,order,0,on_policy_order,430,1.0,1.0,1.0,0.0,430
+deepseek-v4.1-flash,order,1,on_policy_order,61,1.0,1.0,1.0,0.0,61
+deepseek-v4.1-flash,order,2,on_policy_order,9,1.0,1.0,1.0,0.0,9
+deepseek-v4.1-flash,order,3,on_policy_order,1,1.0,1.0,1.0,0.0,1

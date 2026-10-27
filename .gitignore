@@ -3,6 +3,35 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .env
+configs/*.local.env
+configs/cluster-runtime.env
 outputs/
 .DS_Store
 
+
+# Per-person cluster wrappers and local run logs (see scripts/cluster/slurm.example.sbatch)
+scripts/local/
+logs/
+
+# Report drafts, styles, previews, and LaTeX build products stay local.
+/docs/report-*
+/docs/methods.md
+/docs/appendix-*.md
+/docs/acl2023.sty
+/docs/acl_natbib.bst
+/output/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+
+# Private deployment files and editable package metadata.
+**/*.local.env
+*.egg-info/
+build/
+dist/
+.mplconfig/
+**/*.local.yaml

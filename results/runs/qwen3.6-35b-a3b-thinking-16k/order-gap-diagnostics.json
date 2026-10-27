@@ -1,0 +1,93 @@
+{
+  "checked_at": "2026-10-25T09:42:44.786816+00:00",
+  "completion_cap": 16384,
+  "requested_temperature": 0,
+  "orders": {
+    "original": {
+      "games": 24,
+      "passes": 14,
+      "observed_turns": 158,
+      "certificates": {
+        "independent": 93,
+        "interfering": 12,
+        "no_op": 28,
+        "unknown": 25
+      },
+      "token_limit_failures": 5,
+      "rule_failures": 4,
+      "domain_failures": 1,
+      "mean_completion_tokens": 1517.240506329114,
+      "truncated_reasoning_diagnostics": [
+        {
+          "episode_id": "order-v3-development-forbidden_position-000-original",
+          "turn": 7,
+          "incoming_state_label": "independent",
+          "reasoning_characters": 30659,
+          "most_repeated_overlapping_12_word_sequence_count": 2301
+        },
+        {
+          "episode_id": "order-v3-development-forbidden_position-003-original",
+          "turn": 2,
+          "incoming_state_label": "no_op",
+          "reasoning_characters": 45853,
+          "most_repeated_overlapping_12_word_sequence_count": 186
+        },
+        {
+          "episode_id": "order-v3-development-numeric_multi_3-000-original",
+          "turn": 4,
+          "incoming_state_label": "independent",
+          "reasoning_characters": 37496,
+          "most_repeated_overlapping_12_word_sequence_count": 196
+        },
+        {
+          "episode_id": "order-v3-development-numeric_multi_3-002-original",
+          "turn": 4,
+          "incoming_state_label": "independent",
+          "reasoning_characters": 41942,
+          "most_repeated_overlapping_12_word_sequence_count": 21
+        },
+        {
+          "episode_id": "order-v3-development-numeric_multi_3-003-original",
+          "turn": 1,
+          "incoming_state_label": "unknown",
+          "reasoning_characters": 46956,
+          "most_repeated_overlapping_12_word_sequence_count": 14
+        }
+      ]
+    },
+    "reverse": {
+      "games": 24,
+      "passes": 22,
+      "observed_turns": 182,
+      "certificates": {
+        "independent": 112,
+        "no_op": 51,
+        "unknown": 19
+      },
+      "token_limit_failures": 0,
+      "rule_failures": 2,
+      "domain_failures": 0,
+      "mean_completion_tokens": 823.0879120879121,
+      "truncated_reasoning_diagnostics": []
+    }
+  },
+  "notes": [
+    "Same final rule sets; intermediate active rule sets and actual model-generated states differ.",
+    "Certificate counts concern attempted states and are affected by first-failure stopping; they are descriptive, not a causal mediation estimate.",
+    "Repetitive truncated reasoning and mismatch with recommended sampling settings suggest a decoding contribution; this does not establish its cause."
+  ],
+  "official_sampling_reference": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B#best-practices",
+  "example": {
+    "episode_base": "v3-development-position_count-002",
+    "original_incoming": "BBabcd",
+    "old_rules": [
+      "Exactly two uppercase B characters",
+      "Exactly six characters"
+    ],
+    "new_rule": "First character must be N",
+    "original_answer": "NBabcb",
+    "problem": "Only one uppercase B remains",
+    "reverse_final_answer": "NJEBB!",
+    "reverse_passed_all_eight_turns": true
+  }
+}

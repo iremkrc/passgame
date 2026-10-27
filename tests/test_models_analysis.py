@@ -41,14 +41,6 @@ def test_transport_failure_retains_reservation():
     adapter.close()
 
 
-def test_missing_infrastructure_is_not_model_failure():
-    rows = [{"request_key":"a", "model":"m", "track":"controlled", "base_id":"p", "condition":"independent", "status":"response", "full_success":1, "new_success":1, "retention":1, "outcome":"full_success"},
-            {"request_key":"b", "model":"m", "track":"controlled", "base_id":"p", "condition":"interfering", "status":"infrastructure_failure", "full_success":None,"new_success":None,"retention":None}]
-    result = analyze(rows, repetitions=50)
-    assert result["h1"][0]["blocks"] == 0
-    assert result["infrastructure_failures"] == 1
-    assert result["summary"][1]["full_success"]["denominator"] == 0
-    assert paired_interval([0, 1], 100, 1) == paired_interval([0, 1], 100, 1)
 
 
 def test_self_hosted_endpoint_works_without_api_credentials_or_spend():
@@ -68,3 +60,63 @@ def test_self_hosted_endpoint_works_without_api_credentials_or_spend():
     assert payload["max_tokens"] == 20 and payload["temperature"] == 0
     assert 'PRIVATE_EVALUATOR_WITNESS' not in sent[0].content.decode()
     adapter.close()
+
+
+def test_proxy_cache_controls_are_sent_without_changing_conversation():
+    sent = []
+    def handler(request):
+        sent.append(json.loads(request.content))
+        return httpx.Response(200, json={"choices":[{"message":{"content":'{"password":"A"}'}}]})
+    config = configuration()
+    config["parameters"]["cache"] = {"no-cache":True,"no-store":True}
+    adapter = ChatAdapter(config, Budget(.1), transport=httpx.MockTransport(handler))
+    messages = [{"role":"user","content":"one new rule"}]
+    try:
+        adapter.complete(messages,{"witness":"PRIVATE_REFERENCE"})
+    finally:
+        adapter.close()
+    assert sent[0]["cache"] == {"no-cache":True,"no-store":True}
+    assert sent[0]["messages"] == messages
+    assert "PRIVATE_REFERENCE" not in json.dumps(sent[0])
+
+
+
+
+def test_seeded_survival_excludes_episodes_that_have_already_ended():
+    rows = []
+    for episode, horizon in (("short", 1), ("long", 2)):
+        for turn in range(1, horizon+1):
+            rows.append({"request_key":f"{episode}-{turn}", "model":"m", "track":"seeded",
+                         "episode_id":episode, "base_id":episode, "final_set_id":episode,
+                         "order":"original", "turn":turn, "load":turn, "horizon":horizon,
+                         "status":"response", "full_success":1, "new_success":1, "retention":None,
+                         "outcome":"full_success", "state_policy":"model_responses"})
+    result = analyze(rows, repetitions=20)
+    assert result["summary"][0]["records"] == 3
+    assert [(s["turn"],s["numerator"],s["denominator"]) for s in result["survival"]] == [(1,2,2),(2,1,1)]
+
+
+@pytest.mark.parametrize("infrastructure", [False, True])
+def test_early_rule_failure_is_completed_but_infrastructure_is_missing(infrastructure):
+    rows = []
+    for turn in (1, 2):
+        rows.append({"request_key":str(turn), "model":"m", "track":"seeded",
+                     "episode_id":"e", "base_id":"e", "final_set_id":"e", "order":"original",
+                     "turn":turn, "load":turn, "horizon":3, "state_policy":"model_responses",
+                     "termination_policy":"first_failure", "status":"response", "full_success":int(turn == 1),
+                     "new_success":1, "retention":int(turn == 1),
+                     "outcome":"full_success" if turn == 1 else "new_success_old_failure"})
+    if infrastructure:
+        rows[-1].update(status="infrastructure_failure", full_success=None, new_success=None, retention=None)
+    result = analyze(rows, repetitions=20)
+    episode = result["episodes"][0]
+    assert result["record_count"] == 2
+    assert episode["turns_observed"] == 2 and not episode["reached_horizon"]
+    assert episode["complete"] == episode["terminated_on_failure"] == (not infrastructure)
+    if infrastructure:
+        assert episode["final_success"] is None and result["infrastructure_failures"] == 1
+        assert episode["termination_reason"] == "infrastructure_failure"
+    else:
+        assert episode["whole_episode_success"] == episode["final_success"] == 0
+        assert episode["first_failure"] == 2 and result["infrastructure_failures"] == 0
+        assert [(s["turn"],s["at_risk"],s["numerator"]) for s in result["survival"]] == [(1,1,1),(2,1,0),(3,0,0)]

@@ -1,0 +1,24 @@
+{
+  "study": "dev-mlcloud-nonthinking-four-orders-v3-20261025-gemma",
+  "diagnostic_only": false,
+  "record_count": 595,
+  "planned_records": 768,
+  "prompt_protocol": {
+    "version": "cumulative_rule_reminders_v1",
+    "remind_previous_rules": true
+  },
+  "response_protocol": {
+    "version": "optional_markdown_fence_v1",
+    "allow_markdown_fences": true
+  },
+  "planned_records_are_upper_bound": true,
+  "skipped_after_failure": 173,
+  "expected_records": 595,
+  "planned_episodes": 96,
+  "completed_episodes": 96,
+  "terminated_on_failure": 65,
+  "complete": true,
+  "reserved_usd": 5.761269760000044,
+  "stopped": null,
+  "output_dir": "results/runs/gemma4-31b-nonthinking-16k"
+}

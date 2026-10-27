@@ -1,0 +1,33 @@
+allow_markdown_fences: true
+bootstrap_repetitions: 2000
+budget_usd: 13.0
+dataset_dir: data
+human_audit_required_for_model_test: true
+models:
+- adapter: chat
+  api_key_env: TUEBINGEN_API_KEY
+  base_url: https://llm.mlcloud.uni-tuebingen.de/v1
+  deployment: provider
+  input_price_per_million: 0.15
+  max_input_tokens: 32768
+  model_id: deepseek-ai/DeepSeek-V4.1-Flash
+  name: deepseek-v4.1-flash
+  output_price_per_million: 0.6
+  parameters:
+    cache:
+      no-cache: true
+      no-store: true
+    max_tokens: 16384
+    reasoning_effort: none
+    temperature: 0
+  pricing_verified_on: '2026-10-24'
+  timeout_seconds: 600
+  transport_retries: 2
+output_dir: outputs/deepseek-v4.1-flash-nonthinking-16k
+remind_previous_rules: true
+rule_count: 8
+seed: 20261008
+split: development
+study: passgame-deepseek-v4.1-flash-nonthinking-16k
+tracks:
+- order

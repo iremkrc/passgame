@@ -1,0 +1,7 @@
+model,contrast,endpoint,blocks,estimate,ci95_low,ci95_high
+deepseek-v4.1-flash,original_minus_reverse,whole_episode_success,24,0.0,0.0,0.0
+deepseek-v4.1-flash,original_minus_reverse,turns_completed,24,0.0,0.0,0.0
+deepseek-v4.1-flash,original_minus_random_1,whole_episode_success,24,0.0,0.0,0.0
+deepseek-v4.1-flash,original_minus_random_1,turns_completed,24,0.0,0.0,0.0
+deepseek-v4.1-flash,original_minus_random_2,whole_episode_success,24,0.0,0.0,0.0
+deepseek-v4.1-flash,original_minus_random_2,turns_completed,24,0.0,0.0,0.0
