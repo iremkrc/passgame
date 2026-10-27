@@ -1,0 +1,2 @@
+model,track,condition,records,missing_infrastructure,full_numerator,full_denominator,full_rate,new_rate,retention_rate
+qwen3.6-27b-bf16-nonthinking-16k-rep1,order,all,583,0,510,583,0.8747855917667239,0.9571183533447685,0.891170431211499

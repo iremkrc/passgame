@@ -1,0 +1,115 @@
+import pytest
+from passgame.audit import reference_check, reference_domain
+from passgame.constraints import Rule, satisfies
+from passgame.oracle import certify, distance, new_only, one_edits
+
+
+def test_proposal_exact_sum_repair_and_matched_bound_example():
+    count = Rule("count", "digit_count", 2)
+    exact = Rule("sum", "digit_sum", 11)
+    bound = Rule("sum", "digit_sum", 11, "le")
+    new = Rule("new", "contains", "8")
+    assert certify("A47x!", [count, exact], new, "A38x!")["d_full"] == 2
+    assert certify("A29x!", [count, bound], new)["label"] == "independent"
+    assert certify("A47x!", [count, bound], new, "A38x!")["label"] == "interfering"
+    assert certify("A47x!", [count, bound], new)["label"] == "interfering"
+    assert certify("A38x!", [count, exact], new)["label"] == "no_op"
+    assert certify("A4x!", [count, exact], new)["reason"] == "incoming_state_not_fully_valid"
+
+
+@pytest.mark.parametrize("hint", [None, "xdUUOHJ!fvt", "invalid hint"])
+def test_adaptive_witness_uses_current_state_and_active_rules(hint):
+    old = [Rule("bang", "contains", "!"), Rule("us", "char_count", "U", count=2),
+           Rule("digits", "digit_count", 0), Rule("length", "length", 11),
+           Rule("ban", "forbids", "Z")]
+    new = Rule("new", "char_at", "x", position=1)
+    current = "UU!!!______"
+    certificate = certify(current, old, new, hint)
+    assert certificate["label"] == "interfering"
+    assert certificate["d_new"] == 1 and certificate["d_full"] == 2
+    assert certificate["min_old_rules_broken"] == 1
+    assert distance(current, certificate["witness"]) == 2
+    assert reference_domain(certificate["witness"])
+    assert all(reference_check(certificate["witness"], r.to_dict()) for r in old + [new])
+
+
+def test_two_edit_witness_can_require_a_new_invalid_intermediate():
+    old = [Rule("as", "char_count", "a", count=3)]
+    new = Rule("new", "forbids", "aa")
+    # Two insertions separate all three a's. No intermediate one-edit string
+    # both retains three a's and avoids aa, so searching only new-valid
+    # intermediates cannot discover this repair.
+    assert not any(satisfies(s, old + [new]) for s in one_edits("aaa"))
+    certificate = certify("aaa", old, new)
+    assert certificate["label"] == "interfering"
+    assert distance("aaa", certificate["witness"]) == 2
+    assert satisfies(certificate["witness"], old + [new])
+
+
+def test_witness_search_limit_preserves_unknown_and_breakage_evidence():
+    old = [Rule("us", "char_count", "U", count=2), Rule("length", "length", 11)]
+    new = Rule("new", "char_at", "x", position=1)
+    certificate = certify("UU!!!______", old, new, witness_search_limit=1)
+    assert certificate["label"] == "unknown" and certificate["d_full"] is None
+    assert certificate["witness_search_status"] == "candidate_limit"
+    assert certificate["witness_search_candidates"] == 1
+    assert certificate["min_old_rules_broken"] == 1
+    assert certificate["search_complete"] is True  # Radius one was still exhaustive.
+    assert "witness" not in certificate
+
+
+def test_exhausted_two_edit_search_does_not_invent_a_witness():
+    old = [Rule("length", "length", 1), Rule("digits", "digit_count", 1)]
+    certificate = certify("0", old, Rule("new", "contains", "!"))
+    assert certificate["label"] == "unknown" and certificate["d_full"] is None
+    assert certificate["witness_search_status"] == "exhausted"
+    assert "witness" not in certificate
+
+
+def test_neighborhood_exhaustiveness_and_distance():
+    expected = {"a", "b", "bb", "aa", "aab", "bab", "abb", "aba"}
+    actual = set(one_edits("ab", alphabet="ab", maximum=3))
+    assert actual == expected
+    assert all(distance("ab", x) == 1 for x in actual)
+    assert distance("ab", "ba") == 2
+    assert distance("", "abc") == 3
+
+
+def test_independence_does_not_guarantee_greedy_choice_is_safe():
+    old = [Rule("count", "digit_count", 2), Rule("sum", "digit_sum", 11, "le")]
+    new = Rule("new", "contains", "8")
+    assert certify("A29x!", old, new)["label"] == "independent"
+    greedy = new_only("A29x!", new)
+    assert new.check(greedy) and distance("A29x!", greedy) == 1
+    assert not all(r.check(greedy) for r in old)
+
+
+
+
+def test_two_and_three_rule_interference_includes_insertions():
+    base = [Rule("digits", "digit_count", 3), Rule("sum", "digit_sum", 15, "le"),
+            Rule("ones", "char_count", "1", count=1), Rule("length", "length", 3)]
+    new = Rule("new", "char_at", "8", position=3)
+    certificate = certify("591", base, new, "518")
+    assert certificate["min_old_rules_broken"] == 2
+    assert certificate["max_old_rules_broken"] == 3  # Inserting 8 also exceeds length/digit count.
+    assert certificate["old_rules_broken_histogram"] == {"2": 1, "3": 1}
+    assert certify("159", base, new)["min_old_rules_broken"] == 0
+    old = [Rule("digits", "digit_count", 4), Rule("sum", "digit_sum", 24, "le"),
+           Rule("ones", "char_count", "1", count=1), Rule("length", "length", 4),
+           Rule("pattern", "contains", "91")]
+    new = Rule("new", "char_at", "8", position=4)
+    certificate = certify("5991", old, new, "5918")
+    assert certificate["label"] == "interfering" and certificate["d_full"] == 2
+    assert certificate["min_old_rules_broken"] == 3 and certificate["max_old_rules_broken"] == 4
+    assert certificate["min_break_rule_ids"] == ["sum", "ones", "pattern"]
+    assert certificate["necessarily_affected_old_rule_ids"] == ["pattern", "sum"]
+    assert certify("9159", old, new)["min_old_rules_broken"] == 0
+    # Each old constraint is necessary, even with the new rule binding.
+    isolated_violations = {"digits": "91A8", "sum": "9198", "ones": "9118",
+                           "length": "5918A", "pattern": "1958"}
+    for rule_id, artifact in isolated_violations.items():
+        assert new.check(artifact)
+        assert [r.id for r in old if not r.check(artifact)] == [rule_id]
+
+

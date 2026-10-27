@@ -1,0 +1,2 @@
+model,track,condition,records,missing_infrastructure,full_numerator,full_denominator,full_rate,new_rate,retention_rate
+qwen3.6-27b-bf16,order,all,599,0,573,599,0.9565943238731218,0.9565943238731218,0.9880715705765407

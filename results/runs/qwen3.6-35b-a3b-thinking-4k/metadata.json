@@ -1,0 +1,105 @@
+{
+  "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+  "config": {
+    "allow_markdown_fences": true,
+    "bootstrap_repetitions": 2000,
+    "budget_usd": 20.25,
+    "dataset_dir": "data/sequential-v3",
+    "human_audit_required_for_model_test": true,
+    "models": [
+      {
+        "adapter": "chat",
+        "api_key_env": "TUEBINGEN_API_KEY",
+        "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+        "deployment": "provider",
+        "input_price_per_million": 0.14,
+        "max_input_tokens": 32768,
+        "model_id": "Qwen/Qwen3.6-35B-A3B",
+        "name": "qwen3.6-35b-a3b",
+        "output_price_per_million": 1.0,
+        "parameters": {
+          "max_tokens": 4096,
+          "temperature": 0
+        },
+        "pricing_verified_on": "2026-10-24",
+        "timeout_seconds": 180,
+        "transport_retries": 2
+      }
+    ],
+    "output_dir": "outputs/dev-mlcloud-order-v3-20261024/qwen",
+    "remind_previous_rules": true,
+    "rule_count": 8,
+    "seed": 20261008,
+    "split": "development",
+    "study": "dev-mlcloud-four-orders-fence-tolerant-v3-20261024-qwen",
+    "tracks": [
+      "order"
+    ]
+  },
+  "config_hash": "50a7fd52a1031d838b582eb97ed3a097649cb122fab80c11121ee7d350b2728e",
+  "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+  "dataset_version": 3,
+  "episode_suite": "progressive_seeded_v1",
+  "episode_termination_policy": "first_failure",
+  "planned_episodes": 96,
+  "planned_records": 768,
+  "planned_records_are_upper_bound": true,
+  "prompt_protocol": {
+    "remind_previous_rules": true,
+    "version": "cumulative_rule_reminders_v1"
+  },
+  "response_protocol": {
+    "allow_markdown_fences": true,
+    "version": "optional_markdown_fence_v1"
+  },
+  "selection": {
+    "native_order_episodes": 96,
+    "pairs": 0,
+    "rule_count": 8,
+    "seeded_episodes": 0
+  },
+  "validation": {
+    "counts": {
+      "development/order/forbidden_position": 16,
+      "development/order/numeric": 16,
+      "development/order/numeric_multi_2": 16,
+      "development/order/numeric_multi_3": 16,
+      "development/order/position_count": 16,
+      "development/order/substring_position": 16,
+      "development/seeded/forbidden_position": 4,
+      "development/seeded/numeric": 4,
+      "development/seeded/numeric_multi_2": 4,
+      "development/seeded/numeric_multi_3": 4,
+      "development/seeded/position_count": 4,
+      "development/seeded/substring_position": 4,
+      "test/order/forbidden_position": 80,
+      "test/order/numeric": 80,
+      "test/order/numeric_multi_2": 80,
+      "test/order/numeric_multi_3": 80,
+      "test/order/position_count": 80,
+      "test/order/substring_position": 80,
+      "test/seeded/forbidden_position": 20,
+      "test/seeded/numeric": 20,
+      "test/seeded/numeric_multi_2": 20,
+      "test/seeded/numeric_multi_3": 20,
+      "test/seeded/position_count": 20,
+      "test/seeded/substring_position": 20
+    },
+    "episodes": 720,
+    "independent_checker_passed": true,
+    "neutral_initials_passed": true,
+    "progressive_reference_paths_passed": true,
+    "reference_challenges": {
+      "development/turn_3/degree_1": 16,
+      "development/turn_4/degree_2": 4,
+      "development/turn_5/degree_3": 4,
+      "development/turn_8/degree_1": 18,
+      "development/turn_8/degree_2": 2,
+      "test/turn_3/degree_1": 80,
+      "test/turn_4/degree_2": 20,
+      "test/turn_5/degree_3": 20,
+      "test/turn_8/degree_1": 96,
+      "test/turn_8/degree_2": 4
+    }
+  }
+}

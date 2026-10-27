@@ -1,0 +1,5 @@
+model,order,games,completed_episodes,incomplete_episodes,whole_passes,whole_denominator,whole_rate,mean_turns_completed,reached_horizon
+qwen3.6-27b-bf16-16k-rep1,original,24,24,0,18,24,0.75,6.416666666666667,19
+qwen3.6-27b-bf16-16k-rep1,random_1,24,24,0,20,24,0.8333333333333334,7.083333333333333,20
+qwen3.6-27b-bf16-16k-rep1,random_2,24,24,0,16,24,0.6666666666666666,5.416666666666667,16
+qwen3.6-27b-bf16-16k-rep1,reverse,24,24,0,23,24,0.9583333333333334,7.75,23
