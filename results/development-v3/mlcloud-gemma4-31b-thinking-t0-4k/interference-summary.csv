@@ -1,0 +1,4 @@
+model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
+gemma-4-31b-it-qat-w4a16-ct,order,0,on_policy_order,439,0.9977220956719818,0.9977220956719818,0.9973190348525469,0.0,438
+gemma-4-31b-it-qat-w4a16-ct,order,1,on_policy_order,46,0.9782608695652174,0.9782608695652174,0.9782608695652174,0.0,45
+gemma-4-31b-it-qat-w4a16-ct,order,2,on_policy_order,4,1.0,1.0,1.0,0.0,4

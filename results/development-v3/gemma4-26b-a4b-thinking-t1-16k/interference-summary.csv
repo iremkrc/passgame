@@ -1,0 +1,4 @@
+model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
+gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1,order,0,on_policy_order,448,1.0,1.0,1.0,0.0,448
+gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1,order,1,on_policy_order,42,1.0,1.0,1.0,0.0,42
+gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1,order,2,on_policy_order,5,1.0,1.0,1.0,0.0,5

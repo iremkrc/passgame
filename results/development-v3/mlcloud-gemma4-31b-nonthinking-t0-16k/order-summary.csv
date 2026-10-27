@@ -1,0 +1,5 @@
+model,order,games,completed_episodes,incomplete_episodes,whole_passes,whole_denominator,whole_rate,mean_turns_completed,reached_horizon
+gemma-4-31b-it-qat-w4a16-ct,original,24,24,0,6,24,0.25,5.291666666666667,8
+gemma-4-31b-it-qat-w4a16-ct,random_1,24,24,0,11,24,0.4583333333333333,5.625,11
+gemma-4-31b-it-qat-w4a16-ct,random_2,24,24,0,5,24,0.20833333333333334,5.291666666666667,6
+gemma-4-31b-it-qat-w4a16-ct,reverse,24,24,0,9,24,0.375,5.875,12

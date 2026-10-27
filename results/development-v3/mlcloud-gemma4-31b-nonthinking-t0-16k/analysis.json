@@ -1,0 +1,4388 @@
+{
+  "breakdowns": [],
+  "episodes": [
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-original",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 0,
+      "first_failure": 8,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 7,
+      "turns_observed": 8,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-random_1",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-random_2",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-reverse",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-original",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-random_1",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-random_2",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-reverse",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-original",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-random_1",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-random_2",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-reverse",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-original",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 0,
+      "first_failure": 8,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 7,
+      "turns_observed": 8,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-random_1",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-random_2",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-reverse",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-original",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-random_1",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-random_2",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 0,
+      "first_failure": 3,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 2,
+      "turns_observed": 3,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-reverse",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 0,
+      "first_failure": 2,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 1,
+      "turns_observed": 2,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-original",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-random_1",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 0,
+      "first_failure": 3,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 2,
+      "turns_observed": 3,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-random_2",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-reverse",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-original",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-random_1",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-random_2",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-reverse",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-original",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-random_1",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 0,
+      "first_failure": 2,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 1,
+      "turns_observed": 2,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-random_2",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-reverse",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-original",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-random_1",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-random_2",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-reverse",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-original",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-random_1",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-random_2",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-reverse",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-original",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-random_1",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-random_2",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-reverse",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-original",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-random_1",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-random_2",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-reverse",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-original",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-random_1",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-random_2",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-reverse",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-original",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-random_1",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-random_2",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-reverse",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-original",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-random_1",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-random_2",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 0,
+      "first_failure": 8,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 7,
+      "turns_observed": 8,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-reverse",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-original",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-random_1",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-random_2",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-reverse",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-original",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 0,
+      "first_failure": 3,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 2,
+      "turns_observed": 3,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-random_1",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 0,
+      "first_failure": 3,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 2,
+      "turns_observed": 3,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-random_2",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-reverse",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-original",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 0,
+      "first_failure": 3,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 2,
+      "turns_observed": 3,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-random_1",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-random_2",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-reverse",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-original",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-random_1",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-random_2",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-reverse",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-original",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-random_1",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-random_2",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-reverse",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-original",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-random_1",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-random_2",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-reverse",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 0,
+      "first_failure": 8,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 7,
+      "turns_observed": 8,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-original",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-random_1",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 0,
+      "first_failure": 5,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 4,
+      "turns_observed": 5,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-random_2",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 0,
+      "first_failure": 7,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 6,
+      "turns_observed": 7,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-reverse",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 0,
+      "first_failure": 8,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 7,
+      "turns_observed": 8,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-original",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-random_1",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 0,
+      "first_failure": 4,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 3,
+      "turns_observed": 4,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-random_2",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "format_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-reverse",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 0,
+      "first_failure": 8,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 7,
+      "turns_observed": 8,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-original",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 0,
+      "first_failure": 6,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 5,
+      "turns_observed": 6,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-random_1",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-random_2",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 0,
+      "first_failure": 3,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": false,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 2,
+      "turns_observed": 3,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-reverse",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    }
+  ],
+  "h1": [
+    {
+      "blocks": 0,
+      "ci95": null,
+      "contrast": "independent_minus_interfering",
+      "estimate": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "track": "controlled"
+    }
+  ],
+  "h2": [
+    {
+      "blocks": 0,
+      "ci95": null,
+      "contrast": "interfering_minus_independent_unconditional_regression",
+      "estimate": null,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "track": "controlled"
+    }
+  ],
+  "h3": [
+    {
+      "blocks": 24,
+      "ci95": [
+        -0.4166666666666667,
+        0.16666666666666666
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "final_success",
+      "estimate": -0.125,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        -0.4166666666666667,
+        0.16666666666666666
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "whole_episode_success",
+      "estimate": -0.125,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    }
+  ],
+  "inference": "New conversations carry successful model outputs forward and terminate on the first failed response. A rule/format/domain failure is an observed episode failure; later stages are unattempted rather than fabricated response rows or infrastructure missingness. Historical runs retain their recorded termination policy. Autonomous interference strata remain descriptive. Paired H1/H2 contrasts apply to controlled diagnostics or explicitly identified legacy_reset data only. H3 uses final-set blocks.",
+  "infrastructure_failures": 0,
+  "interference_breakdowns": [
+    {
+      "broken_count_histogram": {
+        "0": 328,
+        "1": 5,
+        "2": 3
+      },
+      "condition": "on_policy_order",
+      "degree": 0,
+      "full_success": {
+        "denominator": 347,
+        "numerator": 319,
+        "rate": 0.9193083573487032
+      },
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 347,
+        "numerator": 326,
+        "rate": 0.9394812680115274
+      },
+      "old_rules_broken": {
+        "denominator": 336,
+        "numerator": 11,
+        "rate": 0.03273809523809524
+      },
+      "records": 347,
+      "retention": {
+        "denominator": 281,
+        "numerator": 262,
+        "rate": 0.9323843416370107
+      },
+      "track": "order"
+    },
+    {
+      "broken_count_histogram": {
+        "0": 16,
+        "1": 10
+      },
+      "condition": "on_policy_order",
+      "degree": 1,
+      "full_success": {
+        "denominator": 28,
+        "numerator": 16,
+        "rate": 0.5714285714285714
+      },
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 28,
+        "numerator": 26,
+        "rate": 0.9285714285714286
+      },
+      "old_rules_broken": {
+        "denominator": 26,
+        "numerator": 10,
+        "rate": 0.38461538461538464
+      },
+      "records": 28,
+      "retention": {
+        "denominator": 28,
+        "numerator": 16,
+        "rate": 0.5714285714285714
+      },
+      "track": "order"
+    },
+    {
+      "broken_count_histogram": {
+        "0": 1,
+        "3": 1
+      },
+      "condition": "on_policy_order",
+      "degree": 3,
+      "full_success": {
+        "denominator": 2,
+        "numerator": 1,
+        "rate": 0.5
+      },
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 2,
+        "numerator": 2,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 2,
+        "numerator": 3,
+        "rate": 1.5
+      },
+      "records": 2,
+      "retention": {
+        "denominator": 2,
+        "numerator": 1,
+        "rate": 0.5
+      },
+      "track": "order"
+    }
+  ],
+  "legacy_reset_prefix_records": 0,
+  "order_effects": [
+    {
+      "blocks": 24,
+      "ci95": [
+        -0.4166666666666667,
+        0.20833333333333334
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "whole_episode_success",
+      "estimate": -0.125,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        -1.7083333333333333,
+        0.5833333333333334
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "turns_completed",
+      "estimate": -0.5833333333333334,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        -0.4583333333333333,
+        0.041666666666666664
+      ],
+      "contrast": "original_minus_random_1",
+      "endpoint": "whole_episode_success",
+      "estimate": -0.20833333333333334,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        -1.5,
+        0.9166666666666666
+      ],
+      "contrast": "original_minus_random_1",
+      "endpoint": "turns_completed",
+      "estimate": -0.3333333333333333,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        -0.16666666666666666,
+        0.25
+      ],
+      "contrast": "original_minus_random_2",
+      "endpoint": "whole_episode_success",
+      "estimate": 0.041666666666666664,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        -1.0416666666666667,
+        1.125
+      ],
+      "contrast": "original_minus_random_2",
+      "endpoint": "turns_completed",
+      "estimate": 0.0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct"
+    }
+  ],
+  "order_summary": [
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "3": 2,
+        "4": 1,
+        "5": 7,
+        "6": 6,
+        "8": 2,
+        "passed": 6
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 5.291666666666667,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "original",
+      "reached_horizon": 8,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 6,
+        "rate": 0.25
+      }
+    },
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "2": 1,
+        "3": 2,
+        "4": 2,
+        "5": 5,
+        "6": 2,
+        "7": 1,
+        "passed": 11
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 5.625,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_1",
+      "reached_horizon": 11,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 11,
+        "rate": 0.4583333333333333
+      }
+    },
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "3": 2,
+        "4": 5,
+        "6": 5,
+        "7": 6,
+        "8": 1,
+        "passed": 5
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 5.291666666666667,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "random_2",
+      "reached_horizon": 6,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 5,
+        "rate": 0.20833333333333334
+      }
+    },
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "2": 1,
+        "4": 3,
+        "5": 5,
+        "7": 3,
+        "8": 3,
+        "passed": 9
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 5.875,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "order": "reverse",
+      "reached_horizon": 12,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 9,
+        "rate": 0.375
+      }
+    }
+  ],
+  "order_survival": [
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 2
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 22,
+      "order": "original",
+      "rate": 0.9166666666666666,
+      "turn": 3
+    },
+    {
+      "at_risk": 22,
+      "denominator": 24,
+      "failures_at_turn": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 21,
+      "order": "original",
+      "rate": 0.875,
+      "turn": 4
+    },
+    {
+      "at_risk": 21,
+      "denominator": 24,
+      "failures_at_turn": 7,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 14,
+      "order": "original",
+      "rate": 0.5833333333333334,
+      "turn": 5
+    },
+    {
+      "at_risk": 14,
+      "denominator": 24,
+      "failures_at_turn": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 8,
+      "order": "original",
+      "rate": 0.3333333333333333,
+      "turn": 6
+    },
+    {
+      "at_risk": 8,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 8,
+      "order": "original",
+      "rate": 0.3333333333333333,
+      "turn": 7
+    },
+    {
+      "at_risk": 8,
+      "denominator": 24,
+      "failures_at_turn": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 6,
+      "order": "original",
+      "rate": 0.25,
+      "turn": 8
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 23,
+      "order": "random_1",
+      "rate": 0.9583333333333334,
+      "turn": 2
+    },
+    {
+      "at_risk": 23,
+      "denominator": 24,
+      "failures_at_turn": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 21,
+      "order": "random_1",
+      "rate": 0.875,
+      "turn": 3
+    },
+    {
+      "at_risk": 21,
+      "denominator": 24,
+      "failures_at_turn": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 19,
+      "order": "random_1",
+      "rate": 0.7916666666666666,
+      "turn": 4
+    },
+    {
+      "at_risk": 19,
+      "denominator": 24,
+      "failures_at_turn": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 14,
+      "order": "random_1",
+      "rate": 0.5833333333333334,
+      "turn": 5
+    },
+    {
+      "at_risk": 14,
+      "denominator": 24,
+      "failures_at_turn": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 12,
+      "order": "random_1",
+      "rate": 0.5,
+      "turn": 6
+    },
+    {
+      "at_risk": 12,
+      "denominator": 24,
+      "failures_at_turn": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 11,
+      "order": "random_1",
+      "rate": 0.4583333333333333,
+      "turn": 7
+    },
+    {
+      "at_risk": 11,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 11,
+      "order": "random_1",
+      "rate": 0.4583333333333333,
+      "turn": 8
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 2
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 22,
+      "order": "random_2",
+      "rate": 0.9166666666666666,
+      "turn": 3
+    },
+    {
+      "at_risk": 22,
+      "denominator": 24,
+      "failures_at_turn": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 17,
+      "order": "random_2",
+      "rate": 0.7083333333333334,
+      "turn": 4
+    },
+    {
+      "at_risk": 17,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 17,
+      "order": "random_2",
+      "rate": 0.7083333333333334,
+      "turn": 5
+    },
+    {
+      "at_risk": 17,
+      "denominator": 24,
+      "failures_at_turn": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 12,
+      "order": "random_2",
+      "rate": 0.5,
+      "turn": 6
+    },
+    {
+      "at_risk": 12,
+      "denominator": 24,
+      "failures_at_turn": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 6,
+      "order": "random_2",
+      "rate": 0.25,
+      "turn": 7
+    },
+    {
+      "at_risk": 6,
+      "denominator": 24,
+      "failures_at_turn": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 5,
+      "order": "random_2",
+      "rate": 0.20833333333333334,
+      "turn": 8
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 23,
+      "order": "reverse",
+      "rate": 0.9583333333333334,
+      "turn": 2
+    },
+    {
+      "at_risk": 23,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 23,
+      "order": "reverse",
+      "rate": 0.9583333333333334,
+      "turn": 3
+    },
+    {
+      "at_risk": 23,
+      "denominator": 24,
+      "failures_at_turn": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 20,
+      "order": "reverse",
+      "rate": 0.8333333333333334,
+      "turn": 4
+    },
+    {
+      "at_risk": 20,
+      "denominator": 24,
+      "failures_at_turn": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 15,
+      "order": "reverse",
+      "rate": 0.625,
+      "turn": 5
+    },
+    {
+      "at_risk": 15,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 15,
+      "order": "reverse",
+      "rate": 0.625,
+      "turn": 6
+    },
+    {
+      "at_risk": 15,
+      "denominator": 24,
+      "failures_at_turn": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 12,
+      "order": "reverse",
+      "rate": 0.5,
+      "turn": 7
+    },
+    {
+      "at_risk": 12,
+      "denominator": 24,
+      "failures_at_turn": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 9,
+      "order": "reverse",
+      "rate": 0.375,
+      "turn": 8
+    }
+  ],
+  "record_count": 595,
+  "response_count": 595,
+  "state_certification": [
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "unknown": 6
+      },
+      "load": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 6,
+        "no_op": 9,
+        "unknown": 1
+      },
+      "load": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 13,
+        "no_op": 2,
+        "unknown": 1
+      },
+      "load": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 2,
+        "unknown": 4
+      },
+      "load": 4,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "old_rules_broken": {
+        "denominator": 15,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 15,
+        "numerator": 13,
+        "rate": 0.8666666666666667
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "interfering": 1,
+        "no_op": 4
+      },
+      "load": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 15,
+        "numerator": 13,
+        "rate": 0.8666666666666667
+      },
+      "old_rules_broken": {
+        "denominator": 13,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 15,
+      "retention": {
+        "denominator": 15,
+        "numerator": 13,
+        "rate": 0.8666666666666667
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 13,
+        "numerator": 13,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 3
+      },
+      "load": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 13,
+        "numerator": 13,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 13,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 13,
+      "retention": {
+        "denominator": 13,
+        "numerator": 13,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 13,
+        "numerator": 10,
+        "rate": 0.7692307692307693
+      },
+      "incoming_certificate_counts": {
+        "independent": 8,
+        "no_op": 5
+      },
+      "load": 7,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 13,
+        "numerator": 10,
+        "rate": 0.7692307692307693
+      },
+      "old_rules_broken": {
+        "denominator": 10,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 13,
+      "retention": {
+        "denominator": 13,
+        "numerator": 10,
+        "rate": 0.7692307692307693
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 10,
+        "numerator": 8,
+        "rate": 0.8
+      },
+      "incoming_certificate_counts": {
+        "independent": 4,
+        "no_op": 6
+      },
+      "load": 8,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 10,
+        "numerator": 8,
+        "rate": 0.8
+      },
+      "old_rules_broken": {
+        "denominator": 8,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 10,
+      "retention": {
+        "denominator": 10,
+        "numerator": 8,
+        "rate": 0.8
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 16
+      },
+      "load": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 14,
+        "rate": 0.875
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "interfering": 1,
+        "no_op": 2,
+        "unknown": 2
+      },
+      "load": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 14,
+        "rate": 0.875
+      },
+      "old_rules_broken": {
+        "denominator": 14,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 14,
+        "rate": 0.875
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 14,
+        "numerator": 12,
+        "rate": 0.8571428571428571
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 4,
+        "no_op": 1
+      },
+      "load": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 14,
+        "numerator": 12,
+        "rate": 0.8571428571428571
+      },
+      "old_rules_broken": {
+        "denominator": 14,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 14,
+      "retention": {
+        "denominator": 14,
+        "numerator": 14,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 12,
+        "numerator": 11,
+        "rate": 0.9166666666666666
+      },
+      "incoming_certificate_counts": {
+        "independent": 7,
+        "no_op": 1,
+        "unknown": 4
+      },
+      "load": 4,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 12,
+        "numerator": 11,
+        "rate": 0.9166666666666666
+      },
+      "old_rules_broken": {
+        "denominator": 12,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 12,
+      "retention": {
+        "denominator": 12,
+        "numerator": 12,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 11,
+        "numerator": 11,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "unknown": 1
+      },
+      "load": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 11,
+        "numerator": 11,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 11,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 11,
+      "retention": {
+        "denominator": 11,
+        "numerator": 11,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 11,
+        "numerator": 11,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 5,
+        "interfering": 1,
+        "no_op": 5
+      },
+      "load": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 11,
+        "numerator": 11,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 11,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 11,
+      "retention": {
+        "denominator": 11,
+        "numerator": 11,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 11,
+        "numerator": 8,
+        "rate": 0.7272727272727273
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 1
+      },
+      "load": 7,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 11,
+        "numerator": 9,
+        "rate": 0.8181818181818182
+      },
+      "old_rules_broken": {
+        "denominator": 11,
+        "numerator": 2,
+        "rate": 0.18181818181818182
+      },
+      "records": 11,
+      "retention": {
+        "denominator": 11,
+        "numerator": 9,
+        "rate": 0.8181818181818182
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 8,
+        "numerator": 8,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 2,
+        "interfering": 4,
+        "no_op": 2
+      },
+      "load": 8,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 8,
+        "numerator": 8,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 8,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 8,
+      "retention": {
+        "denominator": 8,
+        "numerator": 8,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "unknown": 7
+      },
+      "load": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "no_op": 7
+      },
+      "load": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "no_op": 4
+      },
+      "load": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 14,
+        "rate": 0.875
+      },
+      "incoming_certificate_counts": {
+        "independent": 4,
+        "interfering": 5,
+        "no_op": 2,
+        "unknown": 5
+      },
+      "load": 4,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 2,
+        "rate": 0.125
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 14,
+        "rate": 0.875
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 14,
+        "numerator": 10,
+        "rate": 0.7142857142857143
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "no_op": 2,
+        "unknown": 1
+      },
+      "load": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 14,
+        "numerator": 14,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 14,
+        "numerator": 5,
+        "rate": 0.35714285714285715
+      },
+      "records": 14,
+      "retention": {
+        "denominator": 14,
+        "numerator": 10,
+        "rate": 0.7142857142857143
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 10,
+        "numerator": 7,
+        "rate": 0.7
+      },
+      "incoming_certificate_counts": {
+        "independent": 2,
+        "interfering": 2,
+        "no_op": 6
+      },
+      "load": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 10,
+        "numerator": 8,
+        "rate": 0.8
+      },
+      "old_rules_broken": {
+        "denominator": 9,
+        "numerator": 1,
+        "rate": 0.1111111111111111
+      },
+      "records": 10,
+      "retention": {
+        "denominator": 10,
+        "numerator": 8,
+        "rate": 0.8
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 7,
+        "numerator": 6,
+        "rate": 0.8571428571428571
+      },
+      "incoming_certificate_counts": {
+        "interfering": 1,
+        "no_op": 6
+      },
+      "load": 7,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 7,
+        "numerator": 7,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 7,
+        "numerator": 3,
+        "rate": 0.42857142857142855
+      },
+      "records": 7,
+      "retention": {
+        "denominator": 7,
+        "numerator": 6,
+        "rate": 0.8571428571428571
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 6,
+        "numerator": 6,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 6
+      },
+      "load": 8,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 6,
+        "numerator": 6,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 6,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 6,
+      "retention": {
+        "denominator": 6,
+        "numerator": 6,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 8,
+        "no_op": 1,
+        "unknown": 7
+      },
+      "load": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 4,
+        "unknown": 2
+      },
+      "load": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 3,
+        "no_op": 4,
+        "unknown": 9
+      },
+      "load": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 13,
+        "rate": 0.8125
+      },
+      "incoming_certificate_counts": {
+        "independent": 13,
+        "no_op": 3
+      },
+      "load": 4,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 13,
+        "rate": 0.8125
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 13,
+        "numerator": 9,
+        "rate": 0.6923076923076923
+      },
+      "incoming_certificate_counts": {
+        "independent": 5,
+        "no_op": 3,
+        "unknown": 5
+      },
+      "load": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 13,
+        "numerator": 9,
+        "rate": 0.6923076923076923
+      },
+      "old_rules_broken": {
+        "denominator": 13,
+        "numerator": 4,
+        "rate": 0.3076923076923077
+      },
+      "records": 13,
+      "retention": {
+        "denominator": 13,
+        "numerator": 10,
+        "rate": 0.7692307692307693
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 9,
+        "numerator": 7,
+        "rate": 0.7777777777777778
+      },
+      "incoming_certificate_counts": {
+        "independent": 6,
+        "no_op": 3
+      },
+      "load": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 9,
+        "numerator": 9,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 9,
+        "numerator": 3,
+        "rate": 0.3333333333333333
+      },
+      "records": 9,
+      "retention": {
+        "denominator": 9,
+        "numerator": 7,
+        "rate": 0.7777777777777778
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 7,
+        "numerator": 5,
+        "rate": 0.7142857142857143
+      },
+      "incoming_certificate_counts": {
+        "no_op": 6,
+        "unknown": 1
+      },
+      "load": 7,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 7,
+        "numerator": 6,
+        "rate": 0.8571428571428571
+      },
+      "old_rules_broken": {
+        "denominator": 7,
+        "numerator": 1,
+        "rate": 0.14285714285714285
+      },
+      "records": 7,
+      "retention": {
+        "denominator": 7,
+        "numerator": 6,
+        "rate": 0.8571428571428571
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 5,
+        "numerator": 4,
+        "rate": 0.8
+      },
+      "incoming_certificate_counts": {
+        "independent": 2,
+        "no_op": 3
+      },
+      "load": 8,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 5,
+        "numerator": 5,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 5,
+        "numerator": 2,
+        "rate": 0.4
+      },
+      "records": 5,
+      "retention": {
+        "denominator": 5,
+        "numerator": 4,
+        "rate": 0.8
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "unknown": 4
+      },
+      "load": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "no_op": 5,
+        "unknown": 2
+      },
+      "load": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 13,
+        "rate": 0.8125
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 4,
+        "unknown": 3
+      },
+      "load": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "old_rules_broken": {
+        "denominator": 15,
+        "numerator": 2,
+        "rate": 0.13333333333333333
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 13,
+        "rate": 0.8125
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 13,
+        "numerator": 11,
+        "rate": 0.8461538461538461
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "no_op": 1,
+        "unknown": 3
+      },
+      "load": 4,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 13,
+        "numerator": 12,
+        "rate": 0.9230769230769231
+      },
+      "old_rules_broken": {
+        "denominator": 13,
+        "numerator": 1,
+        "rate": 0.07692307692307693
+      },
+      "records": 13,
+      "retention": {
+        "denominator": 13,
+        "numerator": 12,
+        "rate": 0.9230769230769231
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 11,
+        "numerator": 6,
+        "rate": 0.5454545454545454
+      },
+      "incoming_certificate_counts": {
+        "independent": 7,
+        "no_op": 2,
+        "unknown": 2
+      },
+      "load": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 11,
+        "numerator": 6,
+        "rate": 0.5454545454545454
+      },
+      "old_rules_broken": {
+        "denominator": 6,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 11,
+      "retention": {
+        "denominator": 11,
+        "numerator": 6,
+        "rate": 0.5454545454545454
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 6,
+        "numerator": 2,
+        "rate": 0.3333333333333333
+      },
+      "incoming_certificate_counts": {
+        "independent": 2,
+        "interfering": 3,
+        "unknown": 1
+      },
+      "load": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 6,
+        "numerator": 4,
+        "rate": 0.6666666666666666
+      },
+      "old_rules_broken": {
+        "denominator": 5,
+        "numerator": 2,
+        "rate": 0.4
+      },
+      "records": 6,
+      "retention": {
+        "denominator": 6,
+        "numerator": 3,
+        "rate": 0.5
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 2,
+        "numerator": 2,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 1,
+        "no_op": 1
+      },
+      "load": 7,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 2,
+        "numerator": 2,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 2,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 2,
+      "retention": {
+        "denominator": 2,
+        "numerator": 2,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 2,
+        "numerator": 2,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 1,
+        "unknown": 1
+      },
+      "load": 8,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 2,
+        "numerator": 2,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 2,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 2,
+      "retention": {
+        "denominator": 2,
+        "numerator": 2,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "unknown": 5
+      },
+      "load": 1,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "no_op": 5
+      },
+      "load": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "interfering": 1,
+        "no_op": 2,
+        "unknown": 1
+      },
+      "load": 3,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 15,
+        "numerator": 13,
+        "rate": 0.8666666666666667
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "no_op": 5,
+        "unknown": 1
+      },
+      "load": 4,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 15,
+        "numerator": 13,
+        "rate": 0.8666666666666667
+      },
+      "old_rules_broken": {
+        "denominator": 14,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 15,
+      "retention": {
+        "denominator": 15,
+        "numerator": 14,
+        "rate": 0.9333333333333333
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 13,
+        "numerator": 11,
+        "rate": 0.8461538461538461
+      },
+      "incoming_certificate_counts": {
+        "independent": 6,
+        "no_op": 6,
+        "unknown": 1
+      },
+      "load": 5,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 13,
+        "numerator": 12,
+        "rate": 0.9230769230769231
+      },
+      "old_rules_broken": {
+        "denominator": 13,
+        "numerator": 1,
+        "rate": 0.07692307692307693
+      },
+      "records": 13,
+      "retention": {
+        "denominator": 13,
+        "numerator": 12,
+        "rate": 0.9230769230769231
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 11,
+        "numerator": 7,
+        "rate": 0.6363636363636364
+      },
+      "incoming_certificate_counts": {
+        "independent": 6,
+        "interfering": 3,
+        "unknown": 2
+      },
+      "load": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 11,
+        "numerator": 10,
+        "rate": 0.9090909090909091
+      },
+      "old_rules_broken": {
+        "denominator": 10,
+        "numerator": 3,
+        "rate": 0.3
+      },
+      "records": 11,
+      "retention": {
+        "denominator": 11,
+        "numerator": 7,
+        "rate": 0.6363636363636364
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 7,
+        "numerator": 6,
+        "rate": 0.8571428571428571
+      },
+      "incoming_certificate_counts": {
+        "independent": 1,
+        "no_op": 5,
+        "unknown": 1
+      },
+      "load": 7,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 7,
+        "numerator": 7,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 7,
+        "numerator": 1,
+        "rate": 0.14285714285714285
+      },
+      "records": 7,
+      "retention": {
+        "denominator": 7,
+        "numerator": 6,
+        "rate": 0.8571428571428571
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 6,
+        "numerator": 3,
+        "rate": 0.5
+      },
+      "incoming_certificate_counts": {
+        "no_op": 2,
+        "unknown": 4
+      },
+      "load": 8,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 6,
+        "numerator": 3,
+        "rate": 0.5
+      },
+      "old_rules_broken": {
+        "denominator": 6,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 6,
+      "retention": {
+        "denominator": 6,
+        "numerator": 6,
+        "rate": 1.0
+      },
+      "track": "order"
+    }
+  ],
+  "summary": [
+    {
+      "all_old_success": {
+        "denominator": 499,
+        "numerator": 452,
+        "rate": 0.905811623246493
+      },
+      "condition": "all",
+      "fractional_retention": {
+        "denominator": 499,
+        "numerator": 471.2476190476192,
+        "rate": 0.944384006107453
+      },
+      "full_success": {
+        "denominator": 595,
+        "numerator": 530,
+        "rate": 0.8907563025210085
+      },
+      "missing_infrastructure": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "new_success": {
+        "denominator": 595,
+        "numerator": 553,
+        "rate": 0.9294117647058824
+      },
+      "new_success_with_regression": {
+        "denominator": 499,
+        "numerator": 23
+      },
+      "old_rules_broken": {
+        "denominator": 575,
+        "numerator": 33,
+        "rate": 0.057391304347826085
+      },
+      "outcomes": {
+        "format_failure": 20,
+        "full_success": 530,
+        "new_and_old_failure": 4,
+        "new_failure_old_retained": 18,
+        "new_success_old_failure": 23
+      },
+      "records": 595,
+      "regression_given_new_success": {
+        "denominator": 457,
+        "numerator": 23
+      },
+      "retention": {
+        "denominator": 499,
+        "numerator": 452,
+        "rate": 0.905811623246493
+      },
+      "track": "order"
+    }
+  ],
+  "survival": [
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 96,
+      "track": "order",
+      "turn": 1
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 2,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 94,
+      "track": "order",
+      "turn": 2
+    },
+    {
+      "at_risk": 94,
+      "denominator": 96,
+      "failures_at_turn": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 88,
+      "track": "order",
+      "turn": 3
+    },
+    {
+      "at_risk": 88,
+      "denominator": 96,
+      "failures_at_turn": 11,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 77,
+      "track": "order",
+      "turn": 4
+    },
+    {
+      "at_risk": 77,
+      "denominator": 96,
+      "failures_at_turn": 17,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 60,
+      "track": "order",
+      "turn": 5
+    },
+    {
+      "at_risk": 60,
+      "denominator": 96,
+      "failures_at_turn": 13,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 47,
+      "track": "order",
+      "turn": 6
+    },
+    {
+      "at_risk": 47,
+      "denominator": 96,
+      "failures_at_turn": 10,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 37,
+      "track": "order",
+      "turn": 7
+    },
+    {
+      "at_risk": 37,
+      "denominator": 96,
+      "failures_at_turn": 6,
+      "model": "gemma-4-31b-it-qat-w4a16-ct",
+      "numerator": 31,
+      "track": "order",
+      "turn": 8
+    }
+  ]
+}

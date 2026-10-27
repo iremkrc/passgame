@@ -1,0 +1,1851 @@
+{
+  "schema_version": 1,
+  "exported_at_utc": "2026-10-27T14:28:42.874177+00:00",
+  "scope": "Completed version-3 development order runs; 96 games per condition",
+  "notes": [
+    "Original outputs remain unchanged.",
+    "Published completion.json output_dir fields use repository-relative publication paths; exact original and published SHA-256 hashes are recorded per file.",
+    "Only completed ML Cloud Qwen 16K repetition 1 is included; repetitions 2 and 3 are incomplete and excluded.",
+    "Thinking modes, temperatures, token caps and precisions vary across conditions and must remain separate."
+  ],
+  "runs": [
+    {
+      "name": "gemma4-12b-nonthinking-t0-4k",
+      "source": "outputs/pilot-results-3001259/dev-gemma4-12b-qat-v3-order-20261024",
+      "job_id": "3001259",
+      "directory": "results/development-v3/gemma4-12b-nonthinking-t0-4k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 22,
+      "response_count": 505,
+      "completion_cap_hits": 0,
+      "responses_with_reasoning": 0,
+      "mean_successful_steps": 4.489583333333333,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "2525a0bc63d0989d75116ec905013c53b186d6c16218bd3b901d36f09eabdbb4",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 0,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": null,
+            "base_url": "http://127.0.0.1:8000/v1",
+            "deployment": "self_hosted",
+            "input_price_per_million": 0,
+            "max_input_tokens": 32768,
+            "model_id": "gemma-4-12b-it-qat-w4a16-ct",
+            "name": "gemma-4-12b-it-qat-w4a16-ct",
+            "output_price_per_million": 0,
+            "parameters": {
+              "max_tokens": 4096,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 180,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-gemma4-12b-qat-v3-order-20261024",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-gemma4-12b-qat-four-orders-fence-tolerant-v3-20261024",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 3023593,
+          "source_sha256": "8de8c245c2bbfed683147d03679ed3b7b18d8868be44c438a12d3942554e46f0",
+          "published_sha256": "8de8c245c2bbfed683147d03679ed3b7b18d8868be44c438a12d3942554e46f0",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3511,
+          "source_sha256": "e89598f27dbd6225c59d4e9e341e9f856406aa24f1713a7156417999ba19ec87",
+          "published_sha256": "e89598f27dbd6225c59d4e9e341e9f856406aa24f1713a7156417999ba19ec87",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 690,
+          "source_sha256": "c8f4dc02e971eabbc17b848bd6d34550592fff83a96218d45889efca62a59fe2",
+          "published_sha256": "2d3f39108c888f403136e3de3258d64ba518cdc10b59f04df83a0657062ed3b9",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 117998,
+          "source_sha256": "e579371cdf6aa55fd18f90a2023d351c31f51ae20d759ad9db7be8ae159019ed",
+          "published_sha256": "e579371cdf6aa55fd18f90a2023d351c31f51ae20d759ad9db7be8ae159019ed",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 230,
+          "source_sha256": "142e9c4dabdf5d097d9d643e88191d26bb5d80577ad7aff0ce33937f098ecd5c",
+          "published_sha256": "142e9c4dabdf5d097d9d643e88191d26bb5d80577ad7aff0ce33937f098ecd5c",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 443,
+          "source_sha256": "9f6a3c69953faa6aa91cbd92a4507efa2dfed025c2d45191abeeac4c38b4f7d7",
+          "published_sha256": "9f6a3c69953faa6aa91cbd92a4507efa2dfed025c2d45191abeeac4c38b4f7d7",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 457,
+          "source_sha256": "650423393183ef9d19cafacda37ddab78edf6d152f7be7601190f15141003377",
+          "published_sha256": "650423393183ef9d19cafacda37ddab78edf6d152f7be7601190f15141003377",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 799,
+          "source_sha256": "39509fb45a1615887c456754faafe224132a1d09e9388d558210e98ce14ee163",
+          "published_sha256": "39509fb45a1615887c456754faafe224132a1d09e9388d558210e98ce14ee163",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 2201,
+          "source_sha256": "f33b5e4df9a5c1948a9b532ae8ee60d0ff5ad3b47a731c83bdcbba8e29e959df",
+          "published_sha256": "f33b5e4df9a5c1948a9b532ae8ee60d0ff5ad3b47a731c83bdcbba8e29e959df",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 96455,
+          "source_sha256": "15777c401aeac4f95fdd8db99ad0cb44a95b92b61bfd6ebd74bf6e7a6b52d3e1",
+          "published_sha256": "15777c401aeac4f95fdd8db99ad0cb44a95b92b61bfd6ebd74bf6e7a6b52d3e1",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 40,
+          "source_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "published_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "redacted_fields": []
+        }
+      ],
+      "model_revision": "1d2c2d7f2466070e69d6fb3fd5ce9a7d75f2f6ee",
+      "source_snapshot_commit": "6cabe0c387dda9420a14b0eca52428c53eb2732e",
+      "serving_image": null,
+      "serving_extra_args": null
+    },
+    {
+      "name": "gemma4-26b-a4b-nonthinking-t0-4k",
+      "source": "outputs/pilot-results-3001392/dev-gemma4-26b-a4b-bf16-v3-order-20261024",
+      "job_id": "3001392",
+      "directory": "results/development-v3/gemma4-26b-a4b-nonthinking-t0-4k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 27,
+      "response_count": 560,
+      "completion_cap_hits": 1,
+      "responses_with_reasoning": 0,
+      "mean_successful_steps": 5.114583333333333,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "b4572f8dcd3d8b0e2d038cc7c15e2e4e3ac3dc7e8cb0abc1d960a16ba0c3f669",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 0,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": null,
+            "base_url": "http://127.0.0.1:8000/v1",
+            "deployment": "self_hosted",
+            "input_price_per_million": 0,
+            "max_input_tokens": 32768,
+            "model_id": "gemma-4-26b-a4b-it-bf16",
+            "name": "gemma-4-26b-a4b-it-bf16",
+            "output_price_per_million": 0,
+            "parameters": {
+              "max_tokens": 4096,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 180,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-gemma4-26b-a4b-bf16-v3-order-20261024",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-gemma4-26b-a4b-bf16-four-orders-fence-tolerant-v3-20261024",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 3416839,
+          "source_sha256": "e293da49aab840fe9f3bdb48cd640d36b7a1cdc5522deda7919f5dbba80d7528",
+          "published_sha256": "e293da49aab840fe9f3bdb48cd640d36b7a1cdc5522deda7919f5dbba80d7528",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3513,
+          "source_sha256": "4f8656d23d477596034e1524419cae40196fbde6d170a9ebd7b2982139b27e78",
+          "published_sha256": "4f8656d23d477596034e1524419cae40196fbde6d170a9ebd7b2982139b27e78",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 699,
+          "source_sha256": "425d13a7675e13f87c925822911c03b6ba31f2e98a8973762e6c8ff8175bf39a",
+          "published_sha256": "462c3652db1820b755e1fecb66d6b63c9e32851b0f6a276f1d54fa4f8ca27c8b",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 116675,
+          "source_sha256": "812558e59c0258b4f488b6db901dd026a77a8bbbb0b38c8d7ded3a9e7a25d3e2",
+          "published_sha256": "812558e59c0258b4f488b6db901dd026a77a8bbbb0b38c8d7ded3a9e7a25d3e2",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 226,
+          "source_sha256": "e5f28ad7a54a452a45f6baddc9b5fafaa0d3d95a5894baab50fee6bb34cf7b98",
+          "published_sha256": "e5f28ad7a54a452a45f6baddc9b5fafaa0d3d95a5894baab50fee6bb34cf7b98",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 438,
+          "source_sha256": "cbbb8edd38633ffd871a8f5ab0884955e63f08b86f2d232caf973b08a13dc88e",
+          "published_sha256": "cbbb8edd38633ffd871a8f5ab0884955e63f08b86f2d232caf973b08a13dc88e",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 400,
+          "source_sha256": "ae96f40fe481039e32488c2544b56f7b524895aee64f667d357ead344a924386",
+          "published_sha256": "ae96f40fe481039e32488c2544b56f7b524895aee64f667d357ead344a924386",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 711,
+          "source_sha256": "d966f5f6288318fb2a61dc80da29d269a6d77950ee29b1da81519d025a46ca0b",
+          "published_sha256": "d966f5f6288318fb2a61dc80da29d269a6d77950ee29b1da81519d025a46ca0b",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 1924,
+          "source_sha256": "c90efcbdad927331c174be1c08870100b6a52c049db4a4dc6a396ac2e7d4aabc",
+          "published_sha256": "c90efcbdad927331c174be1c08870100b6a52c049db4a4dc6a396ac2e7d4aabc",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 106960,
+          "source_sha256": "6b4ef459e487ca9946cb80fe01d1196e31f656f47348d67fa6447e82c0f9143a",
+          "published_sha256": "6b4ef459e487ca9946cb80fe01d1196e31f656f47348d67fa6447e82c0f9143a",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 40,
+          "source_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "published_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "redacted_fields": []
+        }
+      ],
+      "model_revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52",
+      "source_snapshot_commit": "4883fb94e359d7ec1b32a0f1d86f5729d070aa1e",
+      "serving_image": null,
+      "serving_extra_args": null
+    },
+    {
+      "name": "gemma4-12b-thinking-t1-16k",
+      "source": "outputs/pilot-results-3002135/dev-gemma4-12b-qat-thinking-t1-16k-v3-20261025-rep1",
+      "job_id": "3002135",
+      "directory": "results/development-v3/gemma4-12b-thinking-t1-16k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 75,
+      "response_count": 682,
+      "completion_cap_hits": 20,
+      "responses_with_reasoning": 682,
+      "mean_successful_steps": 6.885416666666667,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "1296d3b140ae2d53387baa1392ae5b0e5e79be6f65f3b6cc8a3b60cd50698b8d",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 0,
+        "dataset_dir": "data/sequential-v3",
+        "decoding_condition": "thinking_temperature1_top_p095_top_k64_16k_v1",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": null,
+            "base_url": "http://127.0.0.1:18401/v1",
+            "deployment": "self_hosted",
+            "input_price_per_million": 0,
+            "max_input_tokens": 32768,
+            "model_id": "gemma-4-12b-it-qat-w4a16-ct-thinking-t1-16k-rep1",
+            "name": "gemma-4-12b-it-qat-w4a16-ct-thinking-t1-16k-rep1",
+            "output_price_per_million": 0,
+            "parameters": {
+              "chat_template_kwargs": {
+                "enable_thinking": true
+              },
+              "max_tokens": 16384,
+              "seed": 20261024,
+              "temperature": 1.0,
+              "top_k": 64,
+              "top_p": 0.95
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-gemma4-12b-qat-thinking-t1-16k-v3-20261025-rep1",
+        "remind_previous_rules": true,
+        "repetition_count": 1,
+        "repetition_index": 1,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-gemma4-12b-qat-thinking-t1-16k-one-repetition-v3-20261025-rep1",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 7468391,
+          "source_sha256": "0f63f5d807645e33293b9e76db1c341d3421b5356712f577257e6f378b34948b",
+          "published_sha256": "0f63f5d807645e33293b9e76db1c341d3421b5356712f577257e6f378b34948b",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3871,
+          "source_sha256": "6b104a12d1d5182bb0682d36ef2d30a9c380f7180c0844eeec3a5ed9fa0b2fb0",
+          "published_sha256": "6b104a12d1d5182bb0682d36ef2d30a9c380f7180c0844eeec3a5ed9fa0b2fb0",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 696,
+          "source_sha256": "2eac3a0183bfab037a9205943fcdcdfd136edd26194fb75dc637668f44d9d965",
+          "published_sha256": "5f1f3ba001c6c168a9aafc87862cbab44098f21e8f6b99a8d0879dc4f9ecadda",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 121991,
+          "source_sha256": "0593dbb10ab524236383ef43ffbac048a9ad3a0952bb19cbaf4a4e1445edd161",
+          "published_sha256": "0593dbb10ab524236383ef43ffbac048a9ad3a0952bb19cbaf4a4e1445edd161",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 249,
+          "source_sha256": "9e40965d2a0f1cd48f4e33735cce7df12dd841e8e3c9f9fedc71ff9da262e191",
+          "published_sha256": "9e40965d2a0f1cd48f4e33735cce7df12dd841e8e3c9f9fedc71ff9da262e191",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 452,
+          "source_sha256": "a9dab4e7d1ac176fbaea1af8356471abeca0374a6ff973c8b52434899284454f",
+          "published_sha256": "a9dab4e7d1ac176fbaea1af8356471abeca0374a6ff973c8b52434899284454f",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 551,
+          "source_sha256": "b60cdae3225979199a51e3aa0567a3da66e71c62845fc385e5f1f1ee81547e97",
+          "published_sha256": "b60cdae3225979199a51e3aa0567a3da66e71c62845fc385e5f1f1ee81547e97",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 887,
+          "source_sha256": "58ba6f09bcd5fb30d315934b95d452fa7fd4c7f02129ac4d64b9ddd9b3579758",
+          "published_sha256": "58ba6f09bcd5fb30d315934b95d452fa7fd4c7f02129ac4d64b9ddd9b3579758",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 2812,
+          "source_sha256": "e257f8b7d4de16320c1f0009910dca3ab39e25b859208b9606ab4ee7f0d4b766",
+          "published_sha256": "e257f8b7d4de16320c1f0009910dca3ab39e25b859208b9606ab4ee7f0d4b766",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 130262,
+          "source_sha256": "2be61737f452cd04689b073276c4783df1e4de5ec7d0f06c26fbf45692d9f250",
+          "published_sha256": "2be61737f452cd04689b073276c4783df1e4de5ec7d0f06c26fbf45692d9f250",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 40,
+          "source_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "published_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "redacted_fields": []
+        }
+      ],
+      "model_revision": "1d2c2d7f2466070e69d6fb3fd5ce9a7d75f2f6ee",
+      "source_snapshot_commit": "2ec340f9d034356ee8d66ee091f2adb471f3282e",
+      "serving_image": "vllm/vllm-openai:v0.24.0",
+      "serving_extra_args": "--tensor-parallel-size 1 --reasoning-parser gemma4 --max-num-seqs 1"
+    },
+    {
+      "name": "gemma4-26b-a4b-thinking-t1-16k",
+      "source": "outputs/pilot-results-3002136/dev-gemma4-26b-a4b-bf16-thinking-t1-16k-v3-20261025-rep1",
+      "job_id": "3002136",
+      "directory": "results/development-v3/gemma4-26b-a4b-thinking-t1-16k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 95,
+      "response_count": 768,
+      "completion_cap_hits": 0,
+      "responses_with_reasoning": 768,
+      "mean_successful_steps": 7.989583333333333,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "c3368753656906372c5ca81798d38f197768f2e4a26d4dd4552a7c1fb9d48dbc",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 0,
+        "dataset_dir": "data/sequential-v3",
+        "decoding_condition": "thinking_temperature1_top_p095_top_k64_16k_v1",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": null,
+            "base_url": "http://127.0.0.1:18501/v1",
+            "deployment": "self_hosted",
+            "input_price_per_million": 0,
+            "max_input_tokens": 32768,
+            "model_id": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+            "name": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+            "output_price_per_million": 0,
+            "parameters": {
+              "chat_template_kwargs": {
+                "enable_thinking": true
+              },
+              "max_tokens": 16384,
+              "seed": 20261024,
+              "temperature": 1.0,
+              "top_k": 64,
+              "top_p": 0.95
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-gemma4-26b-a4b-bf16-thinking-t1-16k-v3-20261025-rep1",
+        "remind_previous_rules": true,
+        "repetition_count": 1,
+        "repetition_index": 1,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-gemma4-26b-a4b-bf16-thinking-t1-16k-one-repetition-v3-20261025-rep1",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 7599063,
+          "source_sha256": "c431bf22ca265fdf24fc2d11e6caad7fda4662f1f61eb26d1dab968e8367a447",
+          "published_sha256": "c431bf22ca265fdf24fc2d11e6caad7fda4662f1f61eb26d1dab968e8367a447",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3873,
+          "source_sha256": "a99561756c5a5c12c02e7ddf6ead3f8871b9cda97fd5281059a1615d4877d70b",
+          "published_sha256": "a99561756c5a5c12c02e7ddf6ead3f8871b9cda97fd5281059a1615d4877d70b",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 703,
+          "source_sha256": "bfdb01f4a3eae745db5edc4172ce16da441fe46c723a359a8d17dbd1a4e32ad9",
+          "published_sha256": "27094384869c1d4109776d6b4730f222416d594b3eaf9a9738c48b031f094cd7",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 120421,
+          "source_sha256": "15f2faf17c1ccbe7ae05f5192628632a47c53bedebf1eeef9bed4035fa5632e3",
+          "published_sha256": "15f2faf17c1ccbe7ae05f5192628632a47c53bedebf1eeef9bed4035fa5632e3",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 232,
+          "source_sha256": "80d991e3bd4d4e270dc30dd2f8b305fe231827d266ffd7ab9f22271ad941f739",
+          "published_sha256": "80d991e3bd4d4e270dc30dd2f8b305fe231827d266ffd7ab9f22271ad941f739",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 395,
+          "source_sha256": "ebbea3e03c36e0c46a8c3c3c522d4561ce6332c9a513bea8122cf262cc1fd803",
+          "published_sha256": "ebbea3e03c36e0c46a8c3c3c522d4561ce6332c9a513bea8122cf262cc1fd803",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 485,
+          "source_sha256": "199baf95cf51f61b21b8b331e274a3f87fa5017035fc4bb9f33e4216f3539a6f",
+          "published_sha256": "199baf95cf51f61b21b8b331e274a3f87fa5017035fc4bb9f33e4216f3539a6f",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 720,
+          "source_sha256": "62aa2d626c8b32787a091805303f9ffe3cc4464a9d862e6c0dc30949da0295df",
+          "published_sha256": "62aa2d626c8b32787a091805303f9ffe3cc4464a9d862e6c0dc30949da0295df",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 2381,
+          "source_sha256": "34d854fe557557dda2ffff8b35a7fee3cab9d7924c39943ffe24187be838ab70",
+          "published_sha256": "34d854fe557557dda2ffff8b35a7fee3cab9d7924c39943ffe24187be838ab70",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 146688,
+          "source_sha256": "d03f97ac713f50baab61b5e4056a6f64ffe817fb34a6bc6ae93e48ddcf2721da",
+          "published_sha256": "d03f97ac713f50baab61b5e4056a6f64ffe817fb34a6bc6ae93e48ddcf2721da",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 40,
+          "source_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "published_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "redacted_fields": []
+        }
+      ],
+      "model_revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52",
+      "source_snapshot_commit": "1a4fe651571aa17357942bd0571a0e699f8ec62e",
+      "serving_image": "vllm/vllm-openai:v0.24.0",
+      "serving_extra_args": "--tensor-parallel-size 2 --reasoning-parser gemma4 --max-num-seqs 1"
+    },
+    {
+      "name": "qwen3.6-27b-thinking-t0-16k",
+      "source": "outputs/pilot-results-3002174/dev-qwen3.6-27b-bf16-thinking-16k-v3-20261025-rep1",
+      "job_id": "3002174",
+      "directory": "results/development-v3/qwen3.6-27b-thinking-t0-16k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 77,
+      "response_count": 659,
+      "completion_cap_hits": 19,
+      "responses_with_reasoning": 659,
+      "mean_successful_steps": 6.666666666666667,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "8cc36321b4227082d59cc0125917dd2d21717de875c21cc151722eb205a26f5a",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 0,
+        "dataset_dir": "data/sequential-v3",
+        "decoding_condition": "thinking_temperature0_16k_v1",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": null,
+            "base_url": "http://127.0.0.1:18301/v1",
+            "deployment": "self_hosted",
+            "input_price_per_million": 0,
+            "max_input_tokens": 32768,
+            "model_id": "qwen3.6-27b-bf16-16k-rep1",
+            "name": "qwen3.6-27b-bf16-16k-rep1",
+            "output_price_per_million": 0,
+            "parameters": {
+              "max_tokens": 16384,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-qwen3.6-27b-bf16-thinking-16k-v3-20261025-rep1",
+        "remind_previous_rules": true,
+        "repetition_count": 1,
+        "repetition_index": 1,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-qwen3.6-27b-bf16-thinking-16k-one-repetition-v3-20261025-rep1",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 7160020,
+          "source_sha256": "276d809f2ec960f32ba94c3966151a117f5de198a96d89f8920ac6ba478e22e9",
+          "published_sha256": "276d809f2ec960f32ba94c3966151a117f5de198a96d89f8920ac6ba478e22e9",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3643,
+          "source_sha256": "dc2e5a3b16108d8be9fdf0bb120da293a318e2cd37bc85b34eb77e80043452f8",
+          "published_sha256": "dc2e5a3b16108d8be9fdf0bb120da293a318e2cd37bc85b34eb77e80043452f8",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 697,
+          "source_sha256": "a7f9f1cba6620c5708b3602f7c7d09aab20072aeefce1275acb9578c96d4775a",
+          "published_sha256": "0b0b3addc37697942010898b1b71aa037e5709223860aa20cb745a5c9e1afe4f",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 117637,
+          "source_sha256": "b995f39a3700ae1e26a734ca1d85ac8e6f1f2cea4e5396dab8875ab6d279a6de",
+          "published_sha256": "b995f39a3700ae1e26a734ca1d85ac8e6f1f2cea4e5396dab8875ab6d279a6de",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 228,
+          "source_sha256": "50cc60a325bd7b09cf2c53d55d24dcc2f2b2c726e2a18a8b641c045da6a5fe28",
+          "published_sha256": "50cc60a325bd7b09cf2c53d55d24dcc2f2b2c726e2a18a8b641c045da6a5fe28",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 428,
+          "source_sha256": "18e9646572bb63b3d45a7718eaa77dc0c1e8713df56a55b42ef1ad4e2aaab163",
+          "published_sha256": "18e9646572bb63b3d45a7718eaa77dc0c1e8713df56a55b42ef1ad4e2aaab163",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 469,
+          "source_sha256": "073dcae8a0c9f77a2c024a258ebb87ee9718c673bae6a1fc68f902b2f6a3e4a7",
+          "published_sha256": "073dcae8a0c9f77a2c024a258ebb87ee9718c673bae6a1fc68f902b2f6a3e4a7",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 802,
+          "source_sha256": "291b7a02b607b642d5f307ae07363e1943ca53a7ccc30ab6b07516ec9a43f5ad",
+          "published_sha256": "291b7a02b607b642d5f307ae07363e1943ca53a7ccc30ab6b07516ec9a43f5ad",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 2168,
+          "source_sha256": "def715e72b2ac42f1658bda05cb212c532e865b531ad02cfe16a347b01b5f37c",
+          "published_sha256": "def715e72b2ac42f1658bda05cb212c532e865b531ad02cfe16a347b01b5f37c",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 125869,
+          "source_sha256": "c780b95b1bb62903380caf955dfefef478759ea4002f2d22983278fe8f749700",
+          "published_sha256": "c780b95b1bb62903380caf955dfefef478759ea4002f2d22983278fe8f749700",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 40,
+          "source_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "published_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "redacted_fields": []
+        }
+      ],
+      "model_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+      "source_snapshot_commit": "632b15a447ff73abe9c57acb62a0d33b7d149078",
+      "serving_image": "vllm/vllm-openai:v0.24.0",
+      "serving_extra_args": "--tensor-parallel-size 2 --reasoning-parser qwen3 --language-model-only --max-num-seqs 1"
+    },
+    {
+      "name": "qwen3.6-27b-nonthinking-t0-16k",
+      "source": "outputs/pilot-results-3003086/dev-qwen3.6-27b-bf16-nonthinking-16k-v3-20261025-rep1",
+      "job_id": "3003086",
+      "directory": "results/development-v3/qwen3.6-27b-nonthinking-t0-16k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 23,
+      "response_count": 583,
+      "completion_cap_hits": 0,
+      "responses_with_reasoning": 0,
+      "mean_successful_steps": 5.3125,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "ba81d3fa6ec07c94f8946b2463f0f10b45f6a70f8c7f3e70855339831f3a5e83",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 0,
+        "dataset_dir": "data/sequential-v3",
+        "decoding_condition": "nonthinking_temperature0_16k_v1",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": null,
+            "base_url": "http://127.0.0.1:18311/v1",
+            "deployment": "self_hosted",
+            "input_price_per_million": 0,
+            "max_input_tokens": 32768,
+            "model_id": "qwen3.6-27b-bf16-nonthinking-16k-rep1",
+            "name": "qwen3.6-27b-bf16-nonthinking-16k-rep1",
+            "output_price_per_million": 0,
+            "parameters": {
+              "chat_template_kwargs": {
+                "enable_thinking": false
+              },
+              "max_tokens": 16384,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-qwen3.6-27b-bf16-nonthinking-16k-v3-20261025-rep1",
+        "remind_previous_rules": true,
+        "repetition_count": 1,
+        "repetition_index": 1,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-qwen3.6-27b-bf16-nonthinking-16k-one-repetition-v3-20261025-rep1",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 3633520,
+          "source_sha256": "6b6be54f306502028df733ac6799a40b5137f3e29dfc30f240aaba85c609363c",
+          "published_sha256": "6b6be54f306502028df733ac6799a40b5137f3e29dfc30f240aaba85c609363c",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3762,
+          "source_sha256": "195b21cf3d7be68a68409d93a73e82eada706134f889cd05312c908a2e15af27",
+          "published_sha256": "195b21cf3d7be68a68409d93a73e82eada706134f889cd05312c908a2e15af27",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 703,
+          "source_sha256": "baa38e072c3c571702c56c5e8369697d5ea4f8c9bad53af79f6775b90cc6e382",
+          "published_sha256": "cd49fb3dd47b94b6ad10b81a475eb5eb99a42bf57d9ecc994093050cecb337a7",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 120381,
+          "source_sha256": "54a1f64e52f10fcfadce780312ae2429894ac9c8a18ba4e3e1d4588fb30f60d6",
+          "published_sha256": "54a1f64e52f10fcfadce780312ae2429894ac9c8a18ba4e3e1d4588fb30f60d6",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 239,
+          "source_sha256": "a8350662e37b98eb6d6fcd65c91d1ae6832d5fe0ea713b568363d2d6642a92fc",
+          "published_sha256": "a8350662e37b98eb6d6fcd65c91d1ae6832d5fe0ea713b568363d2d6642a92fc",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 525,
+          "source_sha256": "4027f36526ac0bf20b7f2f4db4d53430cd9779b3621ee571d9ee8a9da12a12e3",
+          "published_sha256": "4027f36526ac0bf20b7f2f4db4d53430cd9779b3621ee571d9ee8a9da12a12e3",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 526,
+          "source_sha256": "b77133c42f8dae575e00977fead28d16b2386acc71359049ee0c80f6ca919ed4",
+          "published_sha256": "b77133c42f8dae575e00977fead28d16b2386acc71359049ee0c80f6ca919ed4",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 859,
+          "source_sha256": "90f1dae1895bd3aa6792a22f43b7b0c83f9e55e1be2865a46049a0fcfb0299fb",
+          "published_sha256": "90f1dae1895bd3aa6792a22f43b7b0c83f9e55e1be2865a46049a0fcfb0299fb",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 2384,
+          "source_sha256": "35ad081bb746350d63f9fe3b5f5b7c2f46bc757e3a80e51bd2599f344b6663c5",
+          "published_sha256": "35ad081bb746350d63f9fe3b5f5b7c2f46bc757e3a80e51bd2599f344b6663c5",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 111353,
+          "source_sha256": "ac5383178de0fd5073da6af409a214ad198742355cd8209d8483512897f14a5e",
+          "published_sha256": "ac5383178de0fd5073da6af409a214ad198742355cd8209d8483512897f14a5e",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 40,
+          "source_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "published_sha256": "12a1068d3a0077915995116826c85f2567280350bf04b08184733a815cbe626b",
+          "redacted_fields": []
+        }
+      ],
+      "model_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+      "source_snapshot_commit": "67e7d0c9e94f0e378e071efb60e25be4b4d982f7",
+      "serving_image": "vllm/vllm-openai:v0.24.0",
+      "serving_extra_args": "--tensor-parallel-size 2 --reasoning-parser qwen3 --language-model-only --max-num-seqs 1"
+    },
+    {
+      "name": "mlcloud-gemma4-31b-thinking-t0-4k",
+      "source": "outputs/dev-mlcloud-order-v3-20261024/gemma",
+      "job_id": null,
+      "directory": "results/development-v3/mlcloud-gemma4-31b-thinking-t0-4k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 91,
+      "response_count": 758,
+      "completion_cap_hits": 5,
+      "responses_with_reasoning": 758,
+      "mean_successful_steps": 7.84375,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "90e26911ca74d4fc329a39d597da3d851c79a74f7f43e92518798d60e7057662",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 12.5,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": "TUEBINGEN_API_KEY",
+            "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+            "deployment": "provider",
+            "input_price_per_million": 0.12,
+            "max_input_tokens": 32768,
+            "model_id": "google/gemma-4-31B-it-qat-w4a16-ct",
+            "name": "gemma-4-31b-it-qat-w4a16-ct",
+            "output_price_per_million": 0.35,
+            "parameters": {
+              "max_tokens": 4096,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 180,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-mlcloud-order-v3-20261024/gemma",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-mlcloud-four-orders-fence-tolerant-v3-20261024-gemma",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 7166124,
+          "source_sha256": "e0d1beeb1e3eef48d7dc80297c96440cad087f94fcfdb7a40c2057aa13564c13",
+          "published_sha256": "e0d1beeb1e3eef48d7dc80297c96440cad087f94fcfdb7a40c2057aa13564c13",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3552,
+          "source_sha256": "e97c9246209359e5abb6dba33da8e2933174903a10d1f340c528ec5e7c76ac54",
+          "published_sha256": "e97c9246209359e5abb6dba33da8e2933174903a10d1f340c528ec5e7c76ac54",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 706,
+          "source_sha256": "50624100a616c6d854bbc71249f762d30db6ac468e709dec8332480215a0f72d",
+          "published_sha256": "33ab6af06458a69f9c9e5dab46bc269751ab7debbf161cedea0844d9adf8d3a8",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 117677,
+          "source_sha256": "bcdd9520a4957f03b76d4269e63cfb29f148ae02dbb14b5ef6b79aa185355330",
+          "published_sha256": "bcdd9520a4957f03b76d4269e63cfb29f148ae02dbb14b5ef6b79aa185355330",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 230,
+          "source_sha256": "be1b5c237863090a58dcecdb297e78596fe05c782ece0b5842f4e76da0d71e0b",
+          "published_sha256": "be1b5c237863090a58dcecdb297e78596fe05c782ece0b5842f4e76da0d71e0b",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 434,
+          "source_sha256": "d6dfb96fce10ff722d7faa631d3f344b108668c51ad4bbe49c50b5d62c11b9a8",
+          "published_sha256": "d6dfb96fce10ff722d7faa631d3f344b108668c51ad4bbe49c50b5d62c11b9a8",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 475,
+          "source_sha256": "3759718f87c3ed6f9aaf964d71c324aa82f33a20cfaebc6932c25c12606a679b",
+          "published_sha256": "3759718f87c3ed6f9aaf964d71c324aa82f33a20cfaebc6932c25c12606a679b",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 790,
+          "source_sha256": "0d3fffb74883f929cbbeb4225dad1fc25bc1ccf8018214f7610ef31830de38a8",
+          "published_sha256": "0d3fffb74883f929cbbeb4225dad1fc25bc1ccf8018214f7610ef31830de38a8",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 1972,
+          "source_sha256": "0ca9c9965b34ba5c7d1b0920220ce57079f204464d81df6f720b0b7dcd0b8ac5",
+          "published_sha256": "0ca9c9965b34ba5c7d1b0920220ce57079f204464d81df6f720b0b7dcd0b8ac5",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 144020,
+          "source_sha256": "8ae55e51f143904a66f81b7470963337317cb1dff3e1eb8f31c90d9ce895d8a5",
+          "published_sha256": "8ae55e51f143904a66f81b7470963337317cb1dff3e1eb8f31c90d9ce895d8a5",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 55,
+          "source_sha256": "4a15a596f1816057482eab7ae16fb85f76e94230b850c916be4732483e5094f7",
+          "published_sha256": "4a15a596f1816057482eab7ae16fb85f76e94230b850c916be4732483e5094f7",
+          "redacted_fields": []
+        }
+      ]
+    },
+    {
+      "name": "mlcloud-qwen3.6-35b-a3b-thinking-t0-4k",
+      "source": "outputs/dev-mlcloud-order-v3-20261024/qwen",
+      "job_id": null,
+      "directory": "results/development-v3/mlcloud-qwen3.6-35b-a3b-thinking-t0-4k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 74,
+      "response_count": 685,
+      "completion_cap_hits": 12,
+      "responses_with_reasoning": 685,
+      "mean_successful_steps": 6.90625,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "50a7fd52a1031d838b582eb97ed3a097649cb122fab80c11121ee7d350b2728e",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 20.25,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": "TUEBINGEN_API_KEY",
+            "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+            "deployment": "provider",
+            "input_price_per_million": 0.14,
+            "max_input_tokens": 32768,
+            "model_id": "Qwen/Qwen3.6-35B-A3B",
+            "name": "qwen3.6-35b-a3b",
+            "output_price_per_million": 1.0,
+            "parameters": {
+              "max_tokens": 4096,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 180,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-mlcloud-order-v3-20261024/qwen",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-mlcloud-four-orders-fence-tolerant-v3-20261024-qwen",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 8255718,
+          "source_sha256": "9c23b34919b6840cb3d46cf7ce6b0ad06dc4306acc3f7b0050f0b31004846c89",
+          "published_sha256": "9c23b34919b6840cb3d46cf7ce6b0ad06dc4306acc3f7b0050f0b31004846c89",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3524,
+          "source_sha256": "1e843101c2de7e9bc7fec9cbe898517f62f85c5a05b2ec59429f2b3578e73ba2",
+          "published_sha256": "1e843101c2de7e9bc7fec9cbe898517f62f85c5a05b2ec59429f2b3578e73ba2",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 711,
+          "source_sha256": "65e13e2c82758893bf27c6e5ce88979d718cfa453e6ff22ebad6632453b1c489",
+          "published_sha256": "95274ca75c531c3cbc9058142511763a414d7cb11bc831e12258510e280a1ebc",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 116226,
+          "source_sha256": "16a81c5114f8463706f8f8a69b92b72b0dc0b33199975ceac1449c8db089851f",
+          "published_sha256": "16a81c5114f8463706f8f8a69b92b72b0dc0b33199975ceac1449c8db089851f",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 218,
+          "source_sha256": "2572e33a37b56283bde7f239ff656502e4f3762585558a9ae6639ac3e5a398c1",
+          "published_sha256": "2572e33a37b56283bde7f239ff656502e4f3762585558a9ae6639ac3e5a398c1",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 432,
+          "source_sha256": "4677dbec4235ced981851ae591256efdb9b0d9cf72120ee098d5eeb3535dcb42",
+          "published_sha256": "4677dbec4235ced981851ae591256efdb9b0d9cf72120ee098d5eeb3535dcb42",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 417,
+          "source_sha256": "41590f31cc3d4c4bc47e4d7db5e9c2dc8b96e67e9f7284f983c0b6bd1a744056",
+          "published_sha256": "41590f31cc3d4c4bc47e4d7db5e9c2dc8b96e67e9f7284f983c0b6bd1a744056",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 726,
+          "source_sha256": "5fb2c04456c1762c99df53c693280d87b5578a355dbb2056fc3922dfc36084bf",
+          "published_sha256": "5fb2c04456c1762c99df53c693280d87b5578a355dbb2056fc3922dfc36084bf",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 1661,
+          "source_sha256": "cbb20d016d86b9d59023317100877c9a721c2d294c493994597695978e71af8c",
+          "published_sha256": "cbb20d016d86b9d59023317100877c9a721c2d294c493994597695978e71af8c",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 130150,
+          "source_sha256": "cf07eaf61c5ad1264eaaa7075707536640f1354c5194a499d136865f8355c7ef",
+          "published_sha256": "cf07eaf61c5ad1264eaaa7075707536640f1354c5194a499d136865f8355c7ef",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 56,
+          "source_sha256": "53d49d4b2795f572cdd04b8092031473abcb788281a080dc98b7d95357b340d5",
+          "published_sha256": "53d49d4b2795f572cdd04b8092031473abcb788281a080dc98b7d95357b340d5",
+          "redacted_fields": []
+        }
+      ]
+    },
+    {
+      "name": "mlcloud-deepseek-v4.1-flash-thinking-t0-4k",
+      "source": "outputs/dev-mlcloud-order-v3-20261024/deepseek",
+      "job_id": null,
+      "directory": "results/development-v3/mlcloud-deepseek-v4.1-flash-thinking-t0-4k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 96,
+      "response_count": 768,
+      "completion_cap_hits": 0,
+      "responses_with_reasoning": 768,
+      "mean_successful_steps": 8.0,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "cf885ff0306e01fe592c4959925ffcff6143d5a238498ad42bfa95ef5f3a0301",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 17.25,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": "TUEBINGEN_API_KEY",
+            "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+            "deployment": "provider",
+            "input_price_per_million": 0.15,
+            "max_input_tokens": 32768,
+            "model_id": "deepseek-ai/DeepSeek-V4.1-Flash",
+            "name": "deepseek-v4.1-flash",
+            "output_price_per_million": 0.6,
+            "parameters": {
+              "max_tokens": 4096,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 180,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-mlcloud-order-v3-20261024/deepseek",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-mlcloud-four-orders-fence-tolerant-v3-20261024-deepseek",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 5667042,
+          "source_sha256": "fc1ac1eb802ba3ed451fd1500732c1ec397333f6b2923a00cb9c0bdb0fcc3c36",
+          "published_sha256": "fc1ac1eb802ba3ed451fd1500732c1ec397333f6b2923a00cb9c0bdb0fcc3c36",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3547,
+          "source_sha256": "4782e61785e2cd406c2b7de0daf82c4bc8e608acf3be65b4c9dd3a913cac9a70",
+          "published_sha256": "4782e61785e2cd406c2b7de0daf82c4bc8e608acf3be65b4c9dd3a913cac9a70",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 716,
+          "source_sha256": "ac896b5e7237f7bfc30c443aed9586c7793ed60a3330b85f2d8e7bc01b95d7bc",
+          "published_sha256": "a748b27dfc8915375dc734d8aad7d3b68acc5d51572accbcfdfb102296494cf9",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 115785,
+          "source_sha256": "d539250f0f747c9532698cefb546bfc4e1e0764ab73aad55a7dae0a7548a4d7a",
+          "published_sha256": "d539250f0f747c9532698cefb546bfc4e1e0764ab73aad55a7dae0a7548a4d7a",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 177,
+          "source_sha256": "17970b72f8b81560613842547209f78bcc68a214f352a93f4afe31a466f7b125",
+          "published_sha256": "17970b72f8b81560613842547209f78bcc68a214f352a93f4afe31a466f7b125",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 385,
+          "source_sha256": "78f6bfa0081b84a521734cc67f265dddf5e9508851f2e3f97080086077792305",
+          "published_sha256": "78f6bfa0081b84a521734cc67f265dddf5e9508851f2e3f97080086077792305",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 356,
+          "source_sha256": "c83fb5d09c37451579fc9614ede6c3d074a6b0967839ffc02b40a1d16affdacb",
+          "published_sha256": "c83fb5d09c37451579fc9614ede6c3d074a6b0967839ffc02b40a1d16affdacb",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 532,
+          "source_sha256": "7cdf122ad20413a4a7120852dd89d64395d96bbfb871af8eb163c46306c1149c",
+          "published_sha256": "7cdf122ad20413a4a7120852dd89d64395d96bbfb871af8eb163c46306c1149c",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 1566,
+          "source_sha256": "465ba963c2e7e61332bf9539a19edd40c28084382ed1f2ff59c071410608bd85",
+          "published_sha256": "465ba963c2e7e61332bf9539a19edd40c28084382ed1f2ff59c071410608bd85",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 145920,
+          "source_sha256": "d50ecbdd165364cce032d8ad5ad6c90ed95eda247cdba09fd45f7bf7044816d7",
+          "published_sha256": "d50ecbdd165364cce032d8ad5ad6c90ed95eda247cdba09fd45f7bf7044816d7",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 55,
+          "source_sha256": "29f2db9ba996e3e21446945984c13a85d10dd1cad4523b8459e17dd01c702a0f",
+          "published_sha256": "29f2db9ba996e3e21446945984c13a85d10dd1cad4523b8459e17dd01c702a0f",
+          "redacted_fields": []
+        },
+        {
+          "name": "verification.json",
+          "bytes": 846,
+          "source_sha256": "b22ace911b9ba4fdb8de4c1fdc5471e6b9be22aa5db49a6b63d2e8241ae720bc",
+          "published_sha256": "b22ace911b9ba4fdb8de4c1fdc5471e6b9be22aa5db49a6b63d2e8241ae720bc",
+          "redacted_fields": []
+        }
+      ]
+    },
+    {
+      "name": "mlcloud-gemma4-31b-nonthinking-t0-16k",
+      "source": "outputs/dev-mlcloud-nonthinking-order-v3-20261025/gemma",
+      "job_id": null,
+      "directory": "results/development-v3/mlcloud-gemma4-31b-nonthinking-t0-16k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 31,
+      "response_count": 595,
+      "completion_cap_hits": 10,
+      "responses_with_reasoning": 0,
+      "mean_successful_steps": 5.520833333333333,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "a97544d521b25c7ca03142e686cae8ccb6fbd319fe71af3a6fc6f071832c880b",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 8.5,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": "TUEBINGEN_API_KEY",
+            "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+            "deployment": "provider",
+            "input_price_per_million": 0.12,
+            "max_input_tokens": 32768,
+            "model_id": "google/gemma-4-31B-it-qat-w4a16-ct",
+            "name": "gemma-4-31b-it-qat-w4a16-ct",
+            "output_price_per_million": 0.35,
+            "parameters": {
+              "cache": {
+                "no-cache": true,
+                "no-store": true
+              },
+              "chat_template_kwargs": {
+                "enable_thinking": false
+              },
+              "max_tokens": 16384,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-mlcloud-nonthinking-order-v3-20261025/gemma",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-mlcloud-nonthinking-four-orders-v3-20261025-gemma",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 4563791,
+          "source_sha256": "3c2393205a6cd83f7328ca4830647ad4225ab563ef33d5c517e9418aa609c0dd",
+          "published_sha256": "3c2393205a6cd83f7328ca4830647ad4225ab563ef33d5c517e9418aa609c0dd",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3740,
+          "source_sha256": "be4a930109d65639ad6db1b1299f97b9ae7be5c539e6702655c239d583539901",
+          "published_sha256": "be4a930109d65639ad6db1b1299f97b9ae7be5c539e6702655c239d583539901",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 709,
+          "source_sha256": "8c0781069c5bd362fbb81d97515b9cf8d3d14ddecaf45ff94c76da364e3f20d9",
+          "published_sha256": "4474e231fc0e479bf3865003f8aeecf66382ccdd025014b86295546cd5c286e5",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 118095,
+          "source_sha256": "8fd8162b8e2da7cbf9e7f1144bb090ca6275ca564c5b54d8092f330b50fa6b4a",
+          "published_sha256": "8fd8162b8e2da7cbf9e7f1144bb090ca6275ca564c5b54d8092f330b50fa6b4a",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 229,
+          "source_sha256": "92c605a8ad9011d5030958e5171fa92ddb2bf2f1bd706797888d59c9f7f4c800",
+          "published_sha256": "92c605a8ad9011d5030958e5171fa92ddb2bf2f1bd706797888d59c9f7f4c800",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 466,
+          "source_sha256": "254e66ed22f2bc1e733ca222c1eeb0aebfb22c4604b0da07af71fa424daaeacb",
+          "published_sha256": "254e66ed22f2bc1e733ca222c1eeb0aebfb22c4604b0da07af71fa424daaeacb",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 449,
+          "source_sha256": "70f54d9d67801d83ca0a9b20742876208e43429036cc724a2a349c9ffb58460f",
+          "published_sha256": "70f54d9d67801d83ca0a9b20742876208e43429036cc724a2a349c9ffb58460f",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 797,
+          "source_sha256": "e390816d3c9d6947913b4910d833467190c3d8dc16f53823ab6b605113dea60e",
+          "published_sha256": "e390816d3c9d6947913b4910d833467190c3d8dc16f53823ab6b605113dea60e",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 2066,
+          "source_sha256": "4bdd2c120a0f4e87a978bb8240c7f24cd3f06d454ac3e223e9e35cd59d521654",
+          "published_sha256": "4bdd2c120a0f4e87a978bb8240c7f24cd3f06d454ac3e223e9e35cd59d521654",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 113050,
+          "source_sha256": "90882aaa5d2149695c78e1262f0f2d4b9c5d91992bf1b357e457c3a1930bd9df",
+          "published_sha256": "90882aaa5d2149695c78e1262f0f2d4b9c5d91992bf1b357e457c3a1930bd9df",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 54,
+          "source_sha256": "1d46f64be657fa30e6363cd83b945a2716e51af60e1cf351d3afe0aa53d2f1c2",
+          "published_sha256": "1d46f64be657fa30e6363cd83b945a2716e51af60e1cf351d3afe0aa53d2f1c2",
+          "redacted_fields": []
+        },
+        {
+          "name": "mode-verification.json",
+          "bytes": 479,
+          "source_sha256": "2426042af76e0fc8342aa92033ca4c3bcecb9f9613e7ac6c4045885e09bbccb7",
+          "published_sha256": "2426042af76e0fc8342aa92033ca4c3bcecb9f9613e7ac6c4045885e09bbccb7",
+          "redacted_fields": []
+        }
+      ]
+    },
+    {
+      "name": "mlcloud-qwen3.6-35b-a3b-nonthinking-t0-16k",
+      "source": "outputs/dev-mlcloud-nonthinking-order-v3-20261025/qwen",
+      "job_id": null,
+      "directory": "results/development-v3/mlcloud-qwen3.6-35b-a3b-nonthinking-t0-16k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 27,
+      "response_count": 531,
+      "completion_cap_hits": 0,
+      "responses_with_reasoning": 0,
+      "mean_successful_steps": 4.8125,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "f950761db72679928f289874a25dc12ed30d38972a4a60fa53f8b0cc1690682e",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 18.5,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": "TUEBINGEN_API_KEY",
+            "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+            "deployment": "provider",
+            "input_price_per_million": 0.14,
+            "max_input_tokens": 32768,
+            "model_id": "Qwen/Qwen3.6-35B-A3B",
+            "name": "qwen3.6-35b-a3b",
+            "output_price_per_million": 1.0,
+            "parameters": {
+              "cache": {
+                "no-cache": true,
+                "no-store": true
+              },
+              "chat_template_kwargs": {
+                "enable_thinking": false
+              },
+              "max_tokens": 16384,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-mlcloud-nonthinking-order-v3-20261025/qwen",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-mlcloud-nonthinking-four-orders-v3-20261025-qwen",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 3161722,
+          "source_sha256": "f77715d2a06adefcd8e2a84058ac9c6f4975e77c9485b1133aa78cb4ca289b83",
+          "published_sha256": "f77715d2a06adefcd8e2a84058ac9c6f4975e77c9485b1133aa78cb4ca289b83",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3712,
+          "source_sha256": "f3ffab5111eca96facbaadd4903567286afd2ebc2c47be1f30be7bb68bfe238c",
+          "published_sha256": "f3ffab5111eca96facbaadd4903567286afd2ebc2c47be1f30be7bb68bfe238c",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 714,
+          "source_sha256": "70ac39618d89a5316d815e2539c0fed436e4d51b97235923939079d960866311",
+          "published_sha256": "974e603fa9804d07f186411e34765e644b8fe4d99e5f3df047a25100fee309c9",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 113559,
+          "source_sha256": "126d6571fd24780b87368f7f3d1202ee65516b948ca3099fc167255fd70ea0c3",
+          "published_sha256": "126d6571fd24780b87368f7f3d1202ee65516b948ca3099fc167255fd70ea0c3",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 217,
+          "source_sha256": "f9e759c5f504989e15d38626711da271669c7e00ffc0af3b25bfeca63fbf6d38",
+          "published_sha256": "f9e759c5f504989e15d38626711da271669c7e00ffc0af3b25bfeca63fbf6d38",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 355,
+          "source_sha256": "8a49ffa13fc71638aa9be349515449c942ef898368e9263a399846bc20f9ec0e",
+          "published_sha256": "8a49ffa13fc71638aa9be349515449c942ef898368e9263a399846bc20f9ec0e",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 397,
+          "source_sha256": "662d76484abc8ff7a955a1b56c3434af99f070ade6ad9a02753d5a114fd14d6a",
+          "published_sha256": "662d76484abc8ff7a955a1b56c3434af99f070ade6ad9a02753d5a114fd14d6a",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 751,
+          "source_sha256": "095b82a46ae74023dde90bc6aa7667cf91864fe4ead57c0b2ad9244447850a19",
+          "published_sha256": "095b82a46ae74023dde90bc6aa7667cf91864fe4ead57c0b2ad9244447850a19",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 1774,
+          "source_sha256": "32dcd9ef77b71b01324e7d588e76ec1a1cb162cdf98014470efe7e3aeaff87a0",
+          "published_sha256": "32dcd9ef77b71b01324e7d588e76ec1a1cb162cdf98014470efe7e3aeaff87a0",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 100890,
+          "source_sha256": "09291b54b6746794ce611c3e202847a3b85ad45edbf14cceef2e187924050425",
+          "published_sha256": "09291b54b6746794ce611c3e202847a3b85ad45edbf14cceef2e187924050425",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 56,
+          "source_sha256": "9a20ce17e0a4041ee3f78a653886efb2c3bf4bcd528675ae09d6efd9b5c23b93",
+          "published_sha256": "9a20ce17e0a4041ee3f78a653886efb2c3bf4bcd528675ae09d6efd9b5c23b93",
+          "redacted_fields": []
+        },
+        {
+          "name": "mode-verification.json",
+          "bytes": 479,
+          "source_sha256": "2fcd6810d61624c87c0319e56cdfcb9b048c506f362b4bd63b6bc0ea529db7c4",
+          "published_sha256": "2fcd6810d61624c87c0319e56cdfcb9b048c506f362b4bd63b6bc0ea529db7c4",
+          "redacted_fields": []
+        }
+      ]
+    },
+    {
+      "name": "mlcloud-deepseek-v4.1-flash-nonthinking-t0-16k",
+      "source": "outputs/dev-mlcloud-nonthinking-order-v3-20261025/deepseek",
+      "job_id": null,
+      "directory": "results/development-v3/mlcloud-deepseek-v4.1-flash-nonthinking-t0-16k",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 24,
+      "response_count": 548,
+      "completion_cap_hits": 0,
+      "responses_with_reasoning": 0,
+      "mean_successful_steps": 4.958333333333333,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "8b733bf9f158ad5b8671e6b9531041e2883e583357b6ac7adf66196ee978e150",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 13.0,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": "TUEBINGEN_API_KEY",
+            "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+            "deployment": "provider",
+            "input_price_per_million": 0.15,
+            "max_input_tokens": 32768,
+            "model_id": "deepseek-ai/DeepSeek-V4.1-Flash",
+            "name": "deepseek-v4.1-flash",
+            "output_price_per_million": 0.6,
+            "parameters": {
+              "cache": {
+                "no-cache": true,
+                "no-store": true
+              },
+              "max_tokens": 16384,
+              "reasoning_effort": "none",
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-mlcloud-nonthinking-order-v3-20261025/deepseek",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-mlcloud-nonthinking-four-orders-v3-20261025-deepseek",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 3246097,
+          "source_sha256": "44459fe94ec6b3b817706eb5877551821a44b07c5eac7972657ccef135759345",
+          "published_sha256": "44459fe94ec6b3b817706eb5877551821a44b07c5eac7972657ccef135759345",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3687,
+          "source_sha256": "fc808e18cbb633eb6a538285cff169ce5f5e24d5b1a020ec69530b613ef7202f",
+          "published_sha256": "fc808e18cbb633eb6a538285cff169ce5f5e24d5b1a020ec69530b613ef7202f",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 721,
+          "source_sha256": "87a6a083da8a329f4c3da942f5e42d5c0de197d3924a65709958e740490675f5",
+          "published_sha256": "0e670147f1c86fba5eca62e47d8e44b512b2ed7929d1c410540a90c25921c87f",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 115895,
+          "source_sha256": "93c7a29476e69f2b083b63aa94d3c90d3d809a6926dfbecb7ed351db0ffe166e",
+          "published_sha256": "93c7a29476e69f2b083b63aa94d3c90d3d809a6926dfbecb7ed351db0ffe166e",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 222,
+          "source_sha256": "00dd25c2be3708e0957fd9c1d39ac963cfd1cc0a75d02ef563a4174cd07e1919",
+          "published_sha256": "00dd25c2be3708e0957fd9c1d39ac963cfd1cc0a75d02ef563a4174cd07e1919",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 361,
+          "source_sha256": "7230c6ef8b51d22bb28d8de26cb933ce1295ebb3bb8589062c758b56b171d6ee",
+          "published_sha256": "7230c6ef8b51d22bb28d8de26cb933ce1295ebb3bb8589062c758b56b171d6ee",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 427,
+          "source_sha256": "c28834de2657a52c87192ec9da587099913f17643f226bb46ec19519b9960ad1",
+          "published_sha256": "c28834de2657a52c87192ec9da587099913f17643f226bb46ec19519b9960ad1",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 787,
+          "source_sha256": "968592c368e6a424380802d1a9f4d9f160f98826fef53da523c0655466acfe84",
+          "published_sha256": "968592c368e6a424380802d1a9f4d9f160f98826fef53da523c0655466acfe84",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 1821,
+          "source_sha256": "b2043356349c52466f85c59fa33bd1893e81e9ac5a5a19de459043bba923c785",
+          "published_sha256": "b2043356349c52466f85c59fa33bd1893e81e9ac5a5a19de459043bba923c785",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 104120,
+          "source_sha256": "976977e0b6726718dcf4f58c88ed3f856eea540325bf61ece94e5130ef3bc698",
+          "published_sha256": "976977e0b6726718dcf4f58c88ed3f856eea540325bf61ece94e5130ef3bc698",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 55,
+          "source_sha256": "744e7b0eb9dc4498d203ad5a6b4819fa67016064854d43285ee97f55f06fe411",
+          "published_sha256": "744e7b0eb9dc4498d203ad5a6b4819fa67016064854d43285ee97f55f06fe411",
+          "redacted_fields": []
+        },
+        {
+          "name": "mode-verification.json",
+          "bytes": 445,
+          "source_sha256": "dbcdedf84137bd101b526b27b3416c53750e41f8dd74a84ed3110a665ad9f0ac",
+          "published_sha256": "dbcdedf84137bd101b526b27b3416c53750e41f8dd74a84ed3110a665ad9f0ac",
+          "redacted_fields": []
+        }
+      ]
+    },
+    {
+      "name": "mlcloud-qwen3.6-35b-a3b-thinking-t0-16k-rep1",
+      "source": "outputs/dev-mlcloud-qwen-16k-repeats-v3-20261025/rep1",
+      "job_id": null,
+      "directory": "results/development-v3/mlcloud-qwen3.6-35b-a3b-thinking-t0-16k-rep1",
+      "planned_games": 96,
+      "completed_games": 96,
+      "whole_games_passed": 78,
+      "response_count": 702,
+      "completion_cap_hits": 10,
+      "responses_with_reasoning": 702,
+      "mean_successful_steps": 7.125,
+      "code_hash": "873b378512c8c571d5bee26507d137f1647d88d693cfed485924ae42c91e88a6",
+      "config_hash": "c313f1935901510d1e74b4c1b97436faba0f7190150fdbdc9f5a2207c473742e",
+      "dataset_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+      "configuration": {
+        "allow_markdown_fences": true,
+        "bootstrap_repetitions": 2000,
+        "budget_usd": 20,
+        "dataset_dir": "data/sequential-v3",
+        "human_audit_required_for_model_test": true,
+        "models": [
+          {
+            "adapter": "chat",
+            "api_key_env": "TUEBINGEN_API_KEY",
+            "base_url": "https://llm.mlcloud.uni-tuebingen.de/v1",
+            "deployment": "provider",
+            "input_price_per_million": 0.14,
+            "max_input_tokens": 32768,
+            "model_id": "Qwen/Qwen3.6-35B-A3B",
+            "name": "qwen3.6-35b-a3b-rep1",
+            "output_price_per_million": 1.0,
+            "parameters": {
+              "cache": {
+                "no-cache": true,
+                "no-store": true
+              },
+              "max_tokens": 16384,
+              "temperature": 0
+            },
+            "pricing_verified_on": "2026-10-24",
+            "timeout_seconds": 600,
+            "transport_retries": 2
+          }
+        ],
+        "output_dir": "outputs/dev-mlcloud-qwen-16k-repeats-v3-20261025/rep1",
+        "remind_previous_rules": true,
+        "rule_count": 8,
+        "seed": 20261008,
+        "split": "development",
+        "study": "dev-mlcloud-qwen-16k-three-repetitions-v3-20261025-rep1",
+        "tracks": [
+          "order"
+        ]
+      },
+      "files": [
+        {
+          "name": "records.jsonl",
+          "bytes": 9233902,
+          "source_sha256": "70bc8e496c68d36d39b0a46f3e785e38d6580e4cbf031807f948a9e9bcc52594",
+          "published_sha256": "70bc8e496c68d36d39b0a46f3e785e38d6580e4cbf031807f948a9e9bcc52594",
+          "redacted_fields": []
+        },
+        {
+          "name": "metadata.json",
+          "bytes": 3631,
+          "source_sha256": "f8d496b74926e99d4ca650e9ce273f596e886e4b7e00a2e43bd43b642b56e35b",
+          "published_sha256": "f8d496b74926e99d4ca650e9ce273f596e886e4b7e00a2e43bd43b642b56e35b",
+          "redacted_fields": []
+        },
+        {
+          "name": "completion.json",
+          "bytes": 717,
+          "source_sha256": "49db152b0bc8b7b69dc77533bfcccc939e02ba0ad76141bd2edd8944d5efb4c6",
+          "published_sha256": "658ccf3be8470cc39648d2c2b95bec945bcd254182523c66a64a09cd008e6b44",
+          "redacted_fields": [
+            "output_dir"
+          ]
+        },
+        {
+          "name": "analysis.json",
+          "bytes": 117363,
+          "source_sha256": "57bf462731ce324303801c0fd163658cd79d8da8cf5af37dcabc8c77029a8291",
+          "published_sha256": "57bf462731ce324303801c0fd163658cd79d8da8cf5af37dcabc8c77029a8291",
+          "redacted_fields": []
+        },
+        {
+          "name": "summary.csv",
+          "bytes": 223,
+          "source_sha256": "118329b3ae83f1082ada9cf3ccc42f87882ec39e35246ec377701240fddc2b1b",
+          "published_sha256": "118329b3ae83f1082ada9cf3ccc42f87882ec39e35246ec377701240fddc2b1b",
+          "redacted_fields": []
+        },
+        {
+          "name": "interference-summary.csv",
+          "bytes": 495,
+          "source_sha256": "f12b69df75a05c7d9dfd564edfe1f2fcbb49a472531e5fcabac6c71a010a3859",
+          "published_sha256": "f12b69df75a05c7d9dfd564edfe1f2fcbb49a472531e5fcabac6c71a010a3859",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-summary.csv",
+          "bytes": 424,
+          "source_sha256": "d7260f1c0c7e2472a20b9e29967f8549454cb87b85c16831d6fea593ac43f074",
+          "published_sha256": "d7260f1c0c7e2472a20b9e29967f8549454cb87b85c16831d6fea593ac43f074",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-effects.csv",
+          "bytes": 789,
+          "source_sha256": "e4c808db2854670ef91f1bd41a478f663ac40dc4754316f715db8da336295c94",
+          "published_sha256": "e4c808db2854670ef91f1bd41a478f663ac40dc4754316f715db8da336295c94",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-survival.csv",
+          "bytes": 1927,
+          "source_sha256": "e27aaf07e4ca075786d11bf4429aeb7cdd62a579779ea1e65ba8401214ab0a96",
+          "published_sha256": "e27aaf07e4ca075786d11bf4429aeb7cdd62a579779ea1e65ba8401214ab0a96",
+          "redacted_fields": []
+        },
+        {
+          "name": "events.jsonl",
+          "bytes": 133380,
+          "source_sha256": "3d17eb5934121a763b36b22bb57557ff2821f1f3aa620905068e9970bcced6fd",
+          "published_sha256": "3d17eb5934121a763b36b22bb57557ff2821f1f3aa620905068e9970bcced6fd",
+          "redacted_fields": []
+        },
+        {
+          "name": "budget.json",
+          "bytes": 55,
+          "source_sha256": "1e7abc291119ca13496a48002cd57e35604af3477ef82ae0bf48c16d6bfe5aed",
+          "published_sha256": "1e7abc291119ca13496a48002cd57e35604af3477ef82ae0bf48c16d6bfe5aed",
+          "redacted_fields": []
+        },
+        {
+          "name": "order-gap-diagnostics.json",
+          "bytes": 3225,
+          "source_sha256": "cd9d30fe28c0a7612ca67524689bd03b454d8bcb32247f68e7febc553a436e29",
+          "published_sha256": "cd9d30fe28c0a7612ca67524689bd03b454d8bcb32247f68e7febc553a436e29",
+          "redacted_fields": []
+        }
+      ]
+    }
+  ]
+}

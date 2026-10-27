@@ -1,0 +1,5 @@
+model,order,games,completed_episodes,incomplete_episodes,whole_passes,whole_denominator,whole_rate,mean_turns_completed,reached_horizon
+deepseek-v4.1-flash,original,24,24,0,2,24,0.08333333333333333,4.125,2
+deepseek-v4.1-flash,random_1,24,24,0,3,24,0.125,4.833333333333333,6
+deepseek-v4.1-flash,random_2,24,24,0,7,24,0.2916666666666667,5.083333333333333,7
+deepseek-v4.1-flash,reverse,24,24,0,12,24,0.5,5.791666666666667,14

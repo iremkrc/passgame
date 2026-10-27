@@ -1,0 +1,4 @@
+model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1-16k-rep1,order,0,on_policy_order,407,0.9631449631449631,0.9631449631449631,0.9589442815249267,0.0,393
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1-16k-rep1,order,1,on_policy_order,33,1.0,1.0,1.0,0.0,33
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1-16k-rep1,order,2,on_policy_order,2,1.0,1.0,1.0,0.0,2

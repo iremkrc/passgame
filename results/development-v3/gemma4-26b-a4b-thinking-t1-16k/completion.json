@@ -1,0 +1,24 @@
+{
+  "study": "dev-gemma4-26b-a4b-bf16-thinking-t1-16k-one-repetition-v3-20261025-rep1",
+  "diagnostic_only": false,
+  "record_count": 768,
+  "planned_records": 768,
+  "prompt_protocol": {
+    "version": "cumulative_rule_reminders_v1",
+    "remind_previous_rules": true
+  },
+  "response_protocol": {
+    "version": "optional_markdown_fence_v1",
+    "allow_markdown_fences": true
+  },
+  "planned_records_are_upper_bound": true,
+  "skipped_after_failure": 0,
+  "expected_records": 768,
+  "planned_episodes": 96,
+  "completed_episodes": 96,
+  "terminated_on_failure": 1,
+  "complete": true,
+  "reserved_usd": 0.0,
+  "stopped": null,
+  "output_dir": "results/development-v3/gemma4-26b-a4b-thinking-t1-16k"
+}

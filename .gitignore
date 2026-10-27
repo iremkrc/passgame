@@ -12,3 +12,19 @@ outputs/
 # Per-person cluster wrappers and local run logs (see scripts/slurm.example.sbatch)
 scripts/local/
 logs/
+
+# Report drafts, styles, previews, and LaTeX build products stay local.
+/docs/report-*
+/docs/methods.md
+/docs/appendix-*.md
+/docs/reproducibility.md
+/docs/acl2023.sty
+/docs/acl_natbib.bst
+/output/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc

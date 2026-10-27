@@ -1,0 +1,4 @@
+model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
+gemma-4-26b-a4b-it-bf16,order,0,on_policy_order,344,0.8924418604651163,0.9622093023255814,0.8992805755395683,0.09912536443148688,343
+gemma-4-26b-a4b-it-bf16,order,1,on_policy_order,30,0.6,0.9333333333333333,0.6333333333333333,0.3448275862068966,29
+gemma-4-26b-a4b-it-bf16,order,3,on_policy_order,1,0.0,1.0,0.0,3.0,1

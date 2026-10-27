@@ -1,0 +1,4380 @@
+{
+  "breakdowns": [],
+  "episodes": [
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-original",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-random_1",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-random_2",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-000-reverse",
+      "final_set_id": "80f19b8b03b3209f2c3d",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-original",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-random_1",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-random_2",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-001-reverse",
+      "final_set_id": "cb06e468cdb2f24682fe",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-original",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-random_1",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-random_2",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-002-reverse",
+      "final_set_id": "9b2e0275ebf512443286",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-original",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-random_1",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-random_2",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-forbidden_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-forbidden_position-003-reverse",
+      "final_set_id": "dd59c974439595f08681",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-original",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-random_1",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-random_2",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-000-reverse",
+      "final_set_id": "5d5ed9cd0cceeb568fdf",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-original",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-random_1",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-random_2",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-001-reverse",
+      "final_set_id": "51539b40016ff35fe959",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-original",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-random_1",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-random_2",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-002-reverse",
+      "final_set_id": "19035f673db90e0ca99b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-original",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-random_1",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-random_2",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric-003-reverse",
+      "final_set_id": "d43b7d2bb63ec750fc9c",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-original",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-random_1",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-random_2",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-000-reverse",
+      "final_set_id": "431d201718eb6a8c9fd0",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-original",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-random_1",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-random_2",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-001-reverse",
+      "final_set_id": "b72bf4c3794230d43374",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-original",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-random_1",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-random_2",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-002-reverse",
+      "final_set_id": "6b9e50f47bfb7715a9ab",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-original",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-random_1",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-random_2",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_2-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_2-003-reverse",
+      "final_set_id": "e9b3363f6bfbfa2ee6a9",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-original",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-random_1",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-random_2",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-000",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-000-reverse",
+      "final_set_id": "f9764f418f2e83dd8dd1",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-original",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-random_1",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-random_2",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-001",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-001-reverse",
+      "final_set_id": "cd214cba4f83b3c06c95",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-original",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-random_1",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-random_2",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-002",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-002-reverse",
+      "final_set_id": "ba59315d62c1a5504b4a",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-original",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-random_1",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-random_2",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-numeric_multi_3-003",
+      "complete": true,
+      "episode_id": "order-v3-development-numeric_multi_3-003-reverse",
+      "final_set_id": "62660bc694b2e97a3de8",
+      "final_success": 0,
+      "first_failure": 8,
+      "horizon": 8,
+      "initial": "abc1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": false,
+      "terminated_on_failure": true,
+      "termination_reason": "rule_failure",
+      "track": "order",
+      "turns_completed": 7,
+      "turns_observed": 8,
+      "whole_episode_success": 0
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-original",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-random_1",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-random_2",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-000",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-000-reverse",
+      "final_set_id": "ace1f62bf9a087673823",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-original",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-random_1",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-random_2",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-001",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-001-reverse",
+      "final_set_id": "b49312a96f78b5d788d3",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-original",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-random_1",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-random_2",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-002",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-002-reverse",
+      "final_set_id": "8fcc9a5795fdac8b7137",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-original",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-random_1",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-random_2",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-position_count-003",
+      "complete": true,
+      "episode_id": "order-v3-development-position_count-003-reverse",
+      "final_set_id": "d7acb975b36f6737dfac",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-original",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-random_1",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-random_2",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-000",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-000-reverse",
+      "final_set_id": "46d976891e166f23bf74",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-original",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-random_1",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-random_2",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-001",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-001-reverse",
+      "final_set_id": "4f2e17c0f7820173ed3b",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-original",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-random_1",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-random_2",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-002",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-002-reverse",
+      "final_set_id": "c96a94b0134d032b4f62",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-original",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-random_1",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-random_2",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    },
+    {
+      "base_id": "v3-development-substring_position-003",
+      "complete": true,
+      "episode_id": "order-v3-development-substring_position-003-reverse",
+      "final_set_id": "14f5c63915cfa018b0c5",
+      "final_success": 1,
+      "first_failure": null,
+      "horizon": 8,
+      "initial": "abcd1",
+      "initial_condition": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": true,
+      "recovered": false,
+      "right_censored": true,
+      "terminated_on_failure": false,
+      "termination_reason": "horizon_reached",
+      "track": "order",
+      "turns_completed": 8,
+      "turns_observed": 8,
+      "whole_episode_success": 1
+    }
+  ],
+  "h1": [
+    {
+      "blocks": 0,
+      "ci95": null,
+      "contrast": "independent_minus_interfering",
+      "estimate": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "track": "controlled"
+    }
+  ],
+  "h2": [
+    {
+      "blocks": 0,
+      "ci95": null,
+      "contrast": "interfering_minus_independent_unconditional_regression",
+      "estimate": null,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "track": "controlled"
+    }
+  ],
+  "h3": [
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.125
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "final_success",
+      "estimate": 0.041666666666666664,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.125
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "whole_episode_success",
+      "estimate": 0.041666666666666664,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    }
+  ],
+  "inference": "New conversations carry successful model outputs forward and terminate on the first failed response. A rule/format/domain failure is an observed episode failure; later stages are unattempted rather than fabricated response rows or infrastructure missingness. Historical runs retain their recorded termination policy. Autonomous interference strata remain descriptive. Paired H1/H2 contrasts apply to controlled diagnostics or explicitly identified legacy_reset data only. H3 uses final-set blocks.",
+  "infrastructure_failures": 0,
+  "interference_breakdowns": [
+    {
+      "broken_count_histogram": {
+        "0": 448
+      },
+      "condition": "on_policy_order",
+      "degree": 0,
+      "full_success": {
+        "denominator": 448,
+        "numerator": 448,
+        "rate": 1.0
+      },
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 448,
+        "numerator": 448,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 448,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 448,
+      "retention": {
+        "denominator": 382,
+        "numerator": 382,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "broken_count_histogram": {
+        "0": 42
+      },
+      "condition": "on_policy_order",
+      "degree": 1,
+      "full_success": {
+        "denominator": 42,
+        "numerator": 42,
+        "rate": 1.0
+      },
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 42,
+        "numerator": 42,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 42,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 42,
+      "retention": {
+        "denominator": 42,
+        "numerator": 42,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "broken_count_histogram": {
+        "0": 5
+      },
+      "condition": "on_policy_order",
+      "degree": 2,
+      "full_success": {
+        "denominator": 5,
+        "numerator": 5,
+        "rate": 1.0
+      },
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 5,
+        "numerator": 5,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 5,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 5,
+      "retention": {
+        "denominator": 5,
+        "numerator": 5,
+        "rate": 1.0
+      },
+      "track": "order"
+    }
+  ],
+  "legacy_reset_prefix_records": 0,
+  "order_effects": [
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.125
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "whole_episode_success",
+      "estimate": 0.041666666666666664,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.125
+      ],
+      "contrast": "original_minus_reverse",
+      "endpoint": "turns_completed",
+      "estimate": 0.041666666666666664,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "contrast": "original_minus_random_1",
+      "endpoint": "whole_episode_success",
+      "estimate": 0.0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "contrast": "original_minus_random_1",
+      "endpoint": "turns_completed",
+      "estimate": 0.0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "contrast": "original_minus_random_2",
+      "endpoint": "whole_episode_success",
+      "estimate": 0.0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    },
+    {
+      "blocks": 24,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "contrast": "original_minus_random_2",
+      "endpoint": "turns_completed",
+      "estimate": 0.0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1"
+    }
+  ],
+  "order_summary": [
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "passed": 24
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 8.0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "original",
+      "reached_horizon": 24,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 24,
+        "rate": 1.0
+      }
+    },
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "passed": 24
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 8.0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_1",
+      "reached_horizon": 24,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 24,
+        "rate": 1.0
+      }
+    },
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "passed": 24
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 8.0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "random_2",
+      "reached_horizon": 24,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 24,
+        "rate": 1.0
+      }
+    },
+    {
+      "completed_episodes": 24,
+      "first_failure_histogram": {
+        "8": 1,
+        "passed": 23
+      },
+      "games": 24,
+      "incomplete_episodes": 0,
+      "mean_turns_completed": 7.958333333333333,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "order": "reverse",
+      "reached_horizon": 24,
+      "whole_episode_success": {
+        "denominator": 24,
+        "numerator": 23,
+        "rate": 0.9583333333333334
+      }
+    }
+  ],
+  "order_survival": [
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 2
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 3
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 4
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 5
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 6
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 7
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "original",
+      "rate": 1.0,
+      "turn": 8
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 2
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 3
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 4
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 5
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 6
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 7
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_1",
+      "rate": 1.0,
+      "turn": 8
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 2
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 3
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 4
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 5
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 6
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 7
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "random_2",
+      "rate": 1.0,
+      "turn": 8
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 1
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 2
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 3
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 4
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 5
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 6
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 24,
+      "order": "reverse",
+      "rate": 1.0,
+      "turn": 7
+    },
+    {
+      "at_risk": 24,
+      "denominator": 24,
+      "failures_at_turn": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 23,
+      "order": "reverse",
+      "rate": 0.9583333333333334,
+      "turn": 8
+    }
+  ],
+  "record_count": 768,
+  "response_count": 768,
+  "state_certification": [
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "unknown": 6
+      },
+      "load": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 6,
+        "no_op": 9,
+        "unknown": 1
+      },
+      "load": 2,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "no_op": 2,
+        "unknown": 2
+      },
+      "load": 3,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 1,
+        "no_op": 2,
+        "unknown": 4
+      },
+      "load": 4,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 6
+      },
+      "load": 5,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "interfering": 3,
+        "no_op": 2,
+        "unknown": 1
+      },
+      "load": 6,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 1,
+        "no_op": 6
+      },
+      "load": 7,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "forbidden_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 1,
+        "no_op": 6
+      },
+      "load": 8,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 16
+      },
+      "load": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "no_op": 2,
+        "unknown": 3
+      },
+      "load": 2,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "interfering": 4,
+        "no_op": 2
+      },
+      "load": 3,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "interfering": 1,
+        "no_op": 3
+      },
+      "load": 4,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "interfering": 1,
+        "no_op": 1,
+        "unknown": 4
+      },
+      "load": 5,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 2,
+        "no_op": 5
+      },
+      "load": 6,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 5,
+        "no_op": 2
+      },
+      "load": 7,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 3,
+        "interfering": 5,
+        "no_op": 8
+      },
+      "load": 8,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "unknown": 7
+      },
+      "load": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "no_op": 7
+      },
+      "load": 2,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "no_op": 4
+      },
+      "load": 3,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 8,
+        "interfering": 1,
+        "no_op": 2,
+        "unknown": 5
+      },
+      "load": 4,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 13,
+        "interfering": 1,
+        "no_op": 1,
+        "unknown": 1
+      },
+      "load": 5,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 7,
+        "interfering": 2,
+        "no_op": 7
+      },
+      "load": 6,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 7,
+        "no_op": 8,
+        "unknown": 1
+      },
+      "load": 7,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_2",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 6,
+        "interfering": 3,
+        "no_op": 7
+      },
+      "load": 8,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 8,
+        "no_op": 1,
+        "unknown": 7
+      },
+      "load": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 4,
+        "unknown": 2
+      },
+      "load": 2,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 4,
+        "no_op": 3,
+        "unknown": 9
+      },
+      "load": 3,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "no_op": 3,
+        "unknown": 2
+      },
+      "load": 4,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "no_op": 2,
+        "unknown": 5
+      },
+      "load": 5,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "no_op": 7
+      },
+      "load": 6,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 8,
+        "interfering": 2,
+        "no_op": 6
+      },
+      "load": 7,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "numeric_multi_3",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "incoming_certificate_counts": {
+        "independent": 8,
+        "no_op": 5,
+        "unknown": 3
+      },
+      "load": 8,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 1,
+        "rate": 0.0625
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 15,
+        "rate": 0.9375
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "unknown": 4
+      },
+      "load": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "no_op": 4,
+        "unknown": 1
+      },
+      "load": 2,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "interfering": 1,
+        "unknown": 3
+      },
+      "load": 3,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "no_op": 4,
+        "unknown": 1
+      },
+      "load": 4,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "no_op": 3,
+        "unknown": 1
+      },
+      "load": 5,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "interfering": 4,
+        "unknown": 2
+      },
+      "load": 6,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 5,
+        "unknown": 1
+      },
+      "load": 7,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "position_count",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 2,
+        "interfering": 5,
+        "no_op": 2,
+        "unknown": 7
+      },
+      "load": 8,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "unknown": 5
+      },
+      "load": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 11,
+        "no_op": 5
+      },
+      "load": 2,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 14,
+        "no_op": 1,
+        "unknown": 1
+      },
+      "load": 3,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 8,
+        "interfering": 1,
+        "no_op": 6,
+        "unknown": 1
+      },
+      "load": 4,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 9,
+        "interfering": 1,
+        "no_op": 5,
+        "unknown": 1
+      },
+      "load": 5,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 10,
+        "no_op": 4,
+        "unknown": 2
+      },
+      "load": 6,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "independent": 12,
+        "interfering": 1,
+        "no_op": 1,
+        "unknown": 2
+      },
+      "load": 7,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    },
+    {
+      "family": "substring_position",
+      "full_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "incoming_certificate_counts": {
+        "interfering": 1,
+        "no_op": 5,
+        "unknown": 10
+      },
+      "load": 8,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "old_rules_broken": {
+        "denominator": 16,
+        "numerator": 0,
+        "rate": 0.0
+      },
+      "records": 16,
+      "retention": {
+        "denominator": 16,
+        "numerator": 16,
+        "rate": 1.0
+      },
+      "track": "order"
+    }
+  ],
+  "summary": [
+    {
+      "all_old_success": {
+        "denominator": 672,
+        "numerator": 671,
+        "rate": 0.9985119047619048
+      },
+      "condition": "all",
+      "fractional_retention": {
+        "denominator": 672,
+        "numerator": 671.8571428571429,
+        "rate": 0.9997874149659864
+      },
+      "full_success": {
+        "denominator": 768,
+        "numerator": 767,
+        "rate": 0.9986979166666666
+      },
+      "missing_infrastructure": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "new_success": {
+        "denominator": 768,
+        "numerator": 768,
+        "rate": 1.0
+      },
+      "new_success_with_regression": {
+        "denominator": 672,
+        "numerator": 1
+      },
+      "old_rules_broken": {
+        "denominator": 768,
+        "numerator": 1,
+        "rate": 0.0013020833333333333
+      },
+      "outcomes": {
+        "full_success": 767,
+        "new_success_old_failure": 1
+      },
+      "records": 768,
+      "regression_given_new_success": {
+        "denominator": 672,
+        "numerator": 1
+      },
+      "retention": {
+        "denominator": 672,
+        "numerator": 671,
+        "rate": 0.9985119047619048
+      },
+      "track": "order"
+    }
+  ],
+  "survival": [
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 96,
+      "track": "order",
+      "turn": 1
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 96,
+      "track": "order",
+      "turn": 2
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 96,
+      "track": "order",
+      "turn": 3
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 96,
+      "track": "order",
+      "turn": 4
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 96,
+      "track": "order",
+      "turn": 5
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 96,
+      "track": "order",
+      "turn": 6
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 0,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 96,
+      "track": "order",
+      "turn": 7
+    },
+    {
+      "at_risk": 96,
+      "denominator": 96,
+      "failures_at_turn": 1,
+      "model": "gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1",
+      "numerator": 95,
+      "track": "order",
+      "turn": 8
+    }
+  ]
+}
