@@ -1,0 +1,39 @@
+# One user-authorized larger-cap development run; 16,384 includes reasoning and final answer.
+# Preserve the original 4,096-token evidence. No reasoning-only budget or semantic retries.
+study: dev-gemma4-26b-a4b-bf16-thinking-t1-16k-one-repetition-v3-20261025-rep1
+dataset_dir: data/sequential-v3
+split: development
+tracks:
+- order
+rule_count: 8
+remind_previous_rules: true
+allow_markdown_fences: true
+models:
+- name: gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1
+  adapter: chat
+  deployment: self_hosted
+  model_id: gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1
+  base_url: http://127.0.0.1:18501/v1
+  api_key_env: null
+  max_input_tokens: 32768
+  input_price_per_million: 0
+  output_price_per_million: 0
+  pricing_verified_on: '2026-10-24'
+  parameters:
+    max_tokens: 16384
+    temperature: 1.0
+    chat_template_kwargs:
+      enable_thinking: true
+    top_p: 0.95
+    top_k: 64
+    seed: 20261024
+  transport_retries: 2
+  timeout_seconds: 600
+output_dir: outputs/dev-gemma4-26b-a4b-bf16-thinking-t1-16k-v3-20261025-rep1
+budget_usd: 0
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true
+decoding_condition: thinking_temperature1_top_p095_top_k64_16k_v1
+repetition_index: 1
+repetition_count: 1

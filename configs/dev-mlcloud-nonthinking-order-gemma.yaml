@@ -1,0 +1,35 @@
+# One 96-game, four-order repetition; API non-thinking control verified on ML Cloud.
+study: dev-mlcloud-nonthinking-four-orders-v3-20261025-gemma
+dataset_dir: data/sequential-v3
+split: development
+tracks:
+- order
+rule_count: 8
+remind_previous_rules: true
+models:
+- name: gemma-4-31b-it-qat-w4a16-ct
+  adapter: chat
+  deployment: provider
+  model_id: google/gemma-4-31B-it-qat-w4a16-ct
+  base_url: https://llm.mlcloud.uni-tuebingen.de/v1
+  api_key_env: TUEBINGEN_API_KEY
+  max_input_tokens: 32768
+  input_price_per_million: 0.12
+  output_price_per_million: 0.35
+  pricing_verified_on: '2026-10-24'
+  parameters:
+    max_tokens: 16384
+    temperature: 0
+    cache:
+      no-cache: true
+      no-store: true
+    chat_template_kwargs:
+      enable_thinking: false
+  transport_retries: 2
+  timeout_seconds: 600
+output_dir: outputs/dev-mlcloud-nonthinking-order-v3-20261025/gemma
+budget_usd: 8.5
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true
+allow_markdown_fences: true

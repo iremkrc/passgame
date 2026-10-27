@@ -191,7 +191,7 @@ bash run-pilot.sh --check
 bash run-pilot.sh --new
 ```
 
-Changing only `model_id` does not change weights. The packager requires an explicit remote model directory and revision for a different model, and derives the served name from the configuration. The packaged endpoint must be `http://127.0.0.1:8000/v1`.
+Changing only `model_id` does not change weights. The packager requires an explicit remote model directory and revision for a different model, and derives the served name from the configuration. The packaged endpoint must be `http://127.0.0.1:<port>/v1`; the packager freezes and exports that port to the server. Use separate ports for jobs that may share a compute node.
 
 The convenience launcher keeps its one-A100 allocation and fixed container. A model requiring a different GPU layout or runtime needs an appropriate batch wrapper; [serve_and_eval.sh](../scripts/serve_and_eval.sh) and [slurm.example.sbatch](../scripts/slurm.example.sbatch) provide the generic route.
 

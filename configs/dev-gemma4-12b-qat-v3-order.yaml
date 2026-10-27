@@ -1,0 +1,37 @@
+# Self-hosted Gemma 4 12B comparison with the ML Cloud Gemma 4 31B order pilot.
+# Weights: google/gemma-4-12B-it-qat-w4a16-ct
+# Pinned weight revision: 1d2c2d7f2466070e69d6fb3fd5ce9a7d75f2f6ee
+# Pass the staged weight directory and this revision explicitly to the packager.
+# Verify Unified/compressed-tensors support, chat template and reasoning mode
+# in the serving environment before freezing the launch snapshot.
+# The pinned checkpoint's chat template defaults to thinking disabled.
+# Architecture and deployment also differ from the API 31B model; this is a
+# checkpoint comparison and does not isolate the effect of parameter count.
+study: dev-gemma4-12b-qat-four-orders-fence-tolerant-v3-20261024
+dataset_dir: data/sequential-v3
+split: development
+tracks: [order]
+rule_count: 8
+remind_previous_rules: true
+allow_markdown_fences: true
+models:
+  - name: gemma-4-12b-it-qat-w4a16-ct
+    adapter: chat
+    deployment: self_hosted
+    model_id: gemma-4-12b-it-qat-w4a16-ct
+    base_url: http://127.0.0.1:8000/v1
+    api_key_env: null
+    max_input_tokens: 32768
+    input_price_per_million: 0
+    output_price_per_million: 0
+    pricing_verified_on: '2026-10-24'
+    parameters:
+      max_tokens: 4096
+      temperature: 0
+    transport_retries: 2
+    timeout_seconds: 180
+output_dir: outputs/dev-gemma4-12b-qat-v3-order-20261024
+budget_usd: 0
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true

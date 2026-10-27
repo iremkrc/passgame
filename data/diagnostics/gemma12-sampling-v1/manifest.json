@@ -1,0 +1,63 @@
+{
+  "development_only": true,
+  "files": {
+    "development-games.txt": "c1d6c92a428a5db0fd6d488a32754750518c9e25713e515356557d52efa361ef",
+    "episodes.jsonl": "89b188bb5d5540b3c9c06097e27a1cd1144e6d19a280aac3199e0ec7154fdb19"
+  },
+  "human_audit_status": "pending",
+  "primary_diagnostic_endpoints": [
+    "completion-cap hit rate",
+    "nonempty final-answer rate",
+    "format-valid final-answer rate"
+  ],
+  "promotion_policy": "no automatic promotion or full-success target; main protocol requires an explicit user decision",
+  "purpose": "separate decoding diagnostic; not main-study replacement",
+  "secondary_descriptive_endpoints": [
+    "rule success",
+    "whole-game success",
+    "successful steps"
+  ],
+  "seed": 20261024,
+  "selection": {
+    "base_ids": [
+      "v3-development-forbidden_position-000",
+      "v3-development-numeric-001",
+      "v3-development-numeric_multi_2-001",
+      "v3-development-numeric_multi_3-000",
+      "v3-development-position_count-000",
+      "v3-development-substring_position-002"
+    ],
+    "method": "one seeded random development base per family; original order only",
+    "outcomes_used": false,
+    "seed": 20261024
+  },
+  "source_manifest_files_hash": "ed3615d0235933a71ef85c253b342e6c2322abccaf2f3a75da07f1ba719f28b0",
+  "suite": "progressive_seeded_v1",
+  "validation": {
+    "counts": {
+      "development/order/forbidden_position": 1,
+      "development/order/numeric": 1,
+      "development/order/numeric_multi_2": 1,
+      "development/order/numeric_multi_3": 1,
+      "development/order/position_count": 1,
+      "development/order/substring_position": 1,
+      "development/seeded/forbidden_position": 1,
+      "development/seeded/numeric": 1,
+      "development/seeded/numeric_multi_2": 1,
+      "development/seeded/numeric_multi_3": 1,
+      "development/seeded/position_count": 1,
+      "development/seeded/substring_position": 1
+    },
+    "episodes": 12,
+    "independent_checker_passed": true,
+    "neutral_initials_passed": true,
+    "progressive_reference_paths_passed": true,
+    "reference_challenges": {
+      "development/turn_3/degree_1": 4,
+      "development/turn_4/degree_2": 1,
+      "development/turn_5/degree_3": 1,
+      "development/turn_8/degree_1": 5
+    }
+  },
+  "version": 3
+}

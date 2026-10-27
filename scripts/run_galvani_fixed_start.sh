@@ -9,7 +9,7 @@ source configs/pilot-runtime.env
 RUN_ROOT=$(dirname "$REPO")
 export PATH=$WORK/tools/uv-x86_64-unknown-linux-gnu:$PATH
 export UV_CACHE_DIR=$WORK/cache/uv
-export SIF MODEL_DIR SERVED_NAME MAX_MODEL_LEN
+export SIF MODEL_DIR SERVED_NAME MAX_MODEL_LEN PORT
 export CONFIG=configs/experiment.yaml
 export LOG_DIR=$RUN_ROOT/logs
 export VLLM_CACHE_ROOT=$WORK/cache/vllm

@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+import re
 import shlex
 import shutil
 import subprocess
@@ -38,8 +39,10 @@ def package(root: Path, config_path: Path, model_dir: str | None = None, model_r
     if result.parent != Path("outputs") or not all(c.isalnum() or c in "_.-" for c in result.name):
         raise ValueError("Use a unique outputs/<simple-name> result directory")
     model = config["models"][0]
-    if model.get("deployment") != "self_hosted" or model.get("base_url") != "http://127.0.0.1:8000/v1":
-        raise ValueError("The Galvani wrapper serves one self-hosted model at http://127.0.0.1:8000/v1")
+    endpoint = re.fullmatch(r"http://127\.0\.0\.1:([0-9]{1,5})/v1", str(model.get("base_url", "")))
+    if model.get("deployment") != "self_hosted" or endpoint is None or not 1 <= int(endpoint[1]) <= 65535:
+        raise ValueError("The Galvani wrapper requires a self-hosted http://127.0.0.1:<port>/v1 endpoint")
+    port = int(endpoint[1])
     if model_dir is None:
         if model["model_id"] != "qwen2.5-7b-instruct":
             raise ValueError("A new model needs --model-dir and --model-revision; renaming Qwen does not change its weights")
@@ -66,6 +69,7 @@ def package(root: Path, config_path: Path, model_dir: str | None = None, model_r
     shutil.copy2(config_path,snapshot/"configs/experiment.yaml")
     runtime = {"WORK":work,"SIF":required(private,"PASSGAME_SIF"),"MODEL_DIR":model_dir,
                "SERVED_NAME":model["model_id"],"MODEL_REVISION":model_revision,
+               "PORT":str(port),
                "MAX_MODEL_LEN":str(model["max_input_tokens"]),
                "MODEL_PROVENANCE":private.get("PASSGAME_MODEL_PROVENANCE","")}
     (snapshot/"configs/pilot-runtime.env").write_text("".join(k+"="+shlex.quote(v)+"\n" for k,v in runtime.items()))
@@ -100,6 +104,8 @@ def package(root: Path, config_path: Path, model_dir: str | None = None, model_r
                 "maximum_requests":plan["planned_records"],"planned_episodes":plan["planned_episodes"],
                 "families":list(FAMILIES),
                 "model":model["model_id"],"model_revision":model_revision,"model_dir":model_dir,
+                "endpoint":model["base_url"],"port":port,
+                "response_protocol":plan["response_protocol"],"generation_parameters":model["parameters"],
                 "serving_image":"vllm/vllm-openai:v0.24.0",
                 "archive_sha256":hashlib.sha256(archive.read_bytes()).hexdigest()}
     (launch/"snapshot.json").write_text(json.dumps(metadata,indent=2)+"\n")

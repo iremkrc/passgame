@@ -70,6 +70,24 @@ def test_self_hosted_endpoint_works_without_api_credentials_or_spend():
     adapter.close()
 
 
+def test_proxy_cache_controls_are_sent_without_changing_conversation():
+    sent = []
+    def handler(request):
+        sent.append(json.loads(request.content))
+        return httpx.Response(200, json={"choices":[{"message":{"content":'{"password":"A"}'}}]})
+    config = configuration()
+    config["parameters"]["cache"] = {"no-cache":True,"no-store":True}
+    adapter = ChatAdapter(config, Budget(.1), transport=httpx.MockTransport(handler))
+    messages = [{"role":"user","content":"one new rule"}]
+    try:
+        adapter.complete(messages,{"witness":"PRIVATE_REFERENCE"})
+    finally:
+        adapter.close()
+    assert sent[0]["cache"] == {"no-cache":True,"no-store":True}
+    assert sent[0]["messages"] == messages
+    assert "PRIVATE_REFERENCE" not in json.dumps(sent[0])
+
+
 def test_historical_reset_analysis_is_labelled_separately():
     def row(key, track, condition, full, new, retention, **extra):
         return {"request_key":key, "model":"m", "track":track, "base_id":"same-pair",

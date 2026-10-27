@@ -1,0 +1,35 @@
+# Corrected thinking-enabled condition; preserve the completed non-thinking run.
+# Weights: google/gemma-4-12B-it-qat-w4a16-ct
+# Pinned revision: 1d2c2d7f2466070e69d6fb3fd5ce9a7d75f2f6ee
+# Serve with scripts/run_galvani_gemma12b_thinking.sh and the gemma4 parser.
+# The 4096-token completion limit includes reasoning and the final answer.
+study: dev-gemma4-12b-qat-thinking-four-orders-fence-tolerant-v3-20261024
+dataset_dir: data/sequential-v3
+split: development
+tracks: [order]
+rule_count: 8
+remind_previous_rules: true
+allow_markdown_fences: true
+models:
+  - name: gemma-4-12b-it-qat-w4a16-ct-thinking
+    adapter: chat
+    deployment: self_hosted
+    model_id: gemma-4-12b-it-qat-w4a16-ct-thinking
+    base_url: http://127.0.0.1:18012/v1
+    api_key_env: null
+    max_input_tokens: 32768
+    input_price_per_million: 0
+    output_price_per_million: 0
+    pricing_verified_on: '2026-10-24'
+    parameters:
+      max_tokens: 4096
+      temperature: 0
+      chat_template_kwargs:
+        enable_thinking: true
+    transport_retries: 2
+    timeout_seconds: 180
+output_dir: outputs/dev-gemma4-12b-qat-thinking-v3-order-20261024
+budget_usd: 0
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true

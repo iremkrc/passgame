@@ -1,0 +1,36 @@
+# Self-hosted Gemma 4 26B-A4B instruction-tuned MoE comparison.
+# Weights: google/gemma-4-26B-A4B-it
+# Pinned weight revision: 4d7ae4984b7db7de8f8457170b3f1a419ee76d52
+# Serve BF16 with tensor parallel size 2 using scripts/run_galvani_gemma26b.sh.
+# Google does not publish a matching W4A16 compressed-tensors checkpoint for
+# this MoE variant. Record the precision/architecture differences from the
+# 12B and 31B QAT models when reporting this checkpoint comparison.
+# The pinned checkpoint's chat template defaults to thinking disabled.
+study: dev-gemma4-26b-a4b-bf16-four-orders-fence-tolerant-v3-20261024
+dataset_dir: data/sequential-v3
+split: development
+tracks: [order]
+rule_count: 8
+remind_previous_rules: true
+allow_markdown_fences: true
+models:
+  - name: gemma-4-26b-a4b-it-bf16
+    adapter: chat
+    deployment: self_hosted
+    model_id: gemma-4-26b-a4b-it-bf16
+    base_url: http://127.0.0.1:8000/v1
+    api_key_env: null
+    max_input_tokens: 32768
+    input_price_per_million: 0
+    output_price_per_million: 0
+    pricing_verified_on: '2026-10-24'
+    parameters:
+      max_tokens: 4096
+      temperature: 0
+    transport_retries: 2
+    timeout_seconds: 180
+output_dir: outputs/dev-gemma4-26b-a4b-bf16-v3-order-20261024
+budget_usd: 0
+bootstrap_repetitions: 2000
+seed: 20261008
+human_audit_required_for_model_test: true
