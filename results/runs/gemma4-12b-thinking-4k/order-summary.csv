@@ -1,0 +1,5 @@
+model,order,games,completed_episodes,incomplete_episodes,whole_passes,whole_denominator,whole_rate,mean_turns_completed,reached_horizon
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1,original,24,24,0,16,24,0.6666666666666666,6.666666666666667,16
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1,random_1,24,24,0,14,24,0.5833333333333334,5.958333333333333,14
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1,random_2,24,24,0,13,24,0.5416666666666666,6.291666666666667,15
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1,reverse,24,24,0,10,24,0.4166666666666667,5.041666666666667,11

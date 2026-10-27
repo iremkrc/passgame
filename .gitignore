@@ -4,12 +4,12 @@ __pycache__/
 *.pyc
 .env
 configs/*.local.env
-configs/pilot-runtime.env
+configs/cluster-runtime.env
 outputs/
 .DS_Store
 
 
-# Per-person cluster wrappers and local run logs (see scripts/slurm.example.sbatch)
+# Per-person cluster wrappers and local run logs (see scripts/cluster/slurm.example.sbatch)
 scripts/local/
 logs/
 
@@ -17,7 +17,6 @@ logs/
 /docs/report-*
 /docs/methods.md
 /docs/appendix-*.md
-/docs/reproducibility.md
 /docs/acl2023.sty
 /docs/acl_natbib.bst
 /output/
@@ -28,3 +27,11 @@ logs/
 *.fls
 *.synctex.gz
 *.toc
+
+# Private deployment files and editable package metadata.
+**/*.local.env
+*.egg-info/
+build/
+dist/
+.mplconfig/
+**/*.local.yaml

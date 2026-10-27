@@ -1,5 +1,0 @@
-model,order,games,completed_episodes,incomplete_episodes,whole_passes,whole_denominator,whole_rate,mean_turns_completed,reached_horizon
-gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1,original,24,24,0,24,24,1.0,8.0,24
-gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1,random_1,24,24,0,24,24,1.0,8.0,24
-gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1,random_2,24,24,0,24,24,1.0,8.0,24
-gemma-4-26b-a4b-it-bf16-thinking-t1-16k-rep1,reverse,24,24,0,23,24,0.9583333333333334,7.958333333333333,24

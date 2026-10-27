@@ -1,0 +1,24 @@
+{
+  "study": "dev-mlcloud-four-orders-fence-tolerant-v3-20261024-deepseek",
+  "diagnostic_only": false,
+  "record_count": 768,
+  "planned_records": 768,
+  "prompt_protocol": {
+    "version": "cumulative_rule_reminders_v1",
+    "remind_previous_rules": true
+  },
+  "response_protocol": {
+    "version": "optional_markdown_fence_v1",
+    "allow_markdown_fences": true
+  },
+  "planned_records_are_upper_bound": true,
+  "skipped_after_failure": 0,
+  "expected_records": 768,
+  "planned_episodes": 96,
+  "completed_episodes": 96,
+  "terminated_on_failure": 0,
+  "complete": true,
+  "reserved_usd": 5.66231039999998,
+  "stopped": null,
+  "output_dir": "results/runs/deepseek-v4.1-flash-thinking-4k"
+}

@@ -1,3 +1,0 @@
-model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
-qwen3.5-27b,seeded,0,on_policy_seeded,61,0.9344262295081968,1.0,0.9298245614035088,0.06557377049180328,61
-qwen3.5-27b,seeded,1,on_policy_seeded,17,0.29411764705882354,0.8235294117647058,0.29411764705882354,0.8235294117647058,17

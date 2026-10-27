@@ -27,23 +27,8 @@ def render(current: str, new: Rule, old: list[Rule] | None = None, *,
             "Return the updated string satisfying all active rules as JSON.")
 
 
-def controlled_messages(case: dict, condition: str) -> list[dict]:
-    """Offline diagnostic fixture; never sent to an LLM (enforced in the runner)."""
-    old = [Rule.from_dict(r) for r in case["old_rules"]]
-    new = Rule.from_dict(case["new_rule"])
-    current = case["states"][condition]
-    messages = [{"role": "system", "content": SYSTEM}]
-    for rule in old:
-        messages.append({"role": "user", "content": render(current, rule)})
-        messages.append({"role": "assistant", "content": json.dumps({"password": current})})
-    messages.append({"role": "user", "content": render(current, new)})
-    return messages
 
 
-def fresh_messages(rules: list[Rule]) -> list[dict]:
-    """Legacy offline diagnostic only; all-at-once prompts are forbidden for LLMs."""
-    listing = "\n".join(f"{r.id}: {r.describe()}" for r in rules)
-    return [{"role": "system", "content": SYSTEM}, {"role": "user", "content": f"Create a string satisfying these rules. No current artifact is supplied.\n{listing}"}]
 
 
 def _unique_object(pairs):

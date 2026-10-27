@@ -1,5 +1,0 @@
-model,order,games,completed_episodes,incomplete_episodes,whole_passes,whole_denominator,whole_rate,mean_turns_completed,reached_horizon
-qwen2.5-14b-instruct,original,24,24,0,0,24,0.0,2.5833333333333335,0
-qwen2.5-14b-instruct,random_1,24,24,0,0,24,0.0,3.0833333333333335,1
-qwen2.5-14b-instruct,random_2,24,24,0,1,24,0.041666666666666664,2.875,1
-qwen2.5-14b-instruct,reverse,24,24,0,0,24,0.0,3.2916666666666665,4

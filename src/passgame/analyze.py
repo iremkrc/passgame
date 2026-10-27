@@ -33,11 +33,6 @@ def rate(rows, field):
     return {"numerator": sum(values), "denominator": len(values), "rate": mean(values)}
 
 
-def analysis_track(row):
-    """Keep the rejected reset protocol separate when reading historical data."""
-    if row["track"] == "fixed_start" and row.get("state_policy") == "reset_each_turn":
-        return "legacy_reset"
-    return row["track"]
 
 
 def analyze_orders(episodes: list[dict], models: list[str], repetitions: int, seed: int) -> dict:
@@ -87,12 +82,12 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
         raise ValueError("Bootstrap repetitions must be positive")
     if len({r["request_key"] for r in rows}) != len(rows):
         raise ValueError("Duplicate request rows")
-    # All turns count for autonomous conversations, including fixed starts.
-    # Only archived reset-protocol data uses focal-only scoring.
-    scored = [r for r in rows if analysis_track(r) != "legacy_reset" or r.get("phase") == "focal"]
+    if any(row["track"] not in {"order", "seeded"} for row in rows):
+        raise ValueError("Expected seeded or order response evidence")
+    scored = rows
     groups = defaultdict(list)
     for row in scored:
-        groups[(row["model"], analysis_track(row), row.get("condition", "all"))].append(row)
+        groups[(row["model"], row["track"], row.get("condition", "all"))].append(row)
     summaries = []
     for (model, track, condition), group in sorted(groups.items()):
         usable = [r for r in group if r["status"] == "response"]
@@ -105,25 +100,10 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
                           "regression_given_new_success": {"numerator": sum(r["retention"] == 0 for r in new_pass), "denominator": len(new_pass)},
                           "old_rules_broken": rate(usable, "old_rules_broken"),
                           "outcomes": dict(Counter(r["outcome"] for r in usable))})
-    h1, h2 = [], []
-    models = sorted({r["model"] for r in rows})
-    for model in models:
-        pair_tracks = sorted({analysis_track(r) for r in rows if r["model"] == model and analysis_track(r) in {"controlled", "legacy_reset"}}) or ["controlled"]
-        for track in pair_tracks:
-            paired = defaultdict(dict)
-            for r in scored:
-                if r["model"] == model and analysis_track(r) == track and r["status"] == "response":
-                    if r["condition"] in paired[r["base_id"]]:
-                        raise ValueError("Repeated controlled conditions need explicit nested-repeat analysis")
-                    paired[r["base_id"]][r["condition"]] = r
-            complete = [p for p in paired.values() if set(p) == {"independent", "interfering"}]
-            contrasts = [p["independent"]["full_success"]-p["interfering"]["full_success"] for p in complete]
-            h1.append({"model": model, "track": track, "contrast": "independent_minus_interfering", **paired_interval(contrasts, repetitions, seed)})
-            regressions = [int(p["interfering"]["new_success"] and p["interfering"]["retention"] == 0)-int(p["independent"]["new_success"] and p["independent"]["retention"] == 0) for p in complete]
-            h2.append({"model": model, "track": track, "contrast": "interfering_minus_independent_unconditional_regression", **paired_interval(regressions, repetitions, seed+1)})
+    models = sorted({row["model"] for row in rows})
     trajectories = defaultdict(list)
     for row in rows:
-        if analysis_track(row) in {"native", "order", "fixed_start", "seeded"}:
+        if row["track"] in {"order", "seeded"}:
             trajectories[(row["model"], row["episode_id"])].append(row)
     episode_results = []
     for (model, episode_id), group in sorted(trajectories.items()):
@@ -150,30 +130,18 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
     order_results = analyze_orders(episode_results,models,repetitions,seed)
     survival = []
     for model in models:
-        for track in ("native", "order", "fixed_start", "seeded"):
+        for track in ("order", "seeded"):
             complete = [e for e in episode_results if e["model"] == model and e["track"] == track and e["complete"]]
             for turn in range(1, max((e["horizon"] for e in complete), default=0)+1):
                 eligible = [e for e in complete if e["horizon"] >= turn]
                 survival.append({"model": model, "track": track, "turn": turn, "numerator": sum(e["first_failure"] is None or e["first_failure"] > turn for e in eligible), "denominator": len(eligible),
                                  "at_risk": sum(e["first_failure"] is None or e["first_failure"] >= turn for e in eligible),
                                  "failures_at_turn": sum(e["first_failure"] == turn for e in eligible)})
-    breakdowns = []
-    subgroups = defaultdict(list)
-    for r in scored:
-        if analysis_track(r) in {"controlled", "legacy_reset"}:
-            subgroups[(r["model"], analysis_track(r), r.get("family"), r.get("load"), r.get("condition"))].append(r)
-    for (model, track, family, load, condition), group in sorted(subgroups.items()):
-        usable = [r for r in group if r["status"] == "response"]
-        breakdowns.append({"model": model, "track": track, "family": family, "load": load, "condition": condition, "records": len(group), "full_success": rate(usable, "full_success"), "new_success": rate(usable, "new_success"), "retention": rate(usable, "retention")})
     degree_groups = defaultdict(list)
     certification_groups = defaultdict(list)
     for row in scored:
-        track = analysis_track(row)
-        if track in {"controlled", "legacy_reset"}:
-            degree_groups[(row["model"], track, row.get("interference_degree", 1), row["condition"])].append(row)
-            if track == "legacy_reset":
-                certification_groups[(row["model"], track, row.get("family"), row["load"])].append(row)
-        elif track in {"native", "order", "fixed_start", "seeded"}:
+        track = row["track"]
+        if track in {"order", "seeded"}:
             certificate = row.get("dynamic_certificate", {})
             certification_groups[(row["model"], row["track"], row.get("family"), row.get("load", row["turn"]))].append(row)
             degree = certificate.get("min_old_rules_broken")
@@ -194,8 +162,9 @@ def analyze(rows: list[dict], repetitions: int = 2000, seed: int = 20261008) -> 
                                     "records": len(group), "incoming_certificate_counts": labels,
                                     "full_success": rate(usable, "full_success"), "new_success": rate(usable, "new_success"),
                                     "retention": rate(usable, "retention"), "old_rules_broken": rate(usable, "old_rules_broken")})
-    return {"record_count": len(rows), "response_count": sum(r["status"] == "response" for r in rows), "infrastructure_failures": sum(r["status"] != "response" for r in rows), "legacy_reset_prefix_records": len(rows)-len(scored), "summary": summaries, "breakdowns": breakdowns, "interference_breakdowns": interference, "state_certification": state_certification, "h1": h1, "h2": h2, **order_results, "episodes": episode_results, "survival": survival,
-            "inference": "New conversations carry successful model outputs forward and terminate on the first failed response. A rule/format/domain failure is an observed episode failure; later stages are unattempted rather than fabricated response rows or infrastructure missingness. Historical runs retain their recorded termination policy. Autonomous interference strata remain descriptive. Paired H1/H2 contrasts apply to controlled diagnostics or explicitly identified legacy_reset data only. H3 uses final-set blocks."}
+    return {"record_count": len(rows), "response_count": sum(r["status"] == "response" for r in rows), "infrastructure_failures": sum(r["status"] != "response" for r in rows), "summary": summaries, "interference_breakdowns": interference, "state_certification": state_certification, **order_results, "episodes": episode_results, "survival": survival,
+            "inference": "Successful model outputs carry forward; the first format, domain, or rule failure ends the conversation. Later turns are unattempted. Infrastructure failures leave the game incomplete. Interference strata are descriptive; order comparisons pair final rule sets, starting strings, and horizons."}
+
 
 
 def write_analysis(rows: list[dict], output: Path, repetitions=2000, seed=20261008) -> dict:
@@ -242,6 +211,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("records", type=Path)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--repetitions", type=int, default=2000)
+    parser.add_argument("--seed", type=int, default=20261008)
     args = parser.parse_args()
     rows = [json.loads(line) for line in args.records.read_text().splitlines() if line]
-    print(json.dumps(write_analysis(rows, args.output), indent=2))
+    print(json.dumps(write_analysis(rows, args.output, repetitions=args.repetitions, seed=args.seed), indent=2))

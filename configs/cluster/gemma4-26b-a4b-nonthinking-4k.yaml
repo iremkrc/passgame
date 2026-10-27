@@ -1,0 +1,29 @@
+allow_markdown_fences: true
+bootstrap_repetitions: 2000
+budget_usd: 0
+dataset_dir: data
+human_audit_required_for_model_test: true
+models:
+- adapter: chat
+  api_key_env: null
+  base_url: http://127.0.0.1:8000/v1
+  deployment: self_hosted
+  input_price_per_million: 0
+  max_input_tokens: 32768
+  model_id: gemma-4-26b-a4b-it-bf16
+  name: gemma-4-26b-a4b-it-bf16
+  output_price_per_million: 0
+  parameters:
+    max_tokens: 4096
+    temperature: 0
+  pricing_verified_on: '2026-10-24'
+  timeout_seconds: 180
+  transport_retries: 2
+output_dir: outputs/gemma4-26b-a4b-nonthinking-4k
+remind_previous_rules: true
+rule_count: 8
+seed: 20261008
+split: development
+study: passgame-gemma4-26b-a4b-nonthinking-4k
+tracks:
+- order

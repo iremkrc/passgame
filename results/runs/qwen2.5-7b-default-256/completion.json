@@ -1,0 +1,24 @@
+{
+  "study": "dev-qwen2.5-7b-v3-order",
+  "diagnostic_only": false,
+  "record_count": 288,
+  "planned_records": 768,
+  "prompt_protocol": {
+    "version": "cumulative_rule_reminders_v1",
+    "remind_previous_rules": true
+  },
+  "response_protocol": {
+    "version": "strict_json_v1",
+    "allow_markdown_fences": false
+  },
+  "planned_records_are_upper_bound": true,
+  "skipped_after_failure": 480,
+  "expected_records": 288,
+  "planned_episodes": 96,
+  "completed_episodes": 96,
+  "terminated_on_failure": 96,
+  "complete": true,
+  "reserved_usd": 0.0,
+  "stopped": null,
+  "output_dir": "results/runs/qwen2.5-7b-default-256"
+}

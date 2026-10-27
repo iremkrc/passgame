@@ -1,7 +1,0 @@
-model,contrast,endpoint,blocks,estimate,ci95_low,ci95_high
-qwen3.6-27b-bf16-16k-rep1,original_minus_reverse,whole_episode_success,24,-0.20833333333333334,-0.4166666666666667,0.0
-qwen3.6-27b-bf16-16k-rep1,original_minus_reverse,turns_completed,24,-1.3333333333333333,-2.7083333333333335,-0.041666666666666664
-qwen3.6-27b-bf16-16k-rep1,original_minus_random_1,whole_episode_success,24,-0.08333333333333333,-0.3333333333333333,0.16666666666666666
-qwen3.6-27b-bf16-16k-rep1,original_minus_random_1,turns_completed,24,-0.6666666666666666,-2.3333333333333335,0.9166666666666666
-qwen3.6-27b-bf16-16k-rep1,original_minus_random_2,whole_episode_success,24,0.08333333333333333,-0.125,0.3333333333333333
-qwen3.6-27b-bf16-16k-rep1,original_minus_random_2,turns_completed,24,1.0,-0.834375,2.7083333333333335

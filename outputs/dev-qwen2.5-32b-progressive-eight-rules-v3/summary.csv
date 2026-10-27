@@ -1,2 +1,0 @@
-model,track,condition,records,missing_infrastructure,full_numerator,full_denominator,full_rate,new_rate,retention_rate
-qwen2.5-32b-instruct,seeded,all,107,0,84,107,0.7850467289719626,0.9439252336448598,0.7590361445783133

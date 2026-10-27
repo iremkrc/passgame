@@ -12,7 +12,7 @@ import tarfile
 import pytest
 
 
-@pytest.mark.parametrize("launcher", ["run-pilot.sh", "pilot.command"])
+@pytest.mark.parametrize("launcher", ["run-cluster.sh"])
 @pytest.mark.parametrize("late_completion", [True, False])
 @pytest.mark.parametrize("new_run",[False,True])
 def test_empty_queue_rechecks_completion_before_reporting_failure(tmp_path, launcher, late_completion, new_run):
@@ -28,7 +28,7 @@ def test_empty_queue_rechecks_completion_before_reporting_failure(tmp_path, laun
         code_hash.update(name.encode())
     config = b"fixture configuration\n"
     (tmp_path/"configs/main.yaml").write_bytes(config)
-    archive = output/"pilot-stop-on-failure.tar.gz"
+    archive = output/"cluster-source.tar.gz"
     with tarfile.open(archive, "w:gz") as bundle:
         member = tarfile.TarInfo("passgame/configs/experiment.yaml")
         member.size = len(config)
@@ -44,13 +44,13 @@ def test_empty_queue_rechecks_completion_before_reporting_failure(tmp_path, laun
         "tracks":["seeded"],
         "snapshot_commit": "fixture", "result_directory": "fixture-reminders",
     }
-    (output/"pilot-stop-on-failure-snapshot.json").write_text(json.dumps(metadata))
-    (output/"pilot-last-run.json").write_text(json.dumps({
+    (output/"cluster-snapshot.json").write_text(json.dumps(metadata))
+    (output/"cluster-last-run.json").write_text(json.dumps({
         "snapshot_commit": "fixture", "job_id": "12345",
         "run_dir": "/cluster/workspace/passgame/runs/predefined-stop-fixture",
     }))
     if new_run:
-        (output/"pilot-last-run.json").unlink()
+        (output/"cluster-last-run.json").unlink()
     binaries = tmp_path/"bin"
     binaries.mkdir()
     ssh = binaries/"ssh"
@@ -78,6 +78,8 @@ if command.startswith("cd "):
     assert "bash -s -- 'fixture-account' 'fixture-gpu' 'gpu:a100:1'" in command
     assert '--account="$1" --partition="$2"' in body
     assert '--gres="$3"' in body
+    assert "'8' '96G' '24:00:00'" in command
+    assert '--cpus-per-task="$4" --mem="$5" --time="$6"' in body
     (root/"submission").write_text("checked")
     print("12345")
     sys.exit(0)
@@ -88,7 +90,7 @@ raise SystemExit("Unexpected SSH command: "+command)
 import json, sys
 from pathlib import Path
 source, destination = sys.argv[-2], Path(sys.argv[-1])
-if source.endswith("pilot-stop-on-failure.tar.gz"):
+if source.endswith("cluster-source.tar.gz"):
     assert sys.argv[-1].startswith("fixture-cluster:")
     sys.exit(0)
 if source.endswith(".log"):
@@ -106,6 +108,7 @@ else:
            "PASSGAME_SSH_HOST":"fixture-cluster", "PASSGAME_REMOTE_ROOT":"/cluster/workspace/passgame",
            "PASSGAME_ACCOUNT":"fixture-account", "PASSGAME_PARTITION":"fixture-gpu",
            "PASSGAME_GPU_RESOURCE":"gpu:a100:1",
+           "PASSGAME_CPUS_PER_TASK":"8", "PASSGAME_MEMORY":"96G", "PASSGAME_TIME_LIMIT":"24:00:00",
            "PASSGAME_CLUSTER_CONFIG":str(tmp_path/"absent-private-config.env")}
     result = subprocess.run(["bash", str(tmp_path/launcher),*(["--new"] if new_run else [])], cwd=tmp_path, env=env,
                             capture_output=True, text=True, timeout=10)
@@ -120,3 +123,52 @@ else:
         assert result.returncode == 1, result.stdout+result.stderr
         assert "ended without a completion report" in result.stdout
         assert not report.exists()
+
+
+def test_cluster_serving_helper_runs_evaluator_and_stops_server(tmp_path):
+    """Run the actual shell helper with a simulated GPU/container runtime."""
+    source = Path(__file__).resolve().parents[1]
+    directory = tmp_path/"scripts/cluster"
+    directory.mkdir(parents=True)
+    shutil.copy2(source/"scripts/cluster/serve_and_eval.sh", directory/"serve_and_eval.sh")
+    binaries = tmp_path/"bin"
+    binaries.mkdir()
+    programs = {
+        "nvidia-smi": '''#!/bin/bash
+case "$*" in
+  *--query-gpu=driver_version*) echo 580.0 ;;
+  *-L*) echo 'GPU 0: test GPU' ;;
+  *) echo 'CUDA Version: 13.0' ;;
+esac
+''',
+        "apptainer": '''#!/bin/bash
+printf '%s\\n' "$*" >> "$TEST_CALLS"
+if [[ "$*" == *"vllm serve"* ]]; then
+  echo $$ > "$TEST_SERVER_PID"
+  exec sleep 30
+fi
+''',
+        "curl": '#!/bin/bash\nexit 0\n',
+        "git": '#!/bin/bash\necho fixture-commit\n',
+        "uv": '#!/bin/bash\nprintf "%s\\n" "$*" >> "$TEST_CALLS"\n',
+    }
+    for name, content in programs.items():
+        executable = binaries/name
+        executable.write_text(content)
+        executable.chmod(0o755)
+    calls, server_pid = tmp_path/"calls", tmp_path/"server.pid"
+    env = {**os.environ, "PATH": str(binaries)+os.pathsep+os.environ["PATH"],
+           "SIF": str(tmp_path/"runtime.sif"), "MODEL_DIR": str(tmp_path/"weights"),
+           "SERVED_NAME": "served-model", "CONFIG": "configs/cluster/model.yaml",
+           "LOG_DIR": str(tmp_path/"logs"), "VLLM_CACHE_ROOT": str(tmp_path/"cache"),
+           "TEST_CALLS": str(calls), "TEST_SERVER_PID": str(server_pid)}
+    result = subprocess.run(["bash", str(directory/"serve_and_eval.sh")], cwd=tmp_path,
+                            env=env, capture_output=True, text=True, timeout=15)
+    assert result.returncode == 0, result.stdout+result.stderr
+    recorded = calls.read_text()
+    assert "--served-model-name served-model" in recorded
+    assert "run --locked python -m passgame.run --config configs/cluster/model.yaml" in recorded
+    # The server must be terminated even when evaluation completes immediately.
+    if server_pid.exists():
+        with pytest.raises(ProcessLookupError):
+            os.kill(int(server_pid.read_text()), 0)

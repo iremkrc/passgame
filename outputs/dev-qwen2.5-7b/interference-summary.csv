@@ -1,3 +1,0 @@
-model,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
-qwen2.5-7b-instruct,0,on_policy_native,5,0.2,0.4,0.3333333333333333,0.4,5
-qwen2.5-7b-instruct,0,on_policy_order,19,0.5789473684210527,0.8947368421052632,0.45454545454545453,0.3684210526315789,19

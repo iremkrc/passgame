@@ -1,0 +1,35 @@
+allow_markdown_fences: true
+bootstrap_repetitions: 2000
+budget_usd: 0
+dataset_dir: data
+decoding_condition: thinking_temperature1_top_p095_top_k64_v1
+human_audit_required_for_model_test: true
+models:
+- adapter: chat
+  api_key_env: null
+  base_url: http://127.0.0.1:18212/v1
+  deployment: self_hosted
+  input_price_per_million: 0
+  max_input_tokens: 32768
+  model_id: gemma-4-12b-it-qat-w4a16-ct-thinking-t1
+  name: gemma-4-12b-it-qat-w4a16-ct-thinking-t1
+  output_price_per_million: 0
+  parameters:
+    chat_template_kwargs:
+      enable_thinking: true
+    max_tokens: 4096
+    seed: 20261024
+    temperature: 1.0
+    top_k: 64
+    top_p: 0.95
+  pricing_verified_on: '2026-10-24'
+  timeout_seconds: 180
+  transport_retries: 2
+output_dir: outputs/gemma4-12b-thinking-4k
+remind_previous_rules: true
+rule_count: 8
+seed: 20261008
+split: development
+study: passgame-gemma4-12b-thinking-4k
+tracks:
+- order

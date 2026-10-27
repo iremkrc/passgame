@@ -1,0 +1,2 @@
+model,track,condition,records,missing_infrastructure,full_numerator,full_denominator,full_rate,new_rate,retention_rate
+gemma-4-12b-it-qat-w4a16-ct-thinking-t1,order,all,618,0,575,618,0.93042071197411,0.9320388349514563,0.9195402298850575

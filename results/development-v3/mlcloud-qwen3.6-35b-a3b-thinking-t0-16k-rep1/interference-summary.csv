@@ -1,5 +1,0 @@
-model,track,degree,condition,records,full_rate,new_rate,retention_rate,mean_old_rules_broken,broken_count_denominator
-qwen3.6-35b-a3b-rep1,order,0,on_policy_order,407,0.9778869778869779,0.9778869778869779,0.9853372434017595,0.0,402
-qwen3.6-35b-a3b-rep1,order,1,on_policy_order,33,0.9090909090909091,0.9393939393939394,0.9090909090909091,0.03225806451612903,31
-qwen3.6-35b-a3b-rep1,order,2,on_policy_order,4,1.0,1.0,1.0,0.0,4
-qwen3.6-35b-a3b-rep1,order,3,on_policy_order,1,1.0,1.0,1.0,0.0,1
