@@ -13,7 +13,7 @@ The submission contains the study implementation, configurations, dependency req
 | [configs/](configs/README.md) | Seven hosted API and twelve self-hosted model conditions, plus a private cluster-settings template |
 | [requirements.txt](requirements.txt) | Pinned evaluator and test dependencies with package hashes; exported from [uv.lock](uv.lock) |
 | [pyproject.toml](pyproject.toml) | Python version, package metadata, runtime dependencies, and development dependencies |
-| [data/](data/README.md) | Project-generated synthetic games, readable rules, validation manifest, and human-audit sample |
+| [data/](data/README.md) | Project-generated synthetic games, readable rules, and validation manifest |
 | [results/](results/README.md) | Submitted raw model responses, provenance, completion accounting, and per-run analyses; [RUNS.md](results/RUNS.md) maps all conditions to evidence |
 | [docs/](docs/) | [Protocol and scoring](docs/protocol.md), [reproduction instructions](docs/reproducibility.md), [reported results](docs/results.md), tables, and a figure |
 | [tests/](tests/) | Checks for rules, data generation, protocol, model adapters, analysis, and cluster launchers |
@@ -44,7 +44,6 @@ Run each command with `uv run --locked` after setup, or use `python` directly in
 | Command or script | Purpose |
 | --- | --- |
 | `python -m passgame.generate` | Generate and validate the synthetic dataset and write its hash manifest |
-| `python -m passgame.export` | Export readable rules and an unsigned human-audit worksheet |
 | `python -m passgame.run --config PATH` | Run the study, save requests/responses and provenance, and analyze results automatically |
 | `python -m passgame.analyze RECORDS --output PATH` | Recompute scores, survival summaries, and paired bootstrap order comparisons from saved responses |
 | `python scripts/mlcloud_models.py` | List hosted model IDs accessible to the configured account |
@@ -53,7 +52,7 @@ Run each command with `uv run --locked` after setup, or use `python` directly in
 
 ## Obtain or regenerate the dataset
 
-The supplied [data/episodes.jsonl](data/episodes.jsonl) contains 24 development and 120 held-out base games, each with one seeded episode and four order variants: 720 episodes in total. The reported study selects `split: development`, `tracks: [order]`, and eight rules, giving 96 conversations per model condition.
+The supplied [data/episodes.jsonl](data/episodes.jsonl) contains the 24 base games used in the study, each with one seeded episode and four order variants: 120 episodes in total. The reported study selects `split: development`, `tracks: [order]`, and eight rules, giving 96 conversations per model condition.
 
 To regenerate the supplied data without replacing it:
 
@@ -61,13 +60,11 @@ To regenerate the supplied data without replacing it:
 uv run --locked python -m passgame.generate --seed 20261024 --output outputs/generated-data
 ```
 
-Compare the generated manifest's file hashes with [data/manifest.json](data/manifest.json). To obtain readable rule tables and the audit worksheet:
+The generator also writes games that were not evaluated. Keeping only the `"split": "development"` lines of the generated `episodes.jsonl` reproduces [data/episodes.jsonl](data/episodes.jsonl) byte for byte, and `development-games.txt` matches directly; compare both with the hashes in [data/manifest.json](data/manifest.json):
 
 ```sh
-uv run --locked python -m passgame.export --dataset data --output outputs/data-export
+grep '"split": "development"' outputs/generated-data/episodes.jsonl | sha256sum
 ```
-
-The held-out human audit is pending. Follow [the audit instructions](docs/audit-instructions.md) before evaluating models on the test split. Generation and export do not complete that audit.
 
 ## Analyze the submitted results
 

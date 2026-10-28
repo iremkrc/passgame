@@ -146,7 +146,11 @@ The synthetic dataset is included. Recreate it separately with seed 20261024:
 uv run --locked python -m passgame.generate --seed 20261024 --output outputs/generated-data
 ```
 
-Compare generated files with [data/manifest.json](../data/manifest.json). Random
+The generator also writes games that were not evaluated. Keep only the
+`"split": "development"` lines of the generated `episodes.jsonl`, then compare
+generated files with [data/manifest.json](../data/manifest.json). The submitted
+runs record a `dataset_hash` computed before unevaluated games were removed from
+the release; the 24 evaluated games are byte-identical in both versions. Random
 orders are fixed per base identifier and shared across models. The generator uses
 a separately seeded random-number stream for each base game.
 
@@ -185,8 +189,7 @@ under matching source, data, configuration, and request identities. Changed sett
 require a fresh output directory. An interrupted request with an uncertain outcome
 must be reconciled before resuming to avoid duplicate requests.
 
-The reported study uses development games. Held-out model evaluation requires the
-[human audit](audit-instructions.md), currently pending. Exact model revisions or
+The reported study uses the 24 development games. Exact model revisions or
 complete serving details that are unavailable are marked in the run index;
 provider-managed models may change. Record the selected runtime and revision for
 any new evaluation rather than assuming identical live inference.

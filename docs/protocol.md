@@ -33,8 +33,8 @@ can prove no-op, independent, or interfering cases; unknown does not establish
 unsatisfiability. Reference paths prove satisfiability, not guaranteed model states.
 Interference strata remain descriptive because models choose their own strings.
 
-The paper uses development data after protocol development; the held-out audit is
-pending. See [reproducibility](reproducibility.md) for endpoint definitions.
+The paper uses the 24 development games, which were also used during protocol
+development. See [reproducibility](reproducibility.md) for endpoint definitions.
 
 ## Rule language
 

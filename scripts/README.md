@@ -5,7 +5,6 @@
 | `python -m passgame.run` | Preflight or evaluate an API/self-hosted model; saves analysis automatically |
 | `python -m passgame.analyze` | Analyze saved responses with explicit bootstrap settings |
 | `python -m passgame.generate` | Generate the synthetic study dataset |
-| `python -m passgame.export` | Export readable rules and the audit worksheet |
 | `mlcloud_models.py` | List model IDs accessible to a provider account |
 | `package_cluster.py` | Freeze source/config/data and construct a cluster launch snapshot |
 | `cluster/serve_and_eval.sh` | Start vLLM, evaluate configurations, stop the server |
